@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import LazyLoad from 'react-lazyload'
 
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -13,7 +14,7 @@ import Membership from './components/Membership'
 import Navigation from './components/Navigation'
 import Photos from './components/Photos'
 
-import data from './generated/data.json'
+import data from './generated/data/data/.json'
 import './styles/index.scss'
 
 importAll(require.context('./generated', true))
@@ -28,13 +29,13 @@ const App = () => (
         <Navigation data={data.marginals} />
         <Header data={data.marginals}/>
         <main className="flex-content">
-            <About data={data.about} />
-            <Caricom data={data.caricom} />
-            <Activities data={data.activities} />
-            <Calendar data={data.calendar} />
-            <Membership data={data.membership} />
-            <Photos data={data.photos}/>
-            <BoardMembers data={data.boardMembers} />
+            <LazyLoad><About data={data.about} /></LazyLoad>
+            <LazyLoad><Caricom data={data.caricom} /></LazyLoad>
+            <LazyLoad><Activities data={data.activities} /></LazyLoad>
+            <LazyLoad><Calendar data={data.calendar} /></LazyLoad>
+            <LazyLoad><Membership data={data.membership} /></LazyLoad>
+            <LazyLoad><Photos data={data.photos}/></LazyLoad>
+            <LazyLoad><BoardMembers data={data.boardMembers} /></LazyLoad>
         </main>
         <Footer data={data.marginals}/>
     </div>
