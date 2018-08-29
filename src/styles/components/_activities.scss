@@ -1,0 +1,75 @@
+.activities {
+    flex-basis: 59%;
+    padding: 1rem 3rem;
+    margin-top: 6rem;
+
+    @include respond(tabLand){
+        flex-basis: 100%;
+    }
+
+    &__box {
+        background-image: url($activities);
+        background-size: cover;
+        background-position: center;
+        border-radius: 1rem;
+        padding: 3rem;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around; //main
+        align-items: stretch;
+        align-content: flex-start;
+        flex-wrap: wrap;
+
+        @include respond(tabLand){
+            margin: 0 -3rem;
+            padding: 3rem;
+        }
+    }
+}
+
+.activity {
+    flex-basis: 30%;
+    flex-shrink: 1;
+    margin-bottom: 3rem;
+
+    background-color: rgba($color-white, .95);
+    padding: 2rem;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 1.5rem 2rem rgba($color-black, .15);
+    transition: all .3s;
+    
+    @include respond(phone){
+        padding: 2rem 0.5rem;
+        flex-basis: 47%;
+    }
+    
+    @include respond(tinyPhone){
+        flex-basis: 100%;
+    }
+
+    &:hover {
+        transform: scale(1.05) translateY(-1.5rem);
+    }
+
+    &__icon {
+        text-align: center;
+        
+        & > * {
+            display: inline-block;
+        }
+    }
+
+    &__header {
+
+    }
+
+    &__exampleList {
+        list-style-type: none;
+    }
+
+    &__example {
+        
+    }
+}

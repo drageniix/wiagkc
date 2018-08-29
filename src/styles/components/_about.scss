@@ -1,0 +1,15 @@
+.about {
+    flex-basis: 33.33333%;
+    text-align: justify;
+    padding: 4rem 3rem 4rem 3rem;
+        
+    @include respond(tabLand){
+        padding: 6rem 5rem 6rem 5rem;
+        flex-basis: 50%;
+    }
+
+    @include respond(phone){
+        padding: 4rem 3rem 3rem 3rem;
+        flex-basis: 100%;
+    }
+}

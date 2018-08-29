@@ -1,0 +1,53 @@
+.calendar {
+    flex-basis: 40%;
+    
+    @include respond(tabLand){
+        flex-basis: 50%;
+    }
+
+    @include respond(phone){
+        flex-basis: 100%;
+    }
+
+    &__container {
+        margin: 0 auto;
+        display: table;
+        overflow: hidden;
+        padding: 1.5rem;
+    }
+    
+    &__events {
+        @include respond(tabLand){
+            column-count: 2;
+            column-gap: 2rem; //1em = 14px;
+            column-rule: 1px solid $color-grey-light-2;
+        }
+        
+        @include respond(tinyPhone){
+            column-count: 1;
+            column-gap: 0; //1em = 14px;
+            column-rule: none;
+        }
+
+    }
+}
+
+.event {
+    margin-bottom: 1rem;
+    width: 100%;
+    
+    &__date {
+        white-space: nowrap;
+        display: inline-block;
+        vertical-align: top;
+        padding-right: 1.5rem;
+        width: 40%
+    }
+
+    &__details {
+        white-space : wrap;
+        display: inline-block;
+        vertical-align: top;
+        width: 60%;
+    }
+}

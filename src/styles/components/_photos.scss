@@ -1,0 +1,36 @@
+.photos {
+    flex-basis: 38%;
+    padding: 3rem;
+    margin-top: 3rem;
+
+    @include respond(tabLand){
+        padding: 0;
+        flex-basis: 100%;
+    }
+
+    @include respond(phone){
+        margin-top: 0;
+    }
+
+    &__images {
+        border-radius: 1rem;
+        padding: 3rem;
+        
+        @include respond(phone){
+            padding: 1rem 3rem;
+        }
+        img {
+            width: 100%;
+            
+            @include respond(tabLand){
+                padding: 0 1rem;
+                width: 50%;
+            }
+            
+            @include respond(phone){
+                padding: 1.5rem 0;
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+{
+    "title" : "What We Do?",
+    "types" : [
+        {
+            "type" : "Education",
+            "icon" : "teacher",
+            "examples" : [
+                "STEM Opportunities",
+                "West Indian Cooking",
+                "Money Management"
+            ]
+        },
+        {
+            "type" : "Community Service",
+            "icon": "help",
+            "examples" : [
+                "Food Drive",
+                "Clothing Drive",
+                "Guest Speakers"
+            ]
+        },
+        {
+            "type" : "Cultural Events",
+            "icon": "beach-house",
+            "examples" : [
+                "Jerk Festival",
+                "Family Picnics",
+                "Book Clubs"
+            ]
+        },
+        {
+            "type" : "Mentorship",
+            "icon": "customer",
+            "examples" : [
+                "Job Shadowing",
+                "Business Networking"
+            ]
+        },
+        {
+            "type" : "Strategic Partnerships",
+            "icon": "partnership",
+            "examples" : [
+                "Sponsorships",
+                "West Indian Associations",
+                "Cultural Heritage Organizations"
+            ]
+        }
+    ]
+}

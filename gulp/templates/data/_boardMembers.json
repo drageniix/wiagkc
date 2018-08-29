@@ -1,0 +1,40 @@
+{ 
+    "title" : "Board Members",
+    "officers" : [
+        {
+            "title" : "President",
+            "name" : "Dr. Janice Barrow",
+            "credentials" : "Associate Dean, Kansas State University – Olathe"
+        },
+        {
+            "title" : "Founder and Vice-President – Public Relations and Membership,",
+            "name" : "Mrs. Hyacinth Henry",
+            "credentials" : "Entrepreneur and Community Activist"
+        },
+        {
+            "title" : "Secretary",
+            "name" : "Keisha Jones",
+            "credentials" : "RN, CPHIMS, Manager, Clinical Consultant Knowledge Lead – Consulting, Cerner"
+        },
+        {
+            "title" : "Assistant Secretary",
+            "name" : "Therese Dublin",
+            "credentials" : "RN"
+        },
+        {
+            "title" : "Treasurer",
+            "name": "Keithly Lake",
+            "credentials": "Attorney-at-Law"
+        },
+        {
+            "title" : "Legal Advisor",
+            "name" : "Keithly Lake",
+            "credentials" : "Attorney-at-Law"
+        },
+        {
+            "title" : "Legal Advisor",
+            "name" : "Stacy Lake",
+            "credentials" : "Attorney-at-Law, Lake Firm, LLC"
+        }
+    ]
+}

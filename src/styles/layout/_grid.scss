@@ -1,0 +1,9 @@
+.flex-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; //main
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 3rem;
+}

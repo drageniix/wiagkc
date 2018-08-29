@@ -1,0 +1,12 @@
+.membership {
+    flex-basis: 31%;
+    padding: 3rem;
+    
+    @include respond(tabLand){
+        flex-basis: 45%;
+    }    
+
+    @include respond(phone){
+        flex-basis: 100%;
+    }    
+}

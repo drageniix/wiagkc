@@ -1,0 +1,11 @@
+.boardMembers {
+    flex-basis: 31%;
+    padding: 3rem;
+    
+    @include respond(tabLand){
+        flex-basis: 100%;
+        column-count: 3;
+        column-gap: 2rem; 
+        column-rule: 1px solid $color-grey-light-2;
+    }    
+}

@@ -1,0 +1,54 @@
+%svg-common {
+	background: url("../assets/images/svg/sprite.view.svg") no-repeat;
+}
+
+.svg-beach-house {
+	@extend %svg-common;
+	background-position: 99.91881596203085% 0;
+}
+
+.svg-beach-house-dims {
+	width: 44.922px;
+	height: 44.922px;
+}
+
+.svg-customer {
+	@extend %svg-common;
+	background-position: 0 0;
+}
+
+.svg-customer-dims {
+	width: 48px;
+	height: 48px;
+}
+
+.svg-help {
+	@extend %svg-common;
+	background-position: 51.61290322580645% 0;
+}
+
+.svg-help-dims {
+	width: 48px;
+	height: 48px;
+}
+
+.svg-partnership {
+	@extend %svg-common;
+	background-position: 0 100%;
+}
+
+.svg-partnership-dims {
+	width: 48px;
+	height: 48px;
+}
+
+.svg-teacher {
+	@extend %svg-common;
+	background-position: 51.61290322580645% 100%;
+}
+
+.svg-teacher-dims {
+	width: 48px;
+	height: 48px;
+}
+

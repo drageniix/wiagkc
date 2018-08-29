@@ -1,0 +1,27 @@
+{
+    "title" : "West Indian Association",
+    "subtitle" : "of Greater Kansas City",
+    "tagline" : "Sharing the West Indian Culture in Kansas City",
+    "shortName" : "WIA-KC",
+    "links" : [
+        {
+            "href": "#top",
+            "display" : "Home"
+        },
+        {
+            "href": "#about",
+            "display" : "About Us"
+        },
+        {
+            "href": "#calendar",
+            "display" : "Activities"
+        },
+        {
+            "href": "#membership",
+            "display" : "Membership"
+        }
+    ],
+    "email": "wiagkc@gmail.com",
+    "phone": "417-986-6144",
+    "address": "817 East 31st Street, Kansas City, MO 64109"
+}

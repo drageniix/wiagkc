@@ -1,0 +1,9 @@
+{
+    "items" : [
+        {
+            "path" : "map.image",
+            "files" : "caricom.png",
+            "alt" : "Map of the Caricom Members"
+        }
+    ]   
+}

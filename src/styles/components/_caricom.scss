@@ -1,0 +1,46 @@
+.caricom {
+    flex-basis: 66.66666%;
+    padding: 3rem;
+
+    @include respond(tabLand){
+        flex-basis: 50%;
+    }
+
+    @include respond(phone){
+        padding: 1rem 3rem;
+        flex-basis: 100%;
+    }
+
+    &__map {
+        float: left;
+        padding-right: 3rem;
+        margin-bottom: 1rem;
+        width: 50%;    
+    
+        @include respond(tabLand){
+            padding-right: 0;
+            width:100%;
+        }
+
+        &--image {
+            width: 100%;
+            height: auto; 
+
+            @include respond(phone){
+                padding: 0 3rem;
+            }
+
+            @include respond(tinyPhone){
+                padding: 0;
+            }
+        }
+        
+        &--caption {
+            display: block;
+        }
+    }
+
+    &__text {
+        text-align: justify;
+    }
+}

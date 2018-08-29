@@ -1,0 +1,14 @@
+{
+    "title" : "Membership",
+    "abstract" : "There is something for everyone as we invite you to join our association, Volunteer and/or enjoy the many activities planned",
+    "details" : "Please attend our meetings and share ideas for other projects or issues you feel are important in the West Indian community. If unable to attend, please read a recap of meetings minutes from last month. Please refer other potential members.",
+    "nextMeeting" : {
+        "title": "Next Meeting",
+        "date": "August 25, 2018"
+    },
+    "meetingFrequency" : {
+        "prefix" : "Meetings take place",
+        "normal" : "2nd Saturday of each month",
+        "exceptions" : "No meeting June 23rd for Family Summer Fest!"
+    }
+}

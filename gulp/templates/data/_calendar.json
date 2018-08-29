@@ -1,0 +1,55 @@
+{
+    "title" : "Planned Activities",
+    "events" : [
+        {
+            "date": "1535469623",
+            "event": "Physical Wellness", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Financial Wellness", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Spring Fling - Bingo", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Jerk Festival", 
+            "details": "..." 
+        },
+        {
+            "date": "1535469623",
+            "event": "Sharing Culture", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Carifesta", 
+            "details": "Celebration of Caribbean Foods" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Sharing Culture", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Sharing Culture", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Sharing Culture", 
+            "details": "" 
+        },
+        {
+            "date": "1535469623",
+            "event": "Holiday Luncheon", 
+            "details": "" 
+        }
+    ]
+}
