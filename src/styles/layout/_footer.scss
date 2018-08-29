@@ -1,0 +1,28 @@
+.footer {
+    background-color: $color-grey-dark-3;
+    margin-top: 5rem;
+    padding: 8rem 5rem;
+    font-size: 1.4rem;
+    color: $color-grey-light-1;
+    display: block;
+    
+    @include respond(tabPort) {
+        padding: 8rem 3rem;
+    }
+
+    &__logobox {
+        text-align: center
+    }
+
+    &__logo {
+        width: 8rem;
+        height: 8rem;
+    }
+    &__data {
+        display: table;
+        font-size: 2rem;
+        line-height: 3rem;
+        margin: 0 auto;
+
+    }
+}

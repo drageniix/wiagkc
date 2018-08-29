@@ -10,6 +10,8 @@
 *~
 *.sass-cache
 node_modules/
+gulp/
+generated/
 .tmp/
 
 # OS or Editor folders

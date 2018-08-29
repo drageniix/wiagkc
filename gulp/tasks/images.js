@@ -6,18 +6,18 @@ const outputDirectory = './src/generated/images'
 
 gulp.task('createImageJSON', () => (
     fs.emptyDir(outputDirectory)
-        .then(() => fs.emptyDir('./src/data'))
+        .then(() => fs.emptyDir('./src/generated/data'))
         .then(() => fs.readdir('./gulp/templates/data'))
         .then(dataFiles => createJSON(dataFiles, true))
-        .then(json => fs.writeJSON('./src/data/data.json', json))
+        .then(json => fs.writeJSON('./src/generated/data.json', json))
 ))
 
 gulp.task('createDataJSON', () => (
     fs.ensureDir(outputDirectory)
-        .then(() => fs.emptyDir('./src/data'))
+        .then(() => fs.emptyDir('./src/generated/data'))
         .then(() => fs.readdir('./gulp/templates/data'))
         .then(dataFiles => createJSON(dataFiles, false))
-        .then(json => fs.writeJSON('./src/data/data.json', json))
+        .then(json => fs.writeJSON('./src/generated/data.json', json))
 ))
 
 function createJSON(dataFiles, saveImages) {

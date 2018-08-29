@@ -9,4 +9,25 @@
     @include respond(phone){
         flex-basis: 100%;
     }    
+
+    &__frequency {
+        margin-bottom: 1rem;
+    
+        &--main {
+            font-size: 2.5rem;
+        }
+        &--exception {
+            font-size: 1.8rem;   
+        }
+    
+    }
+
+    &__detail {
+        text-align: justify;
+        font-size: 1.6rem;
+
+        &:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+    }
 }

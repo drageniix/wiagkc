@@ -1,11 +1,45 @@
 .boardMembers {
     flex-basis: 31%;
-    padding: 3rem;
+    padding: 3.2rem;
     
     @include respond(tabLand){
         flex-basis: 100%;
-        column-count: 3;
+    }    
+
+    &__members {
+        break-inside: avoid;
         column-gap: 2rem; 
         column-rule: 1px solid $color-grey-light-2;
-    }    
+        column-count: 2;
+                
+        @include respond(tabLand){
+            column-count: 3;
+        } 
+        
+        @include respond(phone){
+            column-count: 2;
+        }
+        
+        @include respond(tinyPhone){
+            column-count: 1;
+        }
+    }
+
+    &__member {
+        &:not(:last-child){
+            margin-bottom: 1.5rem;
+        }
+
+        &--title {
+            font-size: 1.8rem;
+            color: $color-secondary;
+        }
+        &--name {
+            font-weight: 500;
+            font-size: 1.6rem;
+        }
+        &--credential {
+            font-size: 1.5rem;
+        }
+    }
 }
