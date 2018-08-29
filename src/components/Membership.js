@@ -2,12 +2,18 @@ import React from 'react'
 
 const Membership = ({ data }) => (
     <section id="membership" className="membership">
-        <h2 className="section__title">{data.title}</h2>
-        <p>{data.abstract}</p>
-        <p>{data.meetingFrequency.prefix}</p>
-        <p>{data.meetingFrequency.normal}</p>
-        <p>{data.meetingFrequency.exceptions}</p>
-        <p>{data.details}</p>
+        <div className="membership__frequency">
+            <h2 className="section__title">
+                {data.meetingFrequency.prefix}
+            </h2>
+            <p className="membership__frequency--main">
+                <strong> 🏝️ {data.meetingFrequency.normal} </strong>
+            </p>
+            <p className="membership__frequency--exception">{data.meetingFrequency.exceptions}</p>
+        </div>
+
+        <p className="membership__detail">{data.abstract}</p>
+        <p className="membership__detail">{data.details}</p>
     </section>
 )
 

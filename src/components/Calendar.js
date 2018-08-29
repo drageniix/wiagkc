@@ -10,7 +10,10 @@ const Calendar = ({ data }) => (
                     <div key={index} className="event">
                         <div className="event__date">{moment.unix(item.date).format("MMM Do")}</div>
                         <div className="event__details">
-                            <p><strong>{item.event}</strong></p>
+                            {item.bold ? 
+                                <p><strong>{item.event}</strong></p> : 
+                                <p>{item.event}</p>
+                            }
                             <p>{item.details}</p>
                         </div>
                     </div>
