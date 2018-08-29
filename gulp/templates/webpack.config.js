@@ -52,25 +52,12 @@ const runWebpack = (server,
                     { loader: "sass-loader" }
                 ]
             }, {
-                test: /\.(jpg|png|gif)$/,
+                test: /\.(jpg|png|svg|gif)$/,
                 use: [
                     {
                         loader: 'file-loader',
                         options: {
                             name: './assets/images/[name].[ext]'
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader'
-                    }
-                ]
-            }, {
-                test: /\.svg$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: './assets/images/svg/[name].[ext]'
                         }
                     },
                     {

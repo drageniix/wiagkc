@@ -4,13 +4,13 @@ import Fade from 'react-reveal/Fade'
 
 const Photos = ({ data }) => (
     <section className="photos" id="photos">
-        <section className="photos__images">
-            <Fade bottom cascade>
+        <Fade bottom cascade>
+            <section className="photos__images">
                 {data.images.map((item, index) => (
                     <ResponsiveImage image={item} key={index}/>
                 ))}
-            </Fade>
-        </section>
+            </section>
+        </Fade>
     </section>
 )
 
