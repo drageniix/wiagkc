@@ -5,8 +5,12 @@ body {
     color: $color-grey-dark-2;
     font-size: 1.6rem;
 
-    @include respond(tabPort) {
+    @include respond(tabLand) {
         font-size: 1.8rem;
+    }
+
+    @include respond(phone) {
+        font-size: 1.9rem;
     }
 }
 

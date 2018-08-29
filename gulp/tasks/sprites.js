@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 
 const outputDirectory = './src/generated'
 
-gulp.task('cleanSprites', () => fs.emptyDir(`${outputDirectory}/css`))
+gulp.task('cleanSprites', () => fs.emptyDir(`${outputDirectory}/view`))
 
 const config = {
     shape: {
@@ -16,9 +16,11 @@ const config = {
     mode: {
         view: { // Activate the «view» mode
             bust: false,
-            sprite : "../assets/images/svg/sprite.view.svg",
+            sprite: 'sprite.svg',
             render: {
-                scss: true // Activate Sass output (with default options)
+                scss: {
+                    template: './gulp/templates/styles/_sprites.scss'
+                }
             }
         },
     }

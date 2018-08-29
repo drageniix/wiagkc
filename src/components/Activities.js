@@ -6,7 +6,7 @@ const Activities = ({ data }) => (
             {data.types.map((item, index) => (
                 <div key={index} className="activity">
                     <div className="activity__icon">
-                        <div className={`svg-${item.icon} svg-${item.icon}-dims`} />
+                        <div className={`icon--${item.icon}`} />
                     </div>
                     <h4 className="activity__header">{item.type}</h4>
                     <ul className="activity__exampleList">
