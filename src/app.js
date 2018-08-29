@@ -14,7 +14,7 @@ import Membership from './components/Membership'
 import Navigation from './components/Navigation'
 import Photos from './components/Photos'
 
-import data from './generated/data/data/.json'
+import data from './generated/data/data.json'
 import './styles/index.scss'
 
 importAll(require.context('./generated', true))
