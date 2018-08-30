@@ -1,0 +1,64 @@
+.modal {
+    animation: fadeIn .3s;
+    background-color:rgba($color-black, .75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5000;
+    width: 100%;
+    height: 100%;
+    
+    @supports (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
+     &__content {
+        @include absCenter; 
+        padding: 3rem;   
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        width: 75%;
+        overflow: auto;
+        max-height: 90%;
+    }
+
+    &__text {
+        text-align: justify;
+        font-size: 1.425rem;
+        text-indent: 2rem;
+    
+        column-count: 2;
+        column-gap: 4rem; //1em = 14px;
+        column-rule: 1px solid $color-grey-light-2;
+
+        hyphens: auto;
+
+        @include respond(tabPort) {
+            font-size: 1.6rem;
+            column-count: 1;
+            column-gap: 0;
+            column-rule: none;
+        }
+
+        @include respond(phone) {
+            text-align: start;
+        }
+
+        p {
+            margin-bottom: 1.25rem;   
+        }
+    }
+
+    &__image {
+        width: 95%;
+        height: auto; 
+        margin: 0 auto;
+    }
+        
+    &__caption {
+        display: block;
+    }
+}

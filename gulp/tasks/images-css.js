@@ -12,17 +12,16 @@ gulp.task('createImageCSSJSON', () => fs.emptyDir(outputDirectory)
 function createCSSImageFiles(json) {
     return new Promise((resolve, reject) => {
             json.items.forEach(item => {
-                item.files.forEach(src => {
-                    const source = { name: src.slice(0, src.indexOf('.')), extension: src.slice(src.indexOf('.')) }
-                    
-                    if (item.alternates) {
-                        item.alternates.forEach(alter => {
-                            sharp(`./src/assets/images-css/${src}`)
-                                .resize(alter.size)
-                                .toFile(`${outputDirectory}/${alter.filename.replace('[name]', source.name).replace('[extension]', source.extension)}`)
-                        })
-                    }
-                })
+                if (item.alternates) {
+                    item.files.forEach(src => {
+                            const source = { name: src.slice(0, src.indexOf('.')), extension: src.slice(src.indexOf('.')) }
+                            item.alternates.forEach(alter => {
+                                sharp(`./src/assets/images-css/${src}`)
+                                    .resize(alter.size)
+                                    .toFile(`${outputDirectory}/${alter.filename.replace('[name]', source.name).replace('[extension]', source.extension)}`)
+                            })
+                    })
+                }
             })
             resolve()
         })

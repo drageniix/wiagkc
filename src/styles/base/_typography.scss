@@ -23,11 +23,13 @@ body {
 strong {
     color: $color-secondary;
 }
-
-.flex-content a:active,
-.flex-content a:link,
-.flex-content a:visited {
-    text-decoration: none;
-    font-weight: 400;
+.caricom__text a,
+.caricom__text a:active,
+.caricom__text a:link,
+.caricom__text a:hover
+.caricom__text a:visited, {
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 500;
     color: $color-primary;    
 }
