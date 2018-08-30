@@ -11,18 +11,24 @@
     }
 
     &__logobox {
-        text-align: center
+        text-align: center;
+    
+        &--logo {
+            width: 8rem;
+            height: 8rem;
+        }
     }
 
-    &__logo {
-        width: 8rem;
-        height: 8rem;
-    }
+    
     &__data {
         display: table;
         font-size: 2rem;
         line-height: 3rem;
         margin: 0 auto;
 
+        a:active, a:link, a:visited {
+            text-decoration: none;
+            color: $color-grey-light-1    
+        }
     }
 }

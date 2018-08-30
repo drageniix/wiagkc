@@ -14,7 +14,7 @@ gulp.task('start', gulp.series([
             gulp.series('createImageJSON')) 
         gulp.watch(['./gulp/templates/styles/_images-css.json', './src/assets/images-css/*'],
             gulp.series('createImageCSSJSON'))
-        gulp.watch(['./gulp/templates/styles/_sprite.scss', './src/assets/icons/*'],
+        gulp.watch(['./gulp/templates/styles/_sprites.scss', './src/assets/icons/*'],
             gulp.series('createSprites'))
     }
 )))

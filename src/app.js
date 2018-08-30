@@ -16,18 +16,18 @@ import Photos from './components/Photos'
 
 import data from './generated/data/data.json'
 import './styles/index.scss'
+import NextMeeting from "./components/NextMeeting";
 
 importAll(require.context('./generated', true))
 function importAll(r){
     r.keys().map(r)
 }
 
-console.log(data)
-
 const App = () => (
     <div>
         <Navigation data={data.marginals} />
         <Header data={data.marginals}/>
+        <NextMeeting data={data.calendar} />
         <main className="flex-content">
             <LazyLoad><About data={data.about} /></LazyLoad>
             <LazyLoad><Caricom data={data.caricom} /></LazyLoad>

@@ -30,24 +30,24 @@
         }
 
     }
-}
 
-.event {
-    margin-bottom: 1rem;
-    width: 100%;
-    
-    &__date {
-        white-space: nowrap;
-        display: inline-block;
-        vertical-align: top;
-        padding-right: 1.5rem;
-        width: 40%
-    }
+    &__event {
+        margin-bottom: 1rem;
+        width: 100%;
+        
+        &--date {
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: top;
+            padding-right: 1.5rem;
+            width: 40%
+        }
 
-    &__details {
-        white-space : wrap;
-        display: inline-block;
-        vertical-align: top;
-        width: 60%;
+        &--details {
+            white-space : wrap;
+            display: inline-block;
+            vertical-align: top;
+            width: 60%;
+        }
     }
 }

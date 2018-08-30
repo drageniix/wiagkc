@@ -2,15 +2,16 @@ import React from 'react'
 import ResponsiveImage from './ResponsiveImage'
 
 const Footer = ({ data }) => (
-    <section className="footer">
+    <section className="footer" id="footer">
         <div className="footer__logobox">
-            <ResponsiveImage className="footer__logo" image={data.logo} />
+            <ResponsiveImage className="footer__logobox--logo" image={data.logo} />
             <h2 className="section__title">{data.title}</h2>
         </div> 
         <div className="footer__data">
-            <p>{data.email}</p>
-            <p>{data.phone}</p>
-            <p>{data.address}</p>
+            <p><a href={`https://twitter.com/${data.twitter}`}>@{data.twitter}</a></p>
+            <p><a href={"mailto:" + data.email}>{data.email}</a></p>
+            <p><a href={"tel:" + data.phone.replace("-", "")}>{data.phone}</a></p>
+            <p><a href={data.geo} target="_blank">{data.address}</a></p>
         </div>
     </section>
 )
