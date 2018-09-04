@@ -28,7 +28,7 @@ const App = () => (
         <Navigation data={data.marginals} />
         <Header data={data.marginals}/>
         <NextMeeting data={data.calendar} />
-        <main className="flex-content">
+        <section className="flex-content">
             <LazyLoad><About data={data.about} /></LazyLoad>
             <LazyLoad><Caricom data={data.caricom} /></LazyLoad>
             <LazyLoad><Activities data={data.activities} /></LazyLoad>
@@ -36,7 +36,7 @@ const App = () => (
             <LazyLoad><Membership data={data.membership} /></LazyLoad>
             <LazyLoad><Photos data={data.photos}/></LazyLoad>
             <LazyLoad><BoardMembers data={data.boardMembers} /></LazyLoad>
-        </main>
+        </section>
         <Footer data={data.marginals}/>
     </div>
 )

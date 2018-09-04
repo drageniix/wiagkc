@@ -1,13 +1,25 @@
 .calendar {
-    flex-basis: 42%;
-    
+    width: 42%;
+
     @include respond(tabLand){
-        flex-basis: 50%;
+        width: 50%;
     }
 
     @include respond(phone){
-        flex-basis: 100%;
+        width: 100%;
     }
+
+    @include flexSupport {
+        flex-basis: 42%;
+        
+        @include respond(tabLand){
+            flex-basis: 50%;
+        }
+
+        @include respond(phone){
+            flex-basis: 100%;
+        }
+    }   
 
     &__container {
         margin: 0 auto;

@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const fs = require('fs-extra')
-//const sharp = require('sharp')
+const sharp = require('sharp')
 
 const outputDirectory = './src/generated/images-css'
 
@@ -16,9 +16,9 @@ function createCSSImageFiles(json) {
                     item.files.forEach(src => {
                             const source = { name: src.slice(0, src.indexOf('.')), extension: src.slice(src.indexOf('.')) }
                             item.alternates.forEach(alter => {
-                                // sharp(`./src/assets/images-css/${src}`)
-                                //     .resize(alter.size)
-                                //     .toFile(`${outputDirectory}/${alter.filename.replace('[name]', source.name).replace('[extension]', source.extension)}`)
+                                sharp(`./src/assets/images-css/${src}`)
+                                    .resize(alter.size)
+                                    .toFile(`${outputDirectory}/${alter.filename.replace('[name]', source.name).replace('[extension]', source.extension)}`)
                             })
                     })
                 }

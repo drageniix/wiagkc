@@ -8,7 +8,6 @@
     background-size: cover;
     background-position: center right;
     position: relative;
-    min-height: 30rem;
     height: 60vh;
 
     @include respond(deskBig){

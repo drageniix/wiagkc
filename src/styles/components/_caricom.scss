@@ -1,16 +1,28 @@
 .caricom {
-    flex-basis: 65%;
     padding: 3rem;
+    width: 65%;
 
     @include respond(tabLand){
-        flex-basis: 49%;
+        width: 49%;
     }
 
     @include respond(phone){
         padding: 1rem 3rem;
-        flex-basis: 100%;
+        width: 100%;
     }
 
+    @include flexSupport {
+        flex-basis: 65%;
+        
+        @include respond(tabLand){
+            flex-basis: 49%;
+        }
+
+        @include respond(phone){
+            flex-basis: 100%;
+        }
+    }
+    
     &__map {
         float: left;
         padding-right: 3rem;

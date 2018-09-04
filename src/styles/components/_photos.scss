@@ -1,15 +1,23 @@
 .photos {
-    flex-basis: 38%;
+    width: 38%;
     padding: 3rem;
     margin-top: 3rem;
 
     @include respond(tabLand){
         padding: 0;
-        flex-basis: 100%;
+        width: 100%;
     }
 
     @include respond(phone){
         margin-top: 0;
+    }
+
+    @include flexSupport {
+        flex-basis: 38%;
+        
+        @include respond(tabLand){
+            flex-basis: 100%;
+        }
     }
 
     &__images {
