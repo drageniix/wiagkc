@@ -1,6 +1,6 @@
 const gulp = require('gulp')
 const fs = require('fs-extra')
-const sharp = require('sharp')
+//const sharp = require('sharp')
 
 const outputDirectory = './src/generated/images'
 
@@ -70,9 +70,9 @@ function createPictureSources(item, entry, saveImages) {
         if (saveImages) {
             newImageSet.forEach(source => {
                 source.srcset.forEach(srcItem => {
-                    sharp(`./src/assets/images/${source.src}`)
-                        .resize(srcItem.size)
-                        .toFile(`${outputDirectory}/${srcItem.src}`)
+                    // sharp(`./src/assets/images/${source.src}`)
+                    //     .resize(srcItem.size)
+                    //     .toFile(`${outputDirectory}/${srcItem.src}`)
                 })
             })
         }
@@ -96,9 +96,9 @@ function createPictureImg(item, entry, saveImages){
 
         if (saveImages){
             newImageSet.srcset.forEach(srcItem => {
-                sharp(`./src/assets/images/${item.name}${item.extension}`)
-                    .resize(srcItem.size)
-                    .toFile(`${outputDirectory}/${srcItem.src}`)
+                // sharp(`./src/assets/images/${item.name}${item.extension}`)
+                //     .resize(srcItem.size)
+                //     .toFile(`${outputDirectory}/${srcItem.src}`)
             })
         }
 

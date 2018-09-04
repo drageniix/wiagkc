@@ -1,11 +1,11 @@
 .about {
-    flex-basis: 33.33333%;
+    flex-basis: 33%;
     text-align: justify;
     padding: 4rem 3rem 4rem 3rem;
         
     @include respond(tabLand){
         padding: 6rem 5rem 6rem 5rem;
-        flex-basis: 50%;
+        flex-basis: 49%;
     }
 
     @include respond(phone){

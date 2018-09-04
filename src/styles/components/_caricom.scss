@@ -1,9 +1,9 @@
 .caricom {
-    flex-basis: 66.66666%;
+    flex-basis: 65%;
     padding: 3rem;
 
     @include respond(tabLand){
-        flex-basis: 50%;
+        flex-basis: 49%;
     }
 
     @include respond(phone){
