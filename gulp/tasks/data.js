@@ -21,6 +21,7 @@ gulp.task('createDataJSON', () => (
 ))
 
 function createJSON(dataFiles, saveImages) {
+    
     return new Promise((resolve, reject) => {
         const combinedJSON = {}
         let count = -1;
@@ -34,7 +35,7 @@ function createJSON(dataFiles, saveImages) {
         incrementCount()
         dataFiles.forEach(file => {
             let readData
-            const filename = file.substring(1, file.indexOf('.'))
+            const filename = file.substring(1, file.includes('--') ? file.indexOf('--') : file.indexOf('.'))
             
             if (fs.existsSync(`./gulp/templates/images/${file}`)) {
                 fs.readJSON(`./gulp/templates/data/${file}`)

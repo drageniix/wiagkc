@@ -15,6 +15,10 @@ body {
 strong {
     font-weight: 600;
     color: $color-secondary;
+    
+    @include respond(phone){
+        font-weight: 500;
+    }
 }
 
 .caricom__text a,

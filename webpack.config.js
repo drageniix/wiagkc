@@ -2,18 +2,15 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const WebpackDevServer = require('webpack-dev-server');
-const webpack = require('webpack')
 
-const outputPath = require('path').resolve(__dirname, "../../public")
-const HOST = 'localhost'//'192.168.1.165'
-const PORT = 8080
+const outputPath = require('path').resolve(__dirname, "public")
+const entryPoint = './src/app.js'
+const appTitle = '3 Dark Towers'
 
-const runWebpack = (server, 
-    entryPoint = './src/app.js', 
-    appTitle = 'WIA-KC | West Indian Association of Greater Kansas City') => {
+module.exports = (env) => {
+    const isProduction = env == 'production'
     
-    const config = {
+    return {
         entry: {
             index: ['babel-polyfill', entryPoint]
         },
@@ -29,7 +26,7 @@ const runWebpack = (server,
                     loader: 'babel-loader',
                     options: {
                         presets: ['env', 'react'],
-                        plugins: ['transform-class-properties']
+                        plugins: ['transform-object-rest-spread', 'transform-class-properties']
                     }
                 }
             }, {
@@ -39,20 +36,30 @@ const runWebpack = (server,
                     MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
-                        options: { url: false }
+                        options: { 
+                            url: false,
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'postcss-loader',
                         options: {
+                            sourceMap: true,
                             plugins: () => [require('autoprefixer')({
                                 'browsers': ['> 1%', 'last 2 versions']
                             })],
                         }
                     },
-                    { loader: "sass-loader" }
+                    {   
+                        loader: "sass-loader",
+                        options: {
+                            sourceMap: true
+                        }
+                    }
                 ]
             }, {
                 test: /\.(jpg|png|svg|gif)$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -67,9 +74,6 @@ const runWebpack = (server,
             }]
         },
         plugins: [
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify('production')
-            }),
             new HtmlWebPackPlugin({
                 template: "./src/index.html",
                 filename: "./index.html",
@@ -81,7 +85,6 @@ const runWebpack = (server,
                 chunkFilename: "[id].css"
             })
         ],
-        devtool: 'cheap-module-eval-source-map',
         optimization: {
             minimizer: [
                 new UglifyJsPlugin({
@@ -89,43 +92,17 @@ const runWebpack = (server,
                     parallel: true,
                     sourceMap: true
                 }),
-                new OptimizeCSSAssetsPlugin({})
+                new OptimizeCSSAssetsPlugin({
+                    cssProcessorOptions: {
+                        map: {
+                            inline: false,
+                            annotation: true
+                        }
+                    }
+                })
             ]
-        }
+        },
+        devtool: isProduction ? 'source-map' : 'inline-source-map',
+        mode: isProduction ? 'production' : 'development'
     }
-
-    const serverConfig = {
-        contentBase: outputPath,
-        hot: true,
-        inline: true,
-        stats: { colors: true },
-        host: HOST
-    }
-
-    return new Promise((resolve, reject) => {
-        server ? 
-        
-        new WebpackDevServer(webpack(config), serverConfig)
-            .listen(PORT, HOST, err => {
-                if (err) {
-                    reject(err)
-                } else {
-                    resolve()
-                }
-            }
-        )
-
-        :
-        
-        webpack(config, (err, stats) => {
-            if (err) {
-                reject(err)
-            } else {
-                console.log(stats.toString({ colors: true }))
-                resolve(stats)
-            }
-        })
-    })
 }
-
-module.exports = runWebpack
