@@ -5,7 +5,7 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 const outputPath = require('path').resolve(__dirname, "public")
 const entryPoint = './src/app.js'
-const appTitle = '3 Dark Towers'
+const appTitle = 'WIAKC | West Indian Association'
 
 module.exports = (env) => {
     const isProduction = env == 'production'
