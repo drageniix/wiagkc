@@ -26,6 +26,12 @@
         display: table;
         overflow: hidden;
         padding: 1.5rem;
+
+        @include respond(phone){
+            margin: 0;
+            display: block;
+            padding: 3rem;
+        }
     }
     
     &__events {

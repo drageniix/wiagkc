@@ -41,13 +41,9 @@
         }
 
         &--title {
-            font-weight: 600;
+            font-weight: 500;
             font-size: 1.8rem;
             color: $color-secondary;
-
-            @include respond(phone){
-                font-weight: 500;
-            }
         }
 
         &--name {

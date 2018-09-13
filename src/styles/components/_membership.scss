@@ -1,7 +1,7 @@
 .membership {
-    padding: 3rem;
     width: 31%;
-    
+    padding: 3rem;
+        
     @include respond(tabLand){
         width: 45%;
     }    
@@ -20,6 +20,12 @@
         @include respond(phone){
             flex-basis: 100%;
         }    
+    }
+
+    &__container {
+        display: table;
+        overflow: hidden;
+        text-align: justify;
     }
 
     &__frequency {
