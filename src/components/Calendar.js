@@ -11,8 +11,8 @@ const Calendar = ({ data }) => (
                         <div className="calendar__event--date">{moment.unix(item.date).format("MMM Do")}</div>
                         <div className="calendar__event--details">
                             {item.bold ? 
-                                <p><strong>{item.event}</strong></p> : 
-                                <p>{item.event}</p>
+                                <strong><p className={item.class} dangerouslySetInnerHTML={{ __html: item.event }}></p></strong> : 
+                                <p className={item.class}>{item.event}</p>
                             }
                             <p>{item.details}</p>
                         </div>

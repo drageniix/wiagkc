@@ -1,34 +1,34 @@
 const gulp = require('gulp')
-const fs = require('fs-extra')
-const webpackConfig = require('../templates/webpackRunner')
+const config = require('../../webpack.config')
+const WebpackDevServer = require('webpack-dev-server');
+const webpack = require('webpack')
 
-gulp.task('webpack-server', () => webpackConfig(true))
-gulp.task('start', gulp.series([
-    'test',
-    'createSprites',
-    'createImageCSSJSON',
-    'createImageJSON'], 
-    gulp.parallel('webpack-server', function watchTemplates(){ 
-        gulp.watch(['./tests/*/*'],
-            gulp.series('test'))
-        gulp.watch(['./gulp/templates/data/*'],
-            gulp.series('createDataJSON'))
-        gulp.watch(['./gulp/templates/images/*', './src/assets/images/*'],
-            gulp.series('createImageJSON')) 
-        gulp.watch(['./gulp/templates/styles/_images-css.json', './src/assets/images-css/*'],
-            gulp.series('createImageCSSJSON'))
-        gulp.watch(['./gulp/templates/styles/_sprites.scss', './src/assets/icons/*'],
-            gulp.series('createSprites'))
-    }
-)))
- 
-gulp.task('cleanBuild', () => fs.emptyDir('./public'))
-gulp.task('webpack-build', () => webpackConfig())
-gulp.task('build', gulp.series([
-    'test',
-    'cleanBuild',
-    'createSprites',
-    'createImageCSSJSON',
-    'createImageJSON',
-    'webpack-build'])
-)
+gulp.task('webpack-server', () => runWebpack(true))
+gulp.task('webpack-build', () => runWebpack())
+
+function runWebpack(server){
+    return new Promise((resolve, reject) => {
+        const configSettings = server ? config('development') : config('production')
+        
+        if ( server ){
+            new WebpackDevServer(webpack(configSettings), configSettings.devServer)
+                .listen(configSettings.devServer.port, configSettings.devServer.host, err => {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve()
+                    }
+                }
+                )
+        } else {
+            webpack(configSettings, (err, stats) => {
+                if (err) {
+                    reject(err)
+                } else {
+                    console.log(stats.toString(configSettings.stats))
+                    resolve(stats)
+                }
+            })
+        }
+    })
+}

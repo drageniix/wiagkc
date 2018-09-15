@@ -1,3 +1,24 @@
+.christmas {
+    font-size: 1.8rem;
+
+    .red {
+        color: red;
+    }
+    .green {
+        color: green
+    }
+
+    // @supports (-webkit-text-fill-color: transparent) {
+    //     background: linear-gradient(to right,
+    //     #c94040, 
+    //     #c94040 40%, 
+    //     #12851f 60%,
+    //     #12851f);
+    //     background-clip: text;
+    //     -webkit-text-fill-color: transparent;
+    // }
+}
+
 .calendar {
     width: 42%;
 

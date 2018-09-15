@@ -52,7 +52,14 @@
         {
             "date": "1541894400",
             "event": "Sharing Culture",
-            "details": "" 
+            "details": ""
+        },
+        {
+            "date": "1544364000",
+            "event": "<span class=\"red\">Holiday</span> <span class=\"green\">Luncheon</span>",
+            "details": "",
+            "class": "christmas",
+            "bold": true
         }
     ]
 }
