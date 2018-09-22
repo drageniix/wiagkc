@@ -1,6 +1,6 @@
 import React from "react"
 
-const Header = ({ data }) => (
+export const Header = ({ data }) => (
     <header className="header" id="top">
         <div className="header__hero">
             <h1 className="header__hero--title">{data.title}</h1>

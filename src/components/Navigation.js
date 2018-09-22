@@ -1,7 +1,7 @@
 import React from 'react'
 import ResponsiveImage from './ResponsiveImage'
 
-const Navigation = ( { data }) => (
+export const Navigation = ( { data }) => (
     <nav className="navigation">
         <ResponsiveImage className="navigation__logo" image={data.logo}/>
         <span className="navigation__title">

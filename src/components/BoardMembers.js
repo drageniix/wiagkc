@@ -1,6 +1,6 @@
 import React from "react"
 
-const BoardMembets = ({ data }) => (
+export const BoardMembers = ({ data }) => (
   <section id="boardMembers" className="boardMembers">
     <h2 className="section__title">{data.title}</h2>
     <div className="boardMembers__members">
@@ -16,4 +16,4 @@ const BoardMembets = ({ data }) => (
   </section>
 )
 
-export default BoardMembets
+export default BoardMembers

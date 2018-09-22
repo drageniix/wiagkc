@@ -3,7 +3,7 @@
     z-index: -100;
     text-align: right;
     color: $color-grey-dark-3;
-    padding: 1.5rem 3rem;
+    padding: 1.7rem 3rem 1.5rem 3rem;
 
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
         margin-top: -8vh;

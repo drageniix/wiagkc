@@ -1,7 +1,7 @@
 import React from "react"
 import moment from 'moment'
 
-const Calendar = ({ data }) => (
+export const Calendar = ({ data }) => (
     <section id="calendar" className="calendar">
         <section className="calendar__container">
             <h2 className="section__title">{data.title}</h2>

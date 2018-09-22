@@ -1,7 +1,7 @@
 import React from "react"
 import ResponsiveImage from './ResponsiveImage'
 
-const Photos = ({ data }) => (
+export const Photos = ({ data }) => (
     <section className="photos" id="photos">
         <section className="photos__images">
             {data.images.map((item, index) => (

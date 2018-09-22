@@ -1,7 +1,7 @@
 import React from "react"
 import ResponsiveImage from './ResponsiveImage'
 
-class Caricom extends React.Component {
+export class Caricom extends React.Component {
     state = {modal : ""}
 
     openModal = () => {
@@ -30,7 +30,7 @@ class Caricom extends React.Component {
 }
 
 const path = location.pathname.slice(0, location.pathname.lastIndexOf('/')) + "/assets/images"
-const CaricomModal = ({data, close}) => (
+export const CaricomModal = ({data, close}) => (
     <div className="modal" onClick={close}>
         <div className="modal__content">
             <h2 className="section__title">{data.title}</h2>

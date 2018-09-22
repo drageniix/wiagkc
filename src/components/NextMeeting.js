@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-const NextMeeting = ({ data }) => { 
+export const NextMeeting = ({ data }) => { 
     const now = moment().unix();
     const next = data.events.filter(item => parseInt(item.date) > now)[0]
 

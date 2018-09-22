@@ -1,7 +1,7 @@
 import React from 'react'
 import ResponsiveImage from './ResponsiveImage'
 
-const Footer = ({ data }) => (
+export const Footer = ({ data }) => (
     <section className="footer" id="footer">
         <div className="footer__logobox">
             <ResponsiveImage className="footer__logobox--logo" image={data.logo} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Membership = ({ data }) => (
+export const Membership = ({ data }) => (
     <section id="membership" className="membership">
         <div className="membership__container">
             <div className="membership__frequency">

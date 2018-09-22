@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Activities = ({ data }) => (
+export const Activities = ({ data }) => (
     <section className="activities" id="activities">
         <section className="activities__box">
             {data.types.map((item, index) => (
