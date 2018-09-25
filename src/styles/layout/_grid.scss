@@ -5,8 +5,15 @@
     align-items: center;
     align-content: flex-start;
     flex-wrap: wrap;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
     width: 100%;
+
+    @include respond(tabLand){
+        margin-top: 1.5rem;
+    }
+    @include respond(phone){
+        margin-top: 1rem;
+    }
 
     & > * {
         display: inline-block;

@@ -1,5 +1,6 @@
 import React from "react"
 import moment from 'moment'
+import { connect } from 'react-redux'
 
 export const Calendar = ({ data }) => (
     <section id="calendar" className="calendar">
@@ -23,4 +24,8 @@ export const Calendar = ({ data }) => (
     </section>
 )
 
-export default Calendar
+const mapStateToProps = state => ({
+    data: state.calendar
+})
+
+export default connect(mapStateToProps)(Calendar)

@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from 'react-redux'
 
 export const About = ({ data }) => (
     <section className="about" id="about">
@@ -7,4 +8,8 @@ export const About = ({ data }) => (
     </section>
 )
 
-export default About
+const mapStateToProps = state => ({
+    data: state.about
+})
+
+export default connect(mapStateToProps)(About)

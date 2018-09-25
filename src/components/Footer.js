@@ -1,5 +1,6 @@
 import React from 'react'
 import ResponsiveImage from './ResponsiveImage'
+import { connect } from 'react-redux'
 
 export const Footer = ({ data }) => (
     <section className="footer" id="footer">
@@ -16,4 +17,8 @@ export const Footer = ({ data }) => (
     </section>
 )
 
-export default Footer
+const mapStateToProps = state => ({
+    data: state.marginals
+})
+
+export default connect(mapStateToProps)(Footer)

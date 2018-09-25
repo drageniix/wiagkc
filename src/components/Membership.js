@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 export const Membership = ({ data }) => (
     <section id="membership" className="membership">
@@ -19,4 +20,8 @@ export const Membership = ({ data }) => (
     </section>
 )
 
-export default Membership
+const mapStateToProps = state => ({
+    data: state.membership
+})
+
+export default connect(mapStateToProps)(Membership)

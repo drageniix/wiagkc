@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 export const Activities = ({ data }) => (
     <section className="activities" id="activities">
@@ -22,4 +23,8 @@ export const Activities = ({ data }) => (
     </section>
 )
 
-export default Activities
+const mapStateToProps = state => ({
+    data: state.activities
+})
+
+export default connect(mapStateToProps)(Activities)

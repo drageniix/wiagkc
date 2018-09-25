@@ -1,4 +1,5 @@
 import React from "react"
+import { connect } from 'react-redux'
 
 export const Header = ({ data }) => (
     <header className="header" id="top">
@@ -10,4 +11,8 @@ export const Header = ({ data }) => (
     </header>
 )
 
-export default Header
+const mapStateToProps = state => ({
+    data: state.marginals
+})
+
+export default connect(mapStateToProps)(Header)

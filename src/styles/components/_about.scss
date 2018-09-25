@@ -1,7 +1,7 @@
 .about {
     text-align: justify;
     width: 33%;
-    padding: 3rem;
+    padding: 2rem 3rem 3rem 3rem;
     
     @include respond(tabLand){
         width: 49%

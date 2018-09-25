@@ -1,5 +1,6 @@
 import React from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux'
 
 export const NextMeeting = ({ data }) => { 
     const now = moment().unix();
@@ -13,4 +14,8 @@ export const NextMeeting = ({ data }) => {
     )
 }
 
-export default NextMeeting
+const mapStateToProps = state => ({
+    data: state.calendar
+})
+
+export default connect(mapStateToProps)(NextMeeting)

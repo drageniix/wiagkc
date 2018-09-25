@@ -1,7 +1,8 @@
 import React from 'react'
 import ResponsiveImage from './ResponsiveImage'
+import { connect } from 'react-redux'
 
-export const Navigation = ( { data }) => (
+export const Navigation = ({ data }) => (
     <nav className="navigation">
         <ResponsiveImage className="navigation__logo" image={data.logo}/>
         <span className="navigation__title">
@@ -17,4 +18,8 @@ export const Navigation = ( { data }) => (
     </nav>
 )
 
-export default Navigation
+const mapStateToProps = state => ({
+    data: state.marginals
+})
+
+export default connect(mapStateToProps)(Navigation)

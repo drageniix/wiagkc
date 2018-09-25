@@ -1,5 +1,6 @@
 import React from "react"
 import ResponsiveImage from './ResponsiveImage'
+import { connect } from 'react-redux'
 
 export const Photos = ({ data }) => (
     <section className="photos" id="photos">
@@ -11,4 +12,9 @@ export const Photos = ({ data }) => (
     </section>
 )
 
-export default Photos
+
+const mapStateToProps = state => ({
+    data: state.photos
+})
+
+export default connect(mapStateToProps)(Photos)

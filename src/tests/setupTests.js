@@ -6,4 +6,4 @@ Enzyme.configure({
 })
 
 global.shallow = shallow
-global.data = require('../generated/data/data.json')
+global.data = require('../generated/data/index.json')
