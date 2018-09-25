@@ -423,223 +423,14 @@ exports[`Calendar 1`] = `
         <div
           className="calendar__event--date"
         >
-          Mar 4th
+          May 17th
         </div>
         <div
           className="calendar__event--details"
         >
           <p>
-            Physical Wellness
+            ...Loading Events
           </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="1"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Apr 11th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Financial Wellness
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="2"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          May 6th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <strong>
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "Spring Fling - Bingo",
-                }
-              }
-            />
-          </strong>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="3"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Jun 23rd
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <strong>
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "Family Picnic",
-                }
-              }
-            />
-          </strong>
-          <p>
-            Darter Park: 12-4pm
-          </p>
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="4"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Jul 8th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Sharing Culture
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="5"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Aug 19th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <strong>
-            <p
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "Ethnic Enrichment Festival",
-                }
-              }
-            />
-          </strong>
-          <p>
-            Swope Park: 11am-6pm
-          </p>
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="6"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Aug 25th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Sharing Culture
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="7"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Sep 8th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Sharing Culture
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="8"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Oct 13th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Sharing Culture
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="9"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Nov 10th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <p>
-            Sharing Culture
-          </p>
-          <p />
-        </div>
-      </div>
-      <div
-        className="calendar__event"
-        key="10"
-      >
-        <div
-          className="calendar__event--date"
-        >
-          Dec 9th
-        </div>
-        <div
-          className="calendar__event--details"
-        >
-          <strong>
-            <p
-              className="christmas"
-              dangerouslySetInnerHTML={
-                Object {
-                  "__html": "<span class=\\"red\\">Holiday</span> <span class=\\"green\\">Luncheon</span>",
-                }
-              }
-            />
-          </strong>
           <p />
         </div>
       </div>
@@ -656,12 +447,12 @@ exports[`Calendar 2`] = `
   <p
     className="nextMeeting__title"
   >
-    Sharing Culture
+    ...Loading Events
   </p>
   <p
     className="nextMeeting__date"
   >
-    Saturday, October 13th 2018, 7:00 pm
+    Tuesday, May 17th 2033, 10:33 pm
   </p>
 </section>
 `;
@@ -671,10 +462,10 @@ exports[`Caricom 1`] = `
   className="caricom"
   id="caricom"
 >
-  <section
+  <figure
     className="caricom__map"
   >
-    <ResponsiveImage
+    <Connect(ResponsiveImage)
       className="caricom__map--image"
       image={
         Object {
@@ -683,12 +474,12 @@ exports[`Caricom 1`] = `
         }
       }
     />
-    <caption
+    <figcaption
       className="caricom__map--caption"
     >
       Map of Caricom Members
-    </caption>
-  </section>
+    </figcaption>
+  </figure>
   <h2
     className="section__title"
   >
@@ -716,7 +507,7 @@ exports[`Marginals 1`] = `
   <div
     className="footer__logobox"
   >
-    <ResponsiveImage
+    <Connect(ResponsiveImage)
       className="footer__logobox--logo"
       image={
         Object {
@@ -799,7 +590,7 @@ exports[`Marginals 3`] = `
 <nav
   className="navigation"
 >
-  <ResponsiveImage
+  <Connect(ResponsiveImage)
     className="navigation__logo"
     image={
       Object {
@@ -899,7 +690,7 @@ exports[`Photos 1`] = `
   <section
     className="photos__images"
   >
-    <ResponsiveImage
+    <Connect(ResponsiveImage)
       image={
         Object {
           "alt": "2018 Events",
@@ -908,7 +699,7 @@ exports[`Photos 1`] = `
       }
       key="0"
     />
-    <ResponsiveImage
+    <Connect(ResponsiveImage)
       image={
         Object {
           "alt": "2018 Events",
