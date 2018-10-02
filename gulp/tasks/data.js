@@ -38,24 +38,20 @@ function createDataJSON(folder, dataFiles, saveImages){
 
         incrementCount()
         dataFiles.forEach(file => {
-            let readData
             const filename = file.substring(1, file.indexOf('.'))
 
-            if (fs.existsSync(`./gulp/templates/images/${folder}/${file}`)) {
-                fs.readJSON(`./gulp/templates/data/${folder}/${file}`)
-                    .then(data => {
-                        readData = data
-                        return fs.readJSON(`./gulp/templates/images/${folder}/${file}`)
-                    }).then(images => {
-                        combinedJSON[filename] = insertJSONPictureResultsIntoData(readData, images, saveImages)
+            fs.readJSON(`./gulp/templates/data/${folder}/${file}`)
+                .then(data => {
+                    if (fs.existsSync(`./gulp/templates/images/${folder}/${file}`)){
+                        fs.readJSON(`./gulp/templates/images/${folder}/${file}`).then(images => {
+                            combinedJSON[filename] = insertJSONPictureResultsIntoData(data, images, saveImages)
+                            incrementCount()
+                        })
+                    } else {
+                        combinedJSON[filename] = data
                         incrementCount()
-                    }).catch(err => reject(err))
-            } else {
-                fs.readJSON(`./gulp/templates/data/${folder}/${file}`).then(data => {
-                    combinedJSON[filename] = data
-                    incrementCount()
-                }).catch(err => reject(err))
-            }
+                    }
+            }).catch(err => reject(err))
         })
     })
 }
@@ -75,9 +71,14 @@ function createPictureSources(item, entry, saveImages) {
         if (saveImages) {
             newImageSet.forEach(source => {
                 source.srcset.forEach(srcItem => {
-                    sharp(`./src/assets/images/${source.src}`)
-                        .resize(srcItem.size)
-                        .toFile(`${outputDirectory}/${srcItem.src}`)
+                    fs.pathExists(`${outputDirectory}/${srcItem.src}`)
+                        .then(exists => {
+                            if (!exists) {
+                                sharp(`./src/assets/images/${source.src}`)
+                                    .resize(srcItem.size)
+                                    .toFile(`${outputDirectory}/${srcItem.src}`)
+                            }
+                        })
                 })
             })
         }
@@ -101,9 +102,14 @@ function createPictureImg(item, entry, saveImages){
 
         if (saveImages){
             newImageSet.srcset.forEach(srcItem => {
-                sharp(`./src/assets/images/${item.name}${item.extension}`)
-                    .resize(srcItem.size)
-                    .toFile(`${outputDirectory}/${srcItem.src}`)
+                fs.pathExists(`${outputDirectory}/${srcItem.src}`)
+                    .then(exists => {
+                        if (!exists) {
+                            sharp(`./src/assets/images/${item.path}`)
+                                .resize(srcItem.size)
+                                .toFile(`${outputDirectory}/${srcItem.src}`)
+                        }
+                    })
             })
         }
 
@@ -114,7 +120,7 @@ function createPictureImg(item, entry, saveImages){
 function createPictureResultPortion(entry, item, saveImages){
     const resultPortion = {
         src: item.name + item.extension,
-        alt: entry.alt
+        alt: entry.alt + (item.index ? " " + item.index : "")
     }
 
     if (entry.imageTemplate){
@@ -123,10 +129,12 @@ function createPictureResultPortion(entry, item, saveImages){
     }
 
     if (saveImages) {
-        fs.copyFile(
-            `./src/assets/images/${item.name}${item.extension}`,
-            `${outputDirectory}/${item.name}${item.extension}`
-        )
+        fs.pathExists(`${outputDirectory}/${resultPortion.src}`)
+            .then(exists => { 
+                if(!exists){
+                    sharp(`./src/assets/images/${item.path}`).toFile(`${outputDirectory}/${resultPortion.src}`) 
+                }
+            })            
     }
 
     return resultPortion
@@ -135,12 +143,21 @@ function createPictureResultPortion(entry, item, saveImages){
 function createResultPortions(resultPortion, entry, saveImages){
     if (Array.isArray(entry.files)) {
         resultPortion.images = []
-        entry.files.forEach(item => {
-            const source = { name: item.slice(0, item.indexOf('.')), extension: item.slice(item.indexOf('.')) }
+        entry.files.forEach((item, index) => {
+            const source = { 
+                index: index + 1,
+                path: item,
+                name: item.slice(item.indexOf('/') + 1, item.indexOf('.')), 
+                extension: item.slice(item.indexOf('.')) 
+            }
             resultPortion.images.push(createPictureResultPortion(entry, source, saveImages))
         })
     } else {
-        const source = { name: entry.files.slice(0, entry.files.indexOf('.')), extension: entry.files.slice(entry.files.indexOf('.')) }
+        const source = { 
+            path: entry.files,
+            name: entry.files.slice(entry.files.indexOf('/') + 1, entry.files.indexOf('.')), 
+            extension: entry.files.slice(entry.files.indexOf('.')) 
+        }
         resultPortion.images = createPictureResultPortion(entry, source, saveImages)
     }
     return resultPortion

@@ -7,6 +7,41 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const outputPath = require('path').resolve(__dirname, "public")
 const appTitle = 'WIAKC | West Indian Association'
 
+function getPlugins(isProduction) {
+    function getHTMLWebPackPlugin(pageEntry, destPath) {
+        return new HtmlWebPackPlugin({
+            chunks: [pageEntry],
+            template: "./src/index.html",
+            filename: destPath + "/index.html",
+            title: appTitle,
+            favicon: `./src/assets/${pageEntry === 'index' ? '' : 'images/' + pageEntry + "/"}favicon.png`,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                preserveLineBreaks: true
+            }
+        })
+    }
+
+    const plugins = [
+        getHTMLWebPackPlugin('index', '.'),
+        new MiniCssExtractPlugin({
+            filename: "./styles/[name]-[hash].css",
+            chunkFilename: "[hash].[id].css"
+        })
+    ]
+
+    if (isProduction) {
+        plugins.unshift(
+            new CleanWebpackPlugin(['public'], {
+                verbose: false
+            })
+        )
+    }
+
+    return plugins
+}
+
 module.exports = env => {
     const isProduction = env == 'production'
 
@@ -72,29 +107,7 @@ module.exports = env => {
                 ]
             }]
         },
-        plugins: [
-            new CleanWebpackPlugin([
-                'public'
-            ], {
-                    verbose: false
-                }),
-            new HtmlWebPackPlugin({
-                chunks: ['index'],
-                template: "./src/index.html",
-                filename: "./index.html",
-                title: appTitle,
-                favicon: "./src/assets/favicon.png",
-                minify: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    preserveLineBreaks: true
-                }
-            }),
-            new MiniCssExtractPlugin({
-                filename: "./styles/[hash].css",
-                chunkFilename: "[hash].css"
-            })
-        ],
+        plugins: getPlugins(isProduction),
         optimization: {
             splitChunks: {
                 chunks: 'all'

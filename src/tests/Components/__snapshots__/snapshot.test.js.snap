@@ -693,7 +693,7 @@ exports[`Photos 1`] = `
     <Connect(ResponsiveImage)
       image={
         Object {
-          "alt": "2018 Events",
+          "alt": "2018 Events 1",
           "src": "jerkfest-800.jpg",
         }
       }
@@ -702,7 +702,7 @@ exports[`Photos 1`] = `
     <Connect(ResponsiveImage)
       image={
         Object {
-          "alt": "2018 Events",
+          "alt": "2018 Events 2",
           "src": "picnic-800.jpg",
         }
       }
