@@ -1,0 +1,12 @@
+[
+    {
+        "path" : "logo",
+        "alt": "WIA-GKC Logo",
+        "files": [
+            {
+                "src": "logo.png",
+                "size": 72
+            }
+        ]
+    }
+]   

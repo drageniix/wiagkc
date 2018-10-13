@@ -1,5 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import SVG from "./SVG"
 
 export const Activities = ({ data }) => (
     <section className="activities" id="activities">
@@ -7,7 +9,7 @@ export const Activities = ({ data }) => (
             {data.types.map((item, index) => (
                 <div key={index} className="activities__activity">
                     <div className="activities__activity--icon">
-                        <div className={`icon--${item.icon}`} />
+                        <SVG svg={item.icon}/>
                     </div>
                     <h4 className="activities__activity--header">{item.type}</h4>
                     <ul className="activities__activity--exampleList">
@@ -27,4 +29,7 @@ const mapStateToProps = state => ({
     data: state.activities
 })
 
+Activities.propTypes = {
+    data: PropTypes.object.isRequired
+}
 export default connect(mapStateToProps)(Activities)

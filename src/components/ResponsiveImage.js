@@ -1,11 +1,15 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
 
-const makeImageSrcSet = (srcSets, imagePath) => srcSets.map(size => `${imagePath}/${size.src} ${size.size}w`).join(', ')
+//usage: <ResponsiveImage image={} className="" alt="" />
 
-const ResponsiveImage = ({ className, image, alt, imagePath }) => (
-    image.img && !!window.HTMLPictureElement ?
+const makeImageSrcSet = (srcSets, imagePath) => srcSets.map(size => `${imagePath}${size.src} ${size.size}w`).join(", ")
+
+export const ResponsiveImage = ({ className, image, alt, imagePath}) => (
+    image.sources && !!window.HTMLPictureElement ? 
         <picture>
+
             {image.sources && image.sources.map((source, index) => (
                 <source
                     key={index}
@@ -14,21 +18,30 @@ const ResponsiveImage = ({ className, image, alt, imagePath }) => (
                     media={source.media} />
             ))}
 
-            <img src={`${imagePath}/${image.img.src}`}
-                srcSet={image.img.srcset && makeImageSrcSet(image.img.srcset, imagePath)}
-                sizes={image.img.sizes}
-                alt={image.alt || alt}
+            <img src={`${imagePath}${image.src}`}
+                srcSet={image.img && image.img.srcset && makeImageSrcSet(image.img.srcset, imagePath)}
+                sizes={image.img && image.img.sizes}
+                alt={alt || image.alt || image.src}
                 className={className} />
-
-        </picture>
-        :
-        <img src={`${imagePath}/${image.src}`}
+        
+        </picture>  :
+            
+        <img src={`${imagePath}${image.src}`}
+            srcSet={image.img && image.img.srcset && makeImageSrcSet(image.img.srcset, imagePath)}
+            sizes={image.img && image.img.sizes}
             alt={alt || image.alt || image.src}
-            className={className} />
+            className={className} /> 
 )
 
-const mapStateToProps = state => ({
-    imagePath: state.imagePath
+const mapStateToProps = (state) => ({
+    imagePath: state.imagePath || "/",
 })
+
+ResponsiveImage.propTypes = {
+    className: PropTypes.string,
+    alt: PropTypes.string,
+    image: PropTypes.object.isRequired,
+    imagePath: PropTypes.string.isRequired
+}
 
 export default connect(mapStateToProps)(ResponsiveImage)

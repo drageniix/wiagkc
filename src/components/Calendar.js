@@ -1,13 +1,14 @@
 import React from "react"
-import moment from 'moment'
-import { connect } from 'react-redux'
+import PropTypes from "prop-types"
+import moment from "moment"
+import { connect } from "react-redux"
 
-export const Calendar = ({ data }) => (
+export const Calendar = ({ data: {title, events} }) => (
     <section id="calendar" className="calendar">
         <section className="calendar__container">
-            <h2 className="section__title">{data.title}</h2>
+            <h2 className="section__title">{title}</h2>
             <div className="calendar__events">
-                {data.events.map((item, index) => (
+                {events.map((item, index) => (
                     <div key={index} className="calendar__event">
                         <div className="calendar__event--date">{moment.unix(item.date).format("MMM Do")}</div>
                         <div className="calendar__event--details">
@@ -27,5 +28,9 @@ export const Calendar = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.calendar
 })
+
+Calendar.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Calendar)

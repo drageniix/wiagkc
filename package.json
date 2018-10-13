@@ -1,16 +1,16 @@
 {
-  "name": "drageniix-wiakc",
-  "version": "1.0.0",
+  "name": "drageniix-wiagkc",
+  "version": "1.1.0",
   "description": "West Indian Association of Greater Kansas City",
   "repository": {
     "type": "git",
     "url": "https://github.com/drageniix/wiagkc.git"
   },
-  "main": "index.js",
   "scripts": {
-    "start": "gulp start",
-    "build": "gulp build",
-    "test": "jest --config=jest.config.json"
+    "test": "jest --config=jest.config.json",
+    "start": "webpack-dev-server & npm run test -- --watch",
+    "build": "webpack -p --env production",
+    "preview": "live-server public"
   },
   "keywords": [],
   "author": "Ashley Barrow",
@@ -26,11 +26,7 @@
     "babel-preset-react": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
-    "es6-promise": "^4.2.5",
-    "file-loader": "^1.1.11",
     "html-webpack-plugin": "^4.0.0-alpha.2",
-    "image-webpack-loader": "^4.3.1",
-    "isomorphic-fetch": "^2.2.1",
     "mini-css-extract-plugin": "^0.4.1",
     "moment": "^2.22.2",
     "node-sass": "^4.9.2",
@@ -48,17 +44,20 @@
     "webpack-cli": "^3.1.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "enzyme-to-json": "^3.3.4",
+    "eslint": "^5.6.1",
+    "eslint-plugin-jest": "^21.24.1",
+    "eslint-plugin-react": "^7.11.1",
     "fs-extra": "^7.0.0",
-    "gulp": "^4.0.0",
-    "gulp-svg-sprite": "^1.4.0",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
     "live-server": "^1.2.0",
     "raf": "^3.4.0",
-    "sharp": "^0.20.8",
+    "sharp": "^0.21.0",
+    "webpack-bundle-analyzer": "^3.0.2",
     "webpack-dev-server": "^3.1.8"
   }
 }

@@ -1,0 +1,16 @@
+[
+    {
+        "path" : "images",
+        "alt" : "2018 Events",
+        "files": [
+            {
+                "src": "jerkfest.jpg",
+                "size": 450
+            },
+            {
+                "src": "picnic.jpg",
+                "size": 450
+            }
+        ]
+    }
+]

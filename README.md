@@ -1,8 +1,12 @@
-# West Indian Association
-Website redesign for WIA-KC
+# Things To Do:
+LazyLoad, Manifest, README, sprites
 
-#Todo List
-* cta next meeting
-* on tablet - link modal for west indies, abbreviated mission
-* on desktop - full west indies text, full mission
-* footer - contact  information, 501, social media
+## Changed:
+package.json
+pages
+index.ejs
+meta description
+bind self in plugin
+async reducer
+imagepath responsiveimage
+moment

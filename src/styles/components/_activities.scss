@@ -17,7 +17,6 @@
 
     &__box {
         background-image: url($activities);
-        background-size: cover;
         background-position: center;
         border-radius: 1rem;
         padding: 3rem;
@@ -38,7 +37,6 @@
     &__activity {
         width: 30%;
         margin-bottom: 3rem;
-
         background-color: rgba($color-white, .95);
         padding: 2rem;
         text-align: center;
@@ -76,9 +74,13 @@
             text-align: center;
             
             & > * {
+                height: 50px;
+                width: 50px;
+                fill: currentColor;
                 display: inline-block;
             }
         }
+        
         &--exampleList {
             list-style-type: none;
         }
