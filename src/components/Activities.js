@@ -32,4 +32,5 @@ const mapStateToProps = state => ({
 Activities.propTypes = {
     data: PropTypes.object.isRequired
 }
+
 export default connect(mapStateToProps)(Activities)

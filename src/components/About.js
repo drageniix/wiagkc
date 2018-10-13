@@ -1,5 +1,6 @@
 import React from "react"
-import { connect } from 'react-redux'
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const About = ({ data }) => (
     <section className="about" id="about">
@@ -11,5 +12,10 @@ export const About = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.about
 })
+
+About.propTypes = {
+    data: PropTypes.object.isRequired
+}
+
 
 export default connect(mapStateToProps)(About)

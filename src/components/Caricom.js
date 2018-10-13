@@ -1,6 +1,7 @@
 import React from "react"
-import ResponsiveImage from './ResponsiveImage'
-import { connect } from 'react-redux'
+import ResponsiveImage from "./ResponsiveImage"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export class Caricom extends React.Component {
     state = {modal : ""}
@@ -27,10 +28,16 @@ export class Caricom extends React.Component {
                 <h2 className="section__title">{this.props.data.title}</h2>
                 <p className="caricom__text">{this.props.data.blurb} <a onClick={this.openModal}>Learn More...</a></p> 
             </section>
-    )}
+        )
+    }
 }
 
-const path = location.pathname.slice(0, location.pathname.lastIndexOf('/')) + "/assets/images"
+Caricom.propTypes = {
+    data: PropTypes.object.isRequired
+}
+
+
+const path = location.pathname.slice(0, location.pathname.lastIndexOf("/")) + "/assets/images"
 export const CaricomModal = ({data, close}) => (
     <div className="modal" onClick={close}>
         <div className="modal__content">
@@ -56,5 +63,10 @@ export const CaricomModal = ({data, close}) => (
 const mapStateToProps = state => ({
     data: state.caricom
 })
+
+CaricomModal.propTypes = {
+    data: PropTypes.object.isRequired,
+    close: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Caricom)

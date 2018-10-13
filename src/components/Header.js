@@ -1,5 +1,6 @@
 import React from "react"
-import { connect } from 'react-redux'
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const Header = ({ data }) => (
     <header className="header" id="top">
@@ -14,5 +15,9 @@ export const Header = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.marginals
 })
+
+Header.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Header)

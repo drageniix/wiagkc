@@ -1,6 +1,7 @@
-import React from 'react'
-import moment from 'moment'
-import { connect } from 'react-redux'
+import React from "react"
+import moment from "moment"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const NextMeeting = ({ data }) => { 
     const now = moment().unix();
@@ -17,5 +18,9 @@ export const NextMeeting = ({ data }) => {
 const mapStateToProps = state => ({
     data: state.calendar
 })
+
+NextMeeting.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(NextMeeting)

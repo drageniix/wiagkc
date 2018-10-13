@@ -1,5 +1,6 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from "react"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const Membership = ({ data }) => (
     <section id="membership" className="membership">
@@ -23,5 +24,9 @@ export const Membership = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.membership
 })
+
+Membership.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Membership)

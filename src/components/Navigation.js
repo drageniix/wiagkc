@@ -1,6 +1,7 @@
-import React from 'react'
-import ResponsiveImage from './ResponsiveImage'
-import { connect } from 'react-redux'
+import React from "react"
+import ResponsiveImage from "./ResponsiveImage"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const Navigation = ({ data }) => (
     <nav className="navigation">
@@ -21,5 +22,9 @@ export const Navigation = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.marginals
 })
+
+Navigation.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Navigation)

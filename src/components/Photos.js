@@ -1,6 +1,7 @@
 import React from "react"
-import ResponsiveImage from './ResponsiveImage'
-import { connect } from 'react-redux'
+import ResponsiveImage from "./ResponsiveImage"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const Photos = ({ data }) => (
     <section className="photos" id="photos">
@@ -16,5 +17,9 @@ export const Photos = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.photos
 })
+
+Photos.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Photos)

@@ -1,6 +1,7 @@
-import React from 'react'
-import ResponsiveImage from './ResponsiveImage'
-import { connect } from 'react-redux'
+import React from "react"
+import ResponsiveImage from "./ResponsiveImage"
+import { connect } from "react-redux"
+import PropTypes from "prop-types"
 
 export const Footer = ({ data }) => (
     <section className="footer" id="footer">
@@ -12,7 +13,7 @@ export const Footer = ({ data }) => (
             <p><a href={`https://twitter.com/${data.twitter}`}>@{data.twitter}</a></p>
             <p><a href={"mailto:" + data.email}>{data.email}</a></p>
             <p><a href={"tel:" + data.phone.replace("-", "")}>{data.phone}</a></p>
-            <p><a href={data.geo} target="_blank">{data.address}</a></p>
+            <p><a href={data.geo} target="_blank" rel="noopener noreferrer">{data.address}</a></p>
         </div>
     </section>
 )
@@ -20,5 +21,9 @@ export const Footer = ({ data }) => (
 const mapStateToProps = state => ({
     data: state.marginals
 })
+
+Footer.propTypes = {
+    data: PropTypes.object.isRequired
+}
 
 export default connect(mapStateToProps)(Footer)
