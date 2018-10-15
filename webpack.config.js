@@ -12,7 +12,7 @@ const path = require("path")
 
 const outputPath = path.resolve(__dirname, "public/")
 const appTitle = "WIAKC | West Indian Association"
-const themeColor = "#fed44a"
+const themeColor = "#68a08b"
 const appDescription = "Bringing West Indian Culture Together in Kansas City"
 
 const manifest = {
