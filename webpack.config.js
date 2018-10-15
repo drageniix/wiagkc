@@ -7,7 +7,6 @@ const WebpackPwaManifest = require("webpack-pwa-manifest")
 const ResponsiveJSONPlugin = require("./plugins/ResponsiveJSONWebpackPlugin")
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
-const webpack = require("webpack")
 const path = require("path")
 
 const outputPath = path.resolve(__dirname, "public/")
@@ -51,7 +50,6 @@ function getPlugins(isProduction) {
             sourceImages: "src/assets/images",
             sourceTemplates: "src/assets/templates",
         }),
-        new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en|es|fr/)
     ]
 
     if (isProduction) {
