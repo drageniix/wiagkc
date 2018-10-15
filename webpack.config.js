@@ -3,19 +3,42 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const WebpackPwaManifest = require("webpack-pwa-manifest")
 const ResponsiveJSONPlugin = require("./plugins/ResponsiveJSONWebpackPlugin")
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const webpack = require("webpack")
 const path = require("path")
 
 const outputPath = path.resolve(__dirname, "public/")
 const appTitle = "WIAKC | West Indian Association"
 const appDescription = "Bringing West Indian Culture Together in Kansas City"
+const manifest = {
+    name: appTitle,
+    short_name: "WIAKC",
+    description: appDescription,
+    background_color: "#ffffff",
+    fingerprints: false,
+    icons: [
+        {
+            src: path.resolve("src/assets/icon.png"),
+            sizes: [96, 128, 192, 256, 384, 512]
+        }
+    ]
+}
 
-//todo: manifest
 function getPlugins(isProduction) {
     const plugins = [
         getHTMLWebPackPlugin("index", "."),
+        new SWPrecacheWebpackPlugin({
+            cacheId: "sample-cache-id",
+            dontCacheBustUrlsMatching: /\.\w{8}\./,
+            filename: "service-worker.js",
+            minify: true,
+            navigateFallback: outputPath + "index.html",
+            staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        }),
+        new WebpackPwaManifest(manifest),
         new MiniCssExtractPlugin({
             filename: "./styles/[hash].css",
             chunkFilename: "[hash].css"
@@ -64,7 +87,7 @@ module.exports = env => {
             index: ["babel-polyfill", "./src/app.js", "./src/styles/index.scss"]
         },
         output: {
-            publicPath: "/",
+            //publicPath: "/",
             path: outputPath,
             filename: "./scripts/[name].js"
         },

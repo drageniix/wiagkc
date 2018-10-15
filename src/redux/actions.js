@@ -1,3 +1,5 @@
+//unused, reverted to inline json
+
 const setFetchedCalendar = (json) => ({
     type: "SET_CALENDAR",
     json

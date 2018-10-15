@@ -11,15 +11,17 @@ module.exports = class ResponsiveJSONWebpackPlugin {
             outputFolder: directories.outputFolder.replace(/^\/+|\/+$/g, "")
         }
 
-        this.files = { pure: {} }
-        this.srcReg = this.dirs.sourceTemplates.replace(new RegExp("/", "g"), "\\")
+        this.folders = {}
+        this.files = {}
+        this.regex = new RegExp("/", "g")
     }
 
     run(compilation){
-        const dependencies = this.getChangedDependencies(compilation.fileDependencies)
-        
+        const dependencies = this.getChangedDependencies(compilation)
+
         this.processedFileNames = []
         this.assets = compilation.assets
+        this.folders = dependencies.folders
         this.files = dependencies.files
 
         return this.processDataFolders(
@@ -31,11 +33,11 @@ module.exports = class ResponsiveJSONWebpackPlugin {
 
     apply(compiler) {
         const self = this
-        compiler.hooks.emit.tapPromise("ResponsiveJSONPlugin", this.run.bind(self));
+        compiler.hooks.emit.tapPromise("ResponsiveJSONPlugin", this.run.bind(self))
     }
 
     saveJSON(folder, jsonMap) {
-        const stringData = JSON.stringify(Object.assign({}, ...jsonMap)).replace(" ", "")
+        const stringData = JSON.stringify(Object.assign({}, ...jsonMap))
         this.assets[`./${this.dirs.outputFolder}/${this.dirs.dataPath}/${folder}.json`] = {
             source: () => Buffer.from(stringData),
             size: () => stringData.length,
@@ -50,7 +52,7 @@ module.exports = class ResponsiveJSONWebpackPlugin {
                     this.assets[`./${src}`] = {
                         source: () => data,
                         size: () => info.size,
-                    };
+                    }
                 })
         } else return Promise.resolve()
     }
@@ -199,7 +201,7 @@ module.exports = class ResponsiveJSONWebpackPlugin {
     }
 
     stripInvalid(str){
-        return str && typeof str === "string" ? str.replace(/[|&;$%@"<>()+,]/g, "") : undefined
+        return str && typeof str === "string" ? str.replace(/[|&$%@"<>()+,]/g, "") : undefined
     }
 
     generateFileName({ name, index, size, extension } = {}, dest) {
@@ -219,60 +221,79 @@ module.exports = class ResponsiveJSONWebpackPlugin {
 
     index(obj, objPath, value) {
         if (typeof objPath == "string")
-            return this.index(obj, objPath.split("."), value);
+            return this.index(obj, objPath.split("."), value)
         else if (objPath.length == 1 && value !== undefined)
-            return obj[objPath[0]] = value;
+            return obj[objPath[0]] = value
         else if (objPath.length == 0)
-            return obj;
+            return obj
         else return this.index(
             obj[(isNaN(objPath[0]) ? objPath[0] : parseInt(objPath[0]))],
             objPath.slice(1),
-            value);
+            value)
     }
 
-    //todo : deleted file/folder?
-    getChangedDependencies(allFileDependencies){
-        const files = {pure: {}}
-        const changedFolders = []
-        const changedPureFiles = []
-
-        const fileDependencies = Array.from(allFileDependencies).filter(filename => filename.includes(this.srcReg))
-        
-        fileDependencies.forEach(rawFileName => {
-            const folderFile = rawFileName.slice(rawFileName.indexOf(this.srcReg) + this.srcReg.length + 1, rawFileName.lastIndexOf("\\"))
-            const folder = folderFile.slice(0, folderFile.indexOf("\\"))
-            const group = folderFile.slice(folderFile.indexOf("\\") + 1)
-
-            const time = fs.statSync(rawFileName).mtime.getTime()
-            if ((group === this.dirs.dataPath || group === this.dirs.imagePath) && folder){
-                if (files[folder]) {
-                    if (!changedFolders.includes(folder) && this.files[folder] && time > this.files[folder][0]) {
-                        changedFolders.push(folder)
-                    }
-                    files[folder].push(time)
-                } else {
-                    if (!this.files[folder] || time > this.files[folder][0]) {
-                        changedFolders.push(folder)
-                    }
-                    files[folder] = [time]
-                }
+    getDependencies(dir, compilationDependenciesSet, rootdir, dependencies) {
+        const list = fs.readdirSync(dir)
+        list.forEach(file => {
+            file = dir + "/" + file
+            const stat = fs.statSync(file)
+            if (stat && stat.isDirectory()) {
+                this.getDependencies(file, compilationDependenciesSet, rootdir, dependencies)
             } else {
-                files.pure[rawFileName] = time 
-                if (this.files.pure[rawFileName] !== time) {
-                    changedPureFiles.push(rawFileName)
+                if (file.slice(file.lastIndexOf(".")) === ".json") {
+                    dependencies.push(file)
+                    compilationDependenciesSet.add(rootdir + "\\" + file.replace(this.regex, "\\"))
                 }
             }
         })
+    }
 
-        for (let folder in files){
-            if(Array.isArray(files[folder])){
-                files[folder] = files[folder].sort().reverse()
+    getChangedDependencies(compilation) {
+        const folders = {}
+        const files = {}
+        const changedFolders = new Set()
+        const changedPureFiles = []
+        const fileDependencies = []
+
+        compilation.contextDependencies.add(compilation.compiler.context + "\\" + this.dirs.sourceTemplates.replace(this.regex, "\\"))
+        this.getDependencies(this.dirs.sourceTemplates, compilation.fileDependencies, compilation.compiler.context, fileDependencies)
+
+        fileDependencies.forEach(rawFileName => {
+            const folderFile = rawFileName.slice(rawFileName.indexOf(this.dirs.sourceTemplates) + this.dirs.sourceTemplates.length + 1, rawFileName.lastIndexOf("/"))
+            const folder = folderFile.slice(0, folderFile.indexOf("/"))
+            const group = folderFile.slice(folderFile.indexOf("/") + 1)
+
+            const time = fs.statSync(rawFileName).mtime.getTime()
+            if ((group === this.dirs.dataPath || group === this.dirs.imagePath) && folder){
+                folders[folder] = folders[folder] ? folders[folder] : {
+                    lastUpdate: [],
+                    filenames: []
+                }
+                
+                folders[folder].lastUpdate.push(time)
+                folders[folder].filenames.push(rawFileName.slice(rawFileName.lastIndexOf(group)))
+            } else {
+                if (this.files[rawFileName] !== time) {
+                    changedPureFiles.push(rawFileName)
+                }
+                files[rawFileName] = time 
+            }
+        })
+
+        for (let folder in folders){
+            folders[folder].lastUpdate = folders[folder].lastUpdate.sort().reverse()[0]
+            if(!this.folders[folder] || 
+                this.folders[folder].lastUpdate < folders[folder].lastUpdate ||
+                this.folders[folder].filenames.length != folders[folder].filenames.length
+            ){
+                changedFolders.add(folder)
             }
         }
 
         return {
+            folders,
             files,
-            changedFolders,
+            changedFolders: Array.from(changedFolders),
             changedPureFiles
         }
     }
