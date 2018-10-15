@@ -12,12 +12,15 @@ const path = require("path")
 
 const outputPath = path.resolve(__dirname, "public/")
 const appTitle = "WIAKC | West Indian Association"
+const themeColor = "#fed44a"
 const appDescription = "Bringing West Indian Culture Together in Kansas City"
+
 const manifest = {
     name: appTitle,
     short_name: "WIAKC",
     description: appDescription,
     background_color: "#ffffff",
+    theme_color: themeColor,
     fingerprints: false,
     icons: [
         {
@@ -70,6 +73,7 @@ function getHTMLWebPackPlugin(pageEntry, destPath) {
         filename: destPath + "/index.html",
         title: appTitle,
         description: appDescription,
+        themeColor: themeColor,
         favicon: `./src/assets/${pageEntry === "index" ? "" : "images/" + pageEntry + "/"}favicon.png`,
         minify: {
             removeComments: true,
