@@ -36,8 +36,7 @@ Caricom.propTypes = {
     data: PropTypes.object.isRequired
 }
 
-
-const path = location.pathname.slice(0, location.pathname.lastIndexOf("/")) + "/assets/images"
+const path = location.pathname.slice(0, location.pathname.lastIndexOf("/"))
 export const CaricomModal = ({data, close}) => (
     <div className="modal" onClick={close}>
         <div className="modal__content">

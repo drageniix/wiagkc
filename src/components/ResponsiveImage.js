@@ -33,7 +33,7 @@ export const ResponsiveImage = ({ className, image, alt, imagePath}) => (
             className={className} /> 
 )
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     imagePath: state.imagePath || "/",
 })
 

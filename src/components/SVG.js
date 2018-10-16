@@ -36,7 +36,7 @@ const mapStateToProps = (state, { svg = "unknown" }) => ({
 SVG.propTypes = {
     svg: PropTypes.string,
     className: PropTypes.string,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     icon: PropTypes.object.isRequired
 }
 
