@@ -10,13 +10,13 @@ const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const path = require("path")
 
 const outputPath = path.resolve(__dirname, "public/")
-const appTitle = "WIAKC | West Indian Association"
+
+const appTitle = "WIA-KC | West Indian Association"
 const themeColor = "#68a08b"
 const appDescription = "Bringing West Indian Culture Together in Kansas City"
-
 const manifest = {
     name: appTitle,
-    short_name: "WIAKC",
+    short_name: "WIA-KC",
     description: appDescription,
     background_color: "#ffffff",
     theme_color: themeColor,
@@ -45,11 +45,7 @@ function getPlugins(isProduction) {
             filename: "./styles/[hash].css",
             chunkFilename: "[hash].css"
         }),
-        new ResponsiveJSONPlugin({
-            outputFolder: "assets",
-            sourceImages: "src/assets/images",
-            sourceTemplates: "src/assets/templates",
-        }),
+        new ResponsiveJSONPlugin(),
     ]
 
     if (isProduction) {
@@ -152,6 +148,10 @@ module.exports = env => {
                     }
                 })
             ]
+        },
+        externals: {
+            "react": "React",
+            "react-dom": "ReactDOM"
         },
         devtool: isProduction ? "source-map" : "inline-source-map",
         mode: isProduction ? "production" : "development",

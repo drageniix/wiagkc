@@ -31,8 +31,8 @@
       "type": "image/png"
     }
   ],
-  "name": "WIAKC | West Indian Association",
-  "short_name": "WIAKC",
+  "name": "WIA-KC | West Indian Association",
+  "short_name": "WIA-KC",
   "orientation": "portrait",
   "display": "standalone",
   "start_url": ".",

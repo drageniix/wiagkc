@@ -2,18 +2,27 @@ const fs = require("fs-extra")
 const sharp = require("sharp")
 
 module.exports = class ResponsiveJSONWebpackPlugin {
-    constructor(directories) {
-        this.dirs = {
-            dataPath: "data",
-            imagePath: "images",
-            sourceTemplates: directories.sourceTemplates.replace(/^\/+|\/+$/g, ""),
-            sourceImages: directories.sourceImages.replace(/^\/+|\/+$/g, ""),
-            outputFolder: directories.outputFolder.replace(/^\/+|\/+$/g, "")
-        }
+    constructor(
+        { 
+            dataPath = "data", 
+            imagePath = "images", 
+            sourceTemplates = "src/assets/templates", 
+            sourceImages = "src/assets/images", 
+            outputFolder = "assets"
+        } = {}) {
+        
 
         this.folders = {}
         this.files = {}
-        this.regex = new RegExp("/", "g")
+        this.slashRegex = new RegExp("/", "g")
+        this.stripRegex = /^\/+|^\.\/+|\/+$/g
+        this.dirs = {
+            dataPath: dataPath.replace(this.stripRegex, ""),
+            imagePath: imagePath.replace(this.stripRegex, ""),
+            sourceTemplates: sourceTemplates.replace(this.stripRegex, ""),
+            sourceImages: sourceImages.replace(this.stripRegex, ""),
+            outputFolder: outputFolder.replace(this.stripRegex, "")
+        }
     }
 
     run(compilation){
@@ -82,7 +91,10 @@ module.exports = class ResponsiveJSONWebpackPlugin {
                             return fs.readJSON(`${this.dirs.sourceTemplates}/${folder}/${this.dirs.imagePath}/${file}`)
                                 .then(images => this.injectImagesIntoDataFile(images, data))
                         }})
-                    .then(() => ({ [file.substring(1, file.lastIndexOf("."))]: data }))
+                    .then(() => {
+                        const jsonKey = file.startsWith("_") ? file.substring(1, file.lastIndexOf(".")) : file.substring(0, file.lastIndexOf(".")) 
+                        return { [jsonKey]: data }
+                    })
                 )
         ))
     }
@@ -242,7 +254,7 @@ module.exports = class ResponsiveJSONWebpackPlugin {
             } else {
                 if (file.slice(file.lastIndexOf(".")) === ".json") {
                     dependencies.push(file)
-                    compilationDependenciesSet.add(rootdir + "\\" + file.replace(this.regex, "\\"))
+                    compilationDependenciesSet.add(rootdir + "\\" + file.replace(this.slashRegex, "\\"))
                 }
             }
         })
@@ -255,7 +267,7 @@ module.exports = class ResponsiveJSONWebpackPlugin {
         const changedPureFiles = []
         const fileDependencies = []
 
-        compilation.contextDependencies.add(compilation.compiler.context + "\\" + this.dirs.sourceTemplates.replace(this.regex, "\\"))
+        compilation.contextDependencies.add(compilation.compiler.context + "\\" + this.dirs.sourceTemplates.replace(this.slashRegex, "\\"))
         this.getDependencies(this.dirs.sourceTemplates, compilation.fileDependencies, compilation.compiler.context, fileDependencies)
 
         fileDependencies.forEach(rawFileName => {
