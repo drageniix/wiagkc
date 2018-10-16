@@ -72,7 +72,7 @@ function getHTMLWebPackPlugin(pageEntry, destPath) {
         minify: {
             removeComments: true,
             collapseWhitespace: true,
-            preserveLineBreaks: true
+            preserveLineBreaks: false
         }
     })
 }
@@ -149,10 +149,10 @@ module.exports = env => {
                 })
             ]
         },
-        externals: {
-            "react": "React",
-            "react-dom": "ReactDOM"
-        },
+        // externals: {
+        //     "react": "React",
+        //     "react-dom": "ReactDOM"
+        // },
         devtool: isProduction ? "source-map" : "inline-source-map",
         mode: isProduction ? "production" : "development",
         stats: {

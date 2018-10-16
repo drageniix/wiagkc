@@ -11,7 +11,6 @@ module.exports = class ResponsiveJSONWebpackPlugin {
             outputFolder = "assets"
         } = {}) {
         
-
         this.folders = {}
         this.files = {}
         this.slashRegex = new RegExp("/", "g")
