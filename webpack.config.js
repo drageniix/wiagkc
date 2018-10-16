@@ -149,10 +149,6 @@ module.exports = env => {
                 })
             ]
         },
-        // externals: {
-        //     "react": "React",
-        //     "react-dom": "ReactDOM"
-        // },
         devtool: isProduction ? "source-map" : "inline-source-map",
         mode: isProduction ? "production" : "development",
         stats: {
