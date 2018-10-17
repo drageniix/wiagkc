@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest")
-const ResponsiveJSONPlugin = require("./plugins/ResponsiveJSONWebpackPlugin")
+const ResponsiveJSONWebpackPlugin = require("responsive-json-webpack-plugin")
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
 const path = require("path")
@@ -45,7 +45,7 @@ function getPlugins(isProduction) {
             filename: "./styles/[hash].css",
             chunkFilename: "[hash].css"
         }),
-        new ResponsiveJSONPlugin(),
+        new ResponsiveJSONWebpackPlugin(),
     ]
 
     if (isProduction) {
