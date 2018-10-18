@@ -85,14 +85,13 @@ module.exports = env => {
             index: ["babel-polyfill", "./src/app.js", "./src/styles/index.scss"]
         },
         output: {
-            //publicPath: "/",
             path: outputPath,
             filename: "./scripts/[name].js"
         },
         module: {
             rules: [
                 {
-                    test: /\.(js|jsx)$/,
+                    test: /\.jsx?$/,
                     exclude: /node_modules/,
                     use: [
                         "babel-loader"

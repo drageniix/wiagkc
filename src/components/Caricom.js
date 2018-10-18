@@ -1,5 +1,5 @@
 import React from "react"
-import ResponsiveImage from "./ResponsiveImage"
+import ResponsiveImage from "responsive-json-webpack-plugin/react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
