@@ -3,10 +3,10 @@ import ResponsiveImage from "responsive-json-webpack-plugin/react"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
 
-export const Photos = ({ data }) => (
+export const Photos = ({ images }) => (
     <section className="photos" id="photos">
         <section className="photos__images">
-            {data.images.map((item, index) => (
+            {images.map((item, index) => (
                 <ResponsiveImage image={item} key={index}/>
             ))}
         </section>
@@ -15,11 +15,11 @@ export const Photos = ({ data }) => (
 
 
 const mapStateToProps = state => ({
-    data: state.photos
+    images: state.photos.images
 })
 
 Photos.propTypes = {
-    data: PropTypes.object.isRequired
+    images: PropTypes.array.isRequired
 }
 
 export default connect(mapStateToProps)(Photos)
