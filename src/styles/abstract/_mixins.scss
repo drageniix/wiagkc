@@ -1,6 +1,6 @@
 @mixin clearfix {
     &::after {
-        content: "";
+        content: '';
         display: table;
         clear: both;
     }
@@ -16,7 +16,7 @@
 @mixin flexSupport {
     @supports (display: flex) or (display: -webkit-box) {
         width: 100%;
-        @content
+        @content;
     }
 }
 
@@ -24,16 +24,28 @@
 //$breakpoint : phone tabPort tabLand desk deskBig
 @mixin respond($breakpoint) {
     @if $breakpoint == tinyPhone {
-        @media only screen and (max-width: 20.5em) { @content }
+        @media only screen and (max-width: 20.5em) {
+            @content;
+        }
     } @else if $breakpoint == phone {
-        @media only screen and (max-width: 44.75em) { @content }
-    } @else if $breakpoint == tabPort { 
-        @media only screen and (max-width: 60em) { @content }
+        @media only screen and (max-width: 44.75em) {
+            @content;
+        }
+    } @else if $breakpoint == tabPort {
+        @media only screen and (max-width: 60em) {
+            @content;
+        }
     } @else if $breakpoint == tabLand {
-        @media only screen and (max-width: 81.25em) { @content }
+        @media only screen and (max-width: 81.25em) {
+            @content;
+        }
     } @else if $breakpoint == desk {
-        @media only screen and (max-width: 112.5em) { @content }
+        @media only screen and (max-width: 112.5em) {
+            @content;
+        }
     } @else if $breakpoint == deskBig {
-        @media only screen and (min-width: 112.5em) { @content }
+        @media only screen and (min-width: 112.5em) {
+            @content;
+        }
     }
 }

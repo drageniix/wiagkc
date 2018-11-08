@@ -1,71 +1,46 @@
-import React from "react"
-import ResponsiveImage from "responsive-json-webpack-plugin/react"
-import { connect } from "react-redux"
-import PropTypes from "prop-types"
+import React from 'react';
+import ResponsiveImage from 'responsive-json-webpack-plugin/react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { setModal } from '../redux/actions';
 
-export class Caricom extends React.Component {
-    state = {modal : ""}
-
-    openModal = () => {
-        this.setState({modal : this.props.data})
-    }
-
-    closeModal = event => {
-        event.preventDefault()
-        if (event.target === event.currentTarget) {
-            this.setState({ modal: "" })
-        }
-    }
-    
-    render(){
-        return (
-            <section id="caricom" className="caricom">
-                { this.state.modal ? <CaricomModal data={this.state.modal} close={this.closeModal} /> : undefined }
-                <figure className="caricom__map">    
-                    <ResponsiveImage className="caricom__map--image" image={this.props.data.map.image} />
-                    <figcaption className="caricom__map--caption">{this.props.data.map.caption}</figcaption>
-                </figure>
-                <h2 className="section__title">{this.props.data.title}</h2>
-                <p className="caricom__text">{this.props.data.blurb} <a onClick={this.openModal}>Learn More...</a></p> 
-            </section>
-        )
-    }
-}
+export const Caricom = ({ data, setModal }) => (
+    <section id="caricom" className="caricom">
+        <figure className="caricom__map">
+            <ResponsiveImage
+                className="caricom__map--image"
+                image={data.map.image}
+            />
+            <figcaption className="caricom__map--caption">
+                {data.map.caption}
+            </figcaption>
+        </figure>
+        <h2 className="section__title">{data.title}</h2>
+        <p className="caricom__text">
+            {data.blurb} <a onClick={setModal}>Learn More...</a>
+        </p>
+    </section>
+);
 
 Caricom.propTypes = {
-    data: PropTypes.object.isRequired
-}
-
-const path = location.pathname.slice(0, location.pathname.lastIndexOf("/"))
-export const CaricomModal = ({data, close}) => (
-    <div className="modal" onClick={close}>
-        <div className="modal__content">
-            <h2 className="section__title">{data.title}</h2>
-            <div className="modal__text">
-                {data.more.description.map((item, index) => (
-                    <p key={index}>
-                        {item}
-                    </p>
-                ))}
-                <div>
-                    <a href={path + "/" + data.map.image.src}
-                        rel="noopener noreferrer" target="_blank">
-                        <ResponsiveImage className="modal__image" image={data.map.image} />
-                    </a>
-                    <caption className="modal__caption">{data.map.caption}</caption>
-                </div>
-            </div>
-        </div>
-    </div>
-)
+    data: PropTypes.object.isRequired,
+    setModal: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
     data: state.caricom
-})
+});
 
-CaricomModal.propTypes = {
-    data: PropTypes.object.isRequired,
-    close: PropTypes.object.isRequired
-}
+const mapDispatchToProps = dispatch => ({
+    setModal: event => {
+        if (event.target === event.currentTarget){
+            event.preventDefault()
+            dispatch(setModal(1));
+        }
+    }
+});
 
-export default connect(mapStateToProps)(Caricom)
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Caricom);

@@ -1,10 +1,10 @@
 {
-    "title" : "Membership",
-    "abstract" : "There is something for everyone as we invite you to join our association, volunteer, and/or enjoy the many activities planned.",
-    "details" : "Please attend our meetings and share ideas for other projects or issues you feel are important in the West Indian community. If unable to attend, please read a recap of meeting minutes from last month. Please refer other potential members.",
-    "meetingFrequency" : {
-        "prefix" : "Meetings",
-        "normal" : "2nd Saturday of Each Month",
-        "exceptions" : ""
+    "title": "Membership",
+    "abstract": "There is something for everyone as we invite you to join our association, volunteer, and/or enjoy the many activities planned.",
+    "details": "Please attend our meetings and share ideas for other projects or issues you feel are important in the West Indian community. If unable to attend, please read a recap of meeting minutes from last month. Please refer other potential members.",
+    "meetingFrequency": {
+        "prefix": "Meetings",
+        "normal": "2nd Saturday of Each Month",
+        "exceptions": ""
     }
 }

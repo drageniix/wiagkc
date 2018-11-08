@@ -3,10 +3,12 @@
         "files": [
             {
                 "src": "floral-pattern.jpg",
+                "dest": "features",
                 "size": 400
             },
             {
                 "src": "junkanoo.jpg",
+                "dest": "hero",
                 "size": 800
             }
         ]

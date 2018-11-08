@@ -1,17 +1,17 @@
 {
     "title": "The West Indies",
-    "blurb" : "Countries of the West Indies (an area of the Caribbean) share a common cultural history created by European colonization of the region, as well as the significant presence of people of African descent. The region is not only informally unified by its culture, heritage, and sports, but is also formally unified, in part, by organizations such as CARICOM.",
-    "map" : {
-        "caption" : "Map of Caricom Members"
+    "blurb": "Countries of the West Indies (an area of the Caribbean) share a common cultural history created by European colonization of the region, as well as the significant presence of people of African descent. The region is not only informally unified by its culture, heritage, and sports, but is also formally unified, in part, by organizations such as CARICOM.",
+    "map": {
+        "caption": "Map of Caricom Members"
     },
-    "more" : {
+    "more": {
         "description": [
             "The West Indies is a region of the North Atlantic Ocean in the Caribbean and includes the Greater Antilles, the Lesser Antilles, the Lucayan Archipelago, as well as areas along the northern coast of South America. The countries that make up the West Indies share a common cultural history created by European colonization of the region, and in most of the region, by the significant presence of people of African descent. The region is not only informally unified by its culture, heritage, sports (such as cricket and football), but is also formally unified, in part, by organizations such as the Caribbean Community (CARICOM).",
             "CARICOM is a grouping of 12 Member States, 5 Associate Member States, and 8 Observer States, who all serve on various committees. Together the main ethnic groups represented include Indigenous Peoples, Africans, Indians, Europeans, Chinese and Portuguese. The Community is multi-lingual; with English as the major language complemented by French and Dutch and variations of these, as well as African and Indian expressions. The Full and Associate States make up approximately 16 million citizens, 60% of whom are under the age of 30. Great strides have been made by collaborating, particularly through functional cooperation in education, in health, in culture, and in security. It is a respected voice in international affairs because of its coordinated foreign policy."
         ],
-        "members" : {
-            "title" : "Caricom Members",
-            "full" : [
+        "members": {
+            "title": "Caricom Members",
+            "full": [
                 "Antigua and Barbuda",
                 "Bahamas",
                 "Barbados",
@@ -28,14 +28,14 @@
                 "Suriname",
                 "Trinidad and Tobago"
             ],
-            "associate" : [
+            "associate": [
                 "Anguilla",
                 "Bermuda",
                 "British Virgin Islands",
                 "Cayman Islands",
                 "Turks and Caicos Islands"
             ],
-            "observer" : [
+            "observer": [
                 "Aruba",
                 "Colombia",
                 "Curaçao",
