@@ -1,0 +1,31 @@
+[
+    {
+        "path": "banner",
+        "alt": "2018 Holiday Luncheon",
+        "files": [
+            {
+                "src": "holidaybanner.png",
+                "size": 350
+            }
+        ],
+        "imageTemplate": {
+            "img": {
+                "sizes": "(max-width: 44.75em) 200px, (max-width: 81.25em) 300px, 400px",
+                "srcset": [
+                    {
+                        "dest": "[name]-mobile",
+                        "size": 200
+                    },
+                    {
+                        "dest": "[name]-tablet",
+                        "size": 300
+                    },
+                    {
+                        "size": 400,
+                        "dest": "[name]-desktop"
+                    }
+                ]
+            }
+        }
+    }
+]
