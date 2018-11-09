@@ -10,6 +10,15 @@ export const PayPalForm = ({ tickets }) => (
             value="westindianassociationkc@gmail.com"
         />
         <input type="hidden" name="upload" value="1" />
+        <input type="hidden" name="no_shipping" value={1} />
+        <input
+            type="hidden"
+            name="image_url"
+            src="https://wiakc.org/assets/images/logo-text.png"
+        />
+        <input type="hidden" name="return" value="https://wiakc.org" />
+        <input type="hidden" name="cancel_return" value="https://wiakc.org" />
+        <input type="hidden" name="shopping_url" value="https://wiakc.org" />
         {tickets.map((ticket, index) => (
             <div key={index}>
                 <input
@@ -27,7 +36,6 @@ export const PayPalForm = ({ tickets }) => (
                     name={`amount_${index + 1}`}
                     value={ticket.price}
                 />
-                <input type="hidden" name="no_shipping" value={1} />
                 <input
                     type="hidden"
                     name={`quantity_${index + 1}`}
@@ -35,12 +43,7 @@ export const PayPalForm = ({ tickets }) => (
                 />
             </div>
         ))}
-        <input type="hidden" name="shopping_url" value="https://wiakc.org" />
-        <input
-            name="submit"
-            type="image"
-            src="https://www.paypalobjects.com/webstatic/en_US/btn/btn_buynow_cc_171x47.png"
-        />
+        <input name="submit" type="image" src="assets/images/buynow.png" />
     </form>
 );
 

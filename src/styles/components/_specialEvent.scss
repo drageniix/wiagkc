@@ -36,33 +36,6 @@
         height: 12rem;
     }
 
-    &__entertainment {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin: 1.5rem;
-
-        @include respond(tabLand) {
-            flex-direction: column;
-        }
-
-        & > * {
-            border-radius: 0.3rem;
-            display: inline-block;
-            background-color: #901611;
-            color: white;
-            font-weight: 400;
-            font-size: 1.5rem;
-            text-decoration: none;
-            margin: 0 0.5rem;
-            padding: 0 1rem;
-
-            @include respond(tabLand) {
-                margin: 0.25rem 0;
-            }
-        }
-    }
-
     &__ticket {
         margin: 1.5rem auto;
         min-width: 30rem;

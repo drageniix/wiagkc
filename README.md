@@ -1,12 +1,6 @@
-# Things To Do:
-LazyLoad, Manifest, README, sprites
+Official Website for the West Indian Association of Great Kansas City
+[https://wiakc.org/](https://wiakc.org/)
 
-## Changed:
-package.json
-pages
-index.ejs
-meta description
-bind self in plugin
-async reducer
-imagepath responsiveimage
-moment
+## Coming Soon: Cultural Blog! -
+
+Share experiences, recipes, and more.

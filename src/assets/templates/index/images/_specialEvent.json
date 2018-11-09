@@ -10,18 +10,18 @@
         ],
         "imageTemplate": {
             "img": {
-                "sizes": "(max-width: 44.75em) 200px, (max-width: 81.25em) 300px, 400px",
+                "sizes": "(max-width: 44.75em) 250px, (max-width: 81.25em) 350px, 450px",
                 "srcset": [
                     {
                         "dest": "[name]-mobile",
-                        "size": 200
+                        "size": 250
                     },
                     {
                         "dest": "[name]-tablet",
-                        "size": 300
+                        "size": 350
                     },
                     {
-                        "size": 400,
+                        "size": 450,
                         "dest": "[name]-desktop"
                     }
                 ]
