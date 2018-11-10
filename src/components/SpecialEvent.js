@@ -49,7 +49,12 @@ class SpecialEvent extends React.Component {
         };
     }
 
-    onQuantityChange(index, event) {
+    setFlyer = event => {
+        event.preventDefault();
+        this.setState({ flyer: !this.state.flyer });
+    };
+
+    onQuantityChange = (index, event) => {
         const value = event.target.value;
         this.setState(prevState => {
             prevState.tickets[index].quantity = value;
@@ -61,45 +66,60 @@ class SpecialEvent extends React.Component {
                 )}.00`
             };
         });
-    }
+    };
 
     render() {
         return (
             <div className="modal" onClick={this.props.setModal}>
                 <div className="specialEvent">
-                    <ResponsiveImage
-                        image={this.props.data.banner}
-                        className="specialEvent__header"
-                    />
-                    <p className="specialEvent__date">{this.props.data.date}</p>
-                    <iframe
-                        src={this.props.data.venue.gmaps}
-                        className="specialEvent__venue"
-                        frameBorder="0"
-                        allowFullScreen
-                    />
-                    {this.state.tickets.map((ticket, index) => (
-                        <TicketOption
-                            onQuantityChange={this.onQuantityChange.bind(
-                                this,
-                                index
-                            )}
-                            ticket={ticket}
-                            index={index}
-                            key={index}
-                        />
-                    ))}
-                    <div className="specialEvent__total">
-                        {this.state.total}
-                    </div>
-                    <p className="specialEvent__ticket--header">
-                        Part proceeds to emergency relief.
-                    </p>
-                    <PayPalForm
-                        tickets={this.state.tickets.filter(
-                            ticket => ticket.quantity > 0
-                        )}
-                    />
+                    {this.state.flyer ? (
+                        <div onClick={this.setFlyer}>
+                            <ResponsiveImage
+                                className="specialEvent__details"
+                                image={this.props.data.flyer}
+                            />
+                        </div>
+                    ) : (
+                        <div>
+                            <div onClick={this.setFlyer}>
+                                <ResponsiveImage
+                                    onClick={this.setFlyer}
+                                    className="specialEvent__details"
+                                    image={this.props.data.banner}
+                                />
+                                <div className="specialEvent__banner--modal">
+                                    <p
+                                        onClick={setModal}
+                                        className="specialEvent__banner"
+                                    >
+                                        View Flyer
+                                    </p>
+                                </div>
+                            </div>
+                            {this.state.tickets.map((ticket, index) => (
+                                <TicketOption
+                                    onQuantityChange={this.onQuantityChange.bind(
+                                        this,
+                                        index
+                                    )}
+                                    ticket={ticket}
+                                    index={index}
+                                    key={index}
+                                />
+                            ))}
+                            <div className="specialEvent__total">
+                                {this.state.total}
+                            </div>
+                            <p className="specialEvent__ticket--header">
+                                Part proceeds to emergency relief.
+                            </p>
+                            <PayPalForm
+                                tickets={this.state.tickets.filter(
+                                    ticket => ticket.quantity > 0
+                                )}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         );

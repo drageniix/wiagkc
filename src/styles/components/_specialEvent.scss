@@ -8,13 +8,10 @@
     overflow: auto;
     max-height: 95%;
 
-    &__header {
-        padding: 0 1.5rem;
-    }
-
     &__banner {
         cursor: pointer;
         font-weight: 400;
+        text-decoration: none;
         display: inline-block;
         margin-top: 0.5rem;
         padding: 0.5rem 2rem;
@@ -23,15 +20,14 @@
         text-transform: uppercase;
         border-radius: 0.6rem;
         box-shadow: 0 0.3rem 0.2rem rgba($color-black, 0.3);
-    }
 
-    &__date {
-        font-size: 2rem;
-        font-weight: 400;
+        &--modal {
+            margin: -2rem 0 2rem 0;
+        }
     }
 
     &__venue {
-        margin: 2rem 0;
+        margin: 1rem 0;
         width: 80%;
         height: 12rem;
     }
@@ -71,6 +67,8 @@
             }
             p:nth-of-type(2) {
                 margin-top: -0.5rem;
+                break-inside: avoid;
+                white-space: nowrap;
 
                 @include respond(phone) {
                     font-size: 1.3rem;

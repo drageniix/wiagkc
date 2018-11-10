@@ -1,5 +1,5 @@
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: 300;
     line-height: 1.7;
     color: $color-grey-dark-2;
@@ -21,10 +21,9 @@ strong {
 .caricom__text a,
 .caricom__text a:active,
 .caricom__text a:link,
-.caricom__text a:hover
-.caricom__text a:visited, {
+.caricom__text a:hover .caricom__text a:visited {
     cursor: pointer;
     text-decoration: underline;
     font-weight: 500;
-    color: $color-primary;    
+    color: $color-primary;
 }

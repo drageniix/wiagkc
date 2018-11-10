@@ -1,7 +1,7 @@
 [
     {
         "path": "banner",
-        "alt": "2018 Holiday Luncheon",
+        "alt": "2018 Holiday Luncheon Banner",
         "files": [
             {
                 "src": "holidaybanner.png",
@@ -23,6 +23,31 @@
                     {
                         "size": 450,
                         "dest": "[name]-desktop"
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "path": "flyer",
+        "alt": "2018 Holiday Luncheon Flyer",
+        "files": [
+            {
+                "src": "holidayflyer.png",
+                "size": 500
+            }
+        ],
+        "imageTemplate": {
+            "img": {
+                "sizes": "(max-width: 44.75em) 300px, 500px",
+                "srcset": [
+                    {
+                        "dest": "[name]-mobile",
+                        "size": 300
+                    },
+                    {
+                        "dest": "[name]-tablet",
+                        "size": 500
                     }
                 ]
             }
