@@ -34,12 +34,12 @@
         "files": [
             {
                 "src": "holidayflyer.png",
-                "size": 500
+                "size": 400
             }
         ],
         "imageTemplate": {
             "img": {
-                "sizes": "(max-width: 44.75em) 300px, 500px",
+                "sizes": "(max-width: 44.75em) 300px, 400px",
                 "srcset": [
                     {
                         "dest": "[name]-mobile",
@@ -47,7 +47,7 @@
                     },
                     {
                         "dest": "[name]-tablet",
-                        "size": 500
+                        "size": 400
                     }
                 ]
             }

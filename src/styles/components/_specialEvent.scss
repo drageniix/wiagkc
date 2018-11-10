@@ -26,6 +26,10 @@
         }
     }
 
+    &__details {
+        height: 80vh;
+    }
+
     &__venue {
         margin: 1rem 0;
         width: 80%;
@@ -46,45 +50,35 @@
         align-items: top;
         text-align: start;
 
-        &--header {
-            @include respond(phone) {
-                font-size: 1.45rem;
-            }
-        }
-
         &--title {
             flex-basis: 40%;
             p:last-of-type {
                 display: none;
             }
+
             p:nth-of-type(1) {
                 font-weight: 400;
-                font-size: 1.8rem;
+                font-size: 2.2rem;
+                white-space: nowrap;
 
                 @include respond(phone) {
-                    font-size: 1.6rem;
+                    font-size: 2rem;
                 }
             }
             p:nth-of-type(2) {
                 margin-top: -0.5rem;
-                break-inside: avoid;
                 white-space: nowrap;
-
-                @include respond(phone) {
-                    font-size: 1.3rem;
-                }
             }
         }
 
         &--price {
+            text-align: end;
             flex-basis: 30%;
             font-weight: 400;
             font-size: 1.8rem;
-
-            @include respond(phone) {
-                font-size: 1.6rem;
-            }
+            padding-right: 1rem;
         }
+
         &--select {
             flex-basis: 30%;
             height: 30px;
@@ -92,11 +86,11 @@
             border: 1px solid rgba(gray, 0.3);
             font-family: inherit;
             font-weight: 300;
-            font-size: 1.8rem;
+            font-size: 2rem;
 
             @include respond(phone) {
                 padding: 0.5rem;
-                font-size: 1.6rem;
+                font-size: 1.8rem;
             }
         }
     }

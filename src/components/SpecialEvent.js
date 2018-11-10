@@ -17,10 +17,9 @@ const TicketOption = ({ ticket, index, onQuantityChange }) => (
             className="specialEvent__ticket--select"
             key={index}
             onChange={onQuantityChange}
+            value={ticket.quantity}
         >
-            <option value="0" defaultValue>
-                None
-            </option>
+            <option value="0">None</option>
             {[...Array(6).keys()].map(index => (
                 <option value={index + 1} key={index}>
                     {index + 1} Ticket{index === 0 ? '' : 's'}
@@ -84,7 +83,6 @@ class SpecialEvent extends React.Component {
                             <div onClick={this.setFlyer}>
                                 <ResponsiveImage
                                     onClick={this.setFlyer}
-                                    className="specialEvent__details"
                                     image={this.props.data.banner}
                                 />
                                 <div className="specialEvent__banner--modal">
