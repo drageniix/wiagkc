@@ -35,10 +35,41 @@ TicketOption.propTypes = {
     onQuantityChange: PropTypes.func.isRequired
 };
 
+const DonationOption = ({ title, donation, onDonationChange }) => (
+    <div className="specialEvent__ticket">
+        <div className="specialEvent__ticket--title">
+            {title.split('-').map((part, index) => (
+                <p key={index}>{part.trim()}</p>
+            ))}
+        </div>
+        <div />
+        <select
+            className="specialEvent__ticket--select"
+            onChange={onDonationChange}
+            value={donation}
+        >
+            <option value="0">None</option>
+            <option value="1">$1.00</option>
+            <option value="5">$5.00</option>
+            <option value="10">$10.00</option>
+            <option value="25">$25.00</option>
+            <option value="50">$50.00</option>
+            <option value="100">$100.00</option>
+        </select>
+    </div>
+);
+
+DonationOption.propTypes = {
+    title: PropTypes.string.isRequired,
+    donation: PropTypes.number.isRequired,
+    onDonationChange: PropTypes.func.isRequired
+};
+
 class SpecialEvent extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            donation: 0,
             tickets: props.data.tickets.map((ticket, index) => ({
                 ...ticket,
                 quantity: 0,
@@ -53,15 +84,28 @@ class SpecialEvent extends React.Component {
         this.setState({ flyer: !this.state.flyer });
     };
 
+    onDonationChange = event => {
+        const price = parseFloat(event.target.value);
+        this.setState(prevState => ({
+            donation: price,
+            tickets: prevState.tickets,
+            total: `$${prevState.tickets.reduce(
+                (prev, current) => prev + current.quantity * current.price,
+                price
+            )}.00`
+        }));
+    };
+
     onQuantityChange = (index, event) => {
         const value = event.target.value;
         this.setState(prevState => {
             prevState.tickets[index].quantity = value;
             return {
+                donation: prevState.donation,
                 tickets: prevState.tickets,
                 total: `$${prevState.tickets.reduce(
                     (prev, current) => prev + current.quantity * current.price,
-                    0
+                    prevState.donation
                 )}.00`
             };
         });
@@ -77,19 +121,20 @@ class SpecialEvent extends React.Component {
                                 className="specialEvent__details"
                                 image={this.props.data.flyer}
                             />
+                            <div className="specialEvent__banner--modal">
+                                <p className="specialEvent__banner">
+                                    Buy Tickets
+                                </p>
+                            </div>
                         </div>
                     ) : (
                         <div>
                             <div onClick={this.setFlyer}>
                                 <ResponsiveImage
-                                    onClick={this.setFlyer}
                                     image={this.props.data.banner}
                                 />
                                 <div className="specialEvent__banner--modal">
-                                    <p
-                                        onClick={setModal}
-                                        className="specialEvent__banner"
-                                    >
+                                    <p className="specialEvent__banner">
                                         View Flyer
                                     </p>
                                 </div>
@@ -105,6 +150,13 @@ class SpecialEvent extends React.Component {
                                     key={index}
                                 />
                             ))}
+                            <DonationOption
+                                onDonationChange={this.onDonationChange.bind(
+                                    this
+                                )}
+                                title="Donation - 2018"
+                                donation={this.state.donation}
+                            />
                             <div className="specialEvent__total">
                                 {this.state.total}
                             </div>
@@ -112,9 +164,15 @@ class SpecialEvent extends React.Component {
                                 Part proceeds to emergency relief.
                             </p>
                             <PayPalForm
-                                tickets={this.state.tickets.filter(
-                                    ticket => ticket.quantity > 0
-                                )}
+                                tickets={this.state.tickets
+                                    .concat({
+                                        title: 'Donation - 2018',
+                                        price: this.state.donation,
+                                        quantity:
+                                            this.state.donation > 0 ? 1 : 0,
+                                        index: this.state.tickets.length + 1
+                                    })
+                                    .filter(ticket => ticket.quantity > 0)}
                             />
                         </div>
                     )}
