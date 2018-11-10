@@ -3,14 +3,14 @@
     margin-top: 6rem;
     width: 57%;
 
-    @include respond(tabLand){
+    @include respond(tabLand) {
         width: 100%;
     }
 
     @include flexSupport {
         flex-basis: 57%;
-    
-        @include respond(tabLand){
+
+        @include respond(tabLand) {
             flex-basis: 100%;
         }
     }
@@ -28,40 +28,45 @@
         align-content: flex-start;
         flex-wrap: wrap;
 
-        @include respond(tabLand){
+        @include respond(phone) {
+            background-image: url($activities-mobile);
             margin: 0 -3rem;
             padding: 3rem;
+        }
+
+        @include respond(tinyPhone) {
+            background-image: url($activities-tiny-mobile);
         }
     }
 
     &__activity {
         width: 30%;
         margin-bottom: 3rem;
-        background-color: rgba($color-white, .95);
+        background-color: rgba($color-white, 0.95);
         padding: 2rem;
         text-align: center;
         border-radius: 1rem;
-        box-shadow: 0 1.5rem 2rem rgba($color-black, .15);
-        transition: all .3s;
-        
-        @include respond(phone){
+        box-shadow: 0 1.5rem 2rem rgba($color-black, 0.15);
+        transition: all 0.3s;
+
+        @include respond(phone) {
             padding: 2rem 0.5rem;
             width: 47%;
         }
-        
-        @include respond(tinyPhone){
+
+        @include respond(tinyPhone) {
             width: 100%;
         }
 
         @include flexSupport {
             flex-basis: 30%;
             flex-shrink: 1;
-        
-            @include respond(phone){
+
+            @include respond(phone) {
                 flex-basis: 47%;
             }
-            
-            @include respond(tinyPhone){
+
+            @include respond(tinyPhone) {
                 flex-basis: 100%;
             }
         }
@@ -72,7 +77,7 @@
 
         &--icon {
             text-align: center;
-            
+
             & > * {
                 height: 50px;
                 width: 50px;
@@ -80,7 +85,7 @@
                 display: inline-block;
             }
         }
-        
+
         &--exampleList {
             list-style-type: none;
         }

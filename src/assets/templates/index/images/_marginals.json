@@ -1,6 +1,6 @@
 [
     {
-        "path" : "logo",
+        "path": "logo",
         "alt": "WIA-GKC Logo",
         "files": [
             {
@@ -9,4 +9,4 @@
             }
         ]
     }
-]   
+]

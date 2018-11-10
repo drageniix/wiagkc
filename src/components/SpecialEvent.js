@@ -44,7 +44,8 @@ class SpecialEvent extends React.Component {
                 ...ticket,
                 quantity: 0,
                 index: index + 1
-            }))
+            })),
+            total: '$0.00'
         };
     }
 
@@ -52,7 +53,13 @@ class SpecialEvent extends React.Component {
         const value = event.target.value;
         this.setState(prevState => {
             prevState.tickets[index].quantity = value;
-            return { tickets: prevState.tickets };
+            return {
+                tickets: prevState.tickets,
+                total: `$${prevState.tickets.reduce(
+                    (prev, current) => prev + current.quantity * current.price,
+                    0
+                )}.00`
+            };
         });
     }
 
@@ -64,18 +71,13 @@ class SpecialEvent extends React.Component {
                         image={this.props.data.banner}
                         className="specialEvent__header"
                     />
-                    <p className="specialEvent__date">
-                        {this.props.data.date} {this.props.data.time}
-                    </p>
+                    <p className="specialEvent__date">{this.props.data.date}</p>
                     <iframe
                         src={this.props.data.venue.gmaps}
                         className="specialEvent__venue"
                         frameBorder="0"
                         allowFullScreen
                     />
-                    <p className="specialEvent__ticket--header">
-                        Part proceeds to emergency relief.
-                    </p>
                     {this.state.tickets.map((ticket, index) => (
                         <TicketOption
                             onQuantityChange={this.onQuantityChange.bind(
@@ -87,6 +89,12 @@ class SpecialEvent extends React.Component {
                             key={index}
                         />
                     ))}
+                    <div className="specialEvent__total">
+                        {this.state.total}
+                    </div>
+                    <p className="specialEvent__ticket--header">
+                        Part proceeds to emergency relief.
+                    </p>
                     <PayPalForm
                         tickets={this.state.tickets.filter(
                             ticket => ticket.quantity > 0

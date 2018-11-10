@@ -7,6 +7,7 @@ const days = [
     'Friday',
     'Saturday'
 ];
+
 const months = [
     'January',
     'February',
@@ -21,6 +22,7 @@ const months = [
     'November',
     'December'
 ];
+
 const getOrdinal = n =>
     n > 0
         ? ['th', 'st', 'nd', 'rd'][(n > 3 && n < 21) || n % 10 > 3 ? 0 : n % 10]
@@ -40,4 +42,12 @@ export const getLongDate = unix => {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
     return `${dayOfWeek}, ${month} ${day}${ordinal} ${year}, ${hours}:${minutes} ${ampm}`;
+};
+
+export const getShortDate = unix => {
+    const date = new Date(unix * 1000);
+    const month = months[date.getMonth()].slice(0, 3);
+    const day = date.getDate();
+    const ordinal = getOrdinal(day);
+    return `${month} ${day}${ordinal}`;
 };

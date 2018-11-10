@@ -1,44 +1,61 @@
 .header {
     margin-top: 3.25rem;
-    background-image: 
-        linear-gradient(to right, 
-            rgba($color-black, 1), 
-            rgba($color-black, .2)), 
+    background-image: linear-gradient(
+            to right,
+            rgba($color-black, 1),
+            rgba($color-black, 0.2)
+        ),
         url($header);
     background-size: cover;
     background-position: center right;
     position: relative;
     height: 60vh;
 
-    @include respond(deskBig){
-        height: 37vh;    
+    @include respond(deskBig) {
+        height: 37vh;
     }
 
-    @include respond(tabLand){
-        height: 39vh;    
+    @include respond(tabLand) {
+        height: 39vh;
     }
 
-    @include respond(phone){
-        height: 27.5vh;  
-        margin-top: 7rem;  
+    @include respond(phone) {
+        height: 27.5vh;
+        margin-top: 7rem;
+        background-image: linear-gradient(
+                to right,
+                rgba($color-black, 1),
+                rgba($color-black, 0.2)
+            ),
+            url($header-mobile);
+    }
+
+    @include respond(tinyPhone) {
+        height: 27.5vh;
+        margin-top: 7rem;
+        background-image: linear-gradient(
+                to right,
+                rgba($color-black, 1),
+                rgba($color-black, 0.2)
+            ),
+            url($header-tiny-mobile);
     }
 
     @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
         clip-path: polygon(0 0, 100% 0, 100% 52vh, 0 100%);
-        
-        @include respond(deskBig){
+
+        @include respond(deskBig) {
             clip-path: polygon(0 0, 100% 0, 100% 34vh, 0 100%);
         }
-        
-        @include respond(tabLand){
+
+        @include respond(tabLand) {
             clip-path: polygon(0 0, 100% 0, 100% 36vh, 0 100%);
         }
 
-        @include respond(phone){
+        @include respond(phone) {
             clip-path: polygon(0 0, 100% 0, 100% 25.5vh, 0 100%);
         }
     }
-
 
     &__hero {
         position: absolute;
@@ -47,27 +64,26 @@
         transform: translateY(-50%);
         color: $color-grey-light-1;
         text-align: end;
-        
-        @include respond(tabLand){
-            bottom: 0;   
+
+        @include respond(tabLand) {
+            bottom: 0;
         }
-        
-        @include respond(tabPort){
-            text-align: start   
+
+        @include respond(tabPort) {
+            text-align: start;
         }
 
         &--title {
             font-size: 5rem;
             font-weight: 500;
 
-            @include respond(tabLand){
-                font-size: 3.5rem;   
-            }
-            
-            @include respond(phone){
-                font-size: 2.7rem;   
+            @include respond(tabLand) {
+                font-size: 3.5rem;
             }
 
+            @include respond(phone) {
+                font-size: 2.7rem;
+            }
         }
 
         &--subtitle {
@@ -76,11 +92,11 @@
             margin-top: -1.5rem;
             font-weight: 500;
 
-            @include respond(tabLand){
-                font-size: 2.25rem;   
+            @include respond(tabLand) {
+                font-size: 2.25rem;
             }
-            @include respond(tabPort){
-                font-size: 2rem;   
+            @include respond(tabPort) {
+                font-size: 2rem;
                 margin-top: -0.8rem;
             }
         }

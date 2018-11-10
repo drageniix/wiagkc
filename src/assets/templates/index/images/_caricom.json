@@ -1,12 +1,12 @@
 [
     {
-        "path" : "map.image",
+        "path": "map.image",
         "alt": "Map of the Caricom Members",
-        "files" : [
+        "files": [
             {
-                "src" :"caricom.png",
-                "size" : 425
+                "src": "caricom.png",
+                "size": 425
             }
         ]
     }
-]   
+]

@@ -11,7 +11,7 @@ export const NextMeeting = ({ nextMeeting, setModal }) => (
             {nextMeeting.date && getLongDate(nextMeeting.date)}
         </p>
         <p onClick={setModal} className="specialEvent__banner">
-            More Info
+            Buy Tickets
         </p>
     </section>
 );

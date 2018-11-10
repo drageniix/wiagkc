@@ -2,22 +2,50 @@
     {
         "files": [
             {
-                "src": "floral-pattern.jpg",
-                "dest": "features",
-                "size": 400
-            },
-            {
-                "src": "junkanoo.jpg",
-                "dest": "hero",
-                "size": 800
-            },
-            {
                 "src": "buynow.png",
                 "size": 130
             },
             {
                 "src": "logo-text.png",
                 "size": 150
+            }
+        ]
+    },
+    {
+        "files": [
+            {
+                "src": "floral-pattern.jpg",
+                "dest": "features",
+                "size": 400
+            }
+        ],
+        "alternates": [
+            {
+                "size": 350,
+                "dest": "[name]-mobile"
+            },
+            {
+                "size": 300,
+                "dest": "[name]-tiny-mobile"
+            }
+        ]
+    },
+    {
+        "files": [
+            {
+                "src": "junkanoo.jpg",
+                "dest": "hero",
+                "size": 800
+            }
+        ],
+        "alternates": [
+            {
+                "size": 600,
+                "dest": "[name]-mobile"
+            },
+            {
+                "size": 300,
+                "dest": "[name]-tiny-mobile"
             }
         ]
     }
