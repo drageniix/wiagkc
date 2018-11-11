@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setModal } from '../redux/actions';
-import { getLongDate } from '../redux/selectors';
+import { getLongDate } from '../utilities/dates';
 
-export const NextMeeting = ({ nextMeeting, setModal }) => (
+export const NextMeeting = ({ nextMeeting, setModalClose }) => (
     <section id="nextMeeting" className="nextMeeting">
         <p className="nextMeeting__title">{nextMeeting.event}</p>
         <p className="nextMeeting__date">
             {nextMeeting.date && getLongDate(nextMeeting.date)}
         </p>
-        <p onClick={setModal} className="specialEvent__banner">
+        <p onClick={setModalClose} className="specialEvent__banner">
             Buy Tickets
         </p>
     </section>
@@ -24,7 +24,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setModal: event => {
+    setModalClose: event => {
         if (event.target === event.currentTarget) {
             event.preventDefault();
             dispatch(setModal(2));
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
 
 NextMeeting.propTypes = {
     nextMeeting: PropTypes.object.isRequired,
-    setModal: PropTypes.func.isRequired
+    setModalClose: PropTypes.func.isRequired
 };
 
 export default connect(

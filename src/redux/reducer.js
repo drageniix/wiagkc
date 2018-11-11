@@ -6,15 +6,33 @@ export default async function getReducer() {
     );
     data.icons = data.icons || { unknown: '' };
 
+    data.payment = {
+        donation: 0,
+        tickets: data.specialEvent.tickets.map((ticket, index) => ({
+            ...ticket,
+            quantity: 0,
+            index: index + 1
+        }))
+    };
+
     return (state = data, action) => {
+        const newState = { ...state };
         switch (action.type) {
             case 'SET_MODAL':
-                return {
-                    ...state,
-                    modal: action.modal
-                };
+                newState.modal = action.modal;
+                break;
+            case 'SET_QUANTITY':
+                newState.payment.tickets = [...newState.payment.tickets];
+                newState.payment.tickets[action.index].quantity = parseInt(
+                    action.quantity
+                );
+                break;
+            case 'SET_DONATION':
+                newState.payment.donation = parseInt(action.donation);
+                break;
             default:
-                return state;
+                break;
         }
+        return newState;
     };
 }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { setModal } from '../redux/actions';
 
-export const Caricom = ({ data, setModal }) => (
+export const Caricom = ({ data, setModalClose }) => (
     <section id="caricom" className="caricom">
         <figure className="caricom__map">
             <ResponsiveImage
@@ -17,14 +17,14 @@ export const Caricom = ({ data, setModal }) => (
         </figure>
         <h2 className="section__title">{data.title}</h2>
         <p className="caricom__text">
-            {data.blurb} <a onClick={setModal}>Learn More...</a>
+            {data.blurb} <a onClick={setModalClose}>Learn More...</a>
         </p>
     </section>
 );
 
 Caricom.propTypes = {
     data: PropTypes.object.isRequired,
-    setModal: PropTypes.func.isRequired
+    setModalClose: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -32,9 +32,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    setModal: event => {
-        if (event.target === event.currentTarget){
-            event.preventDefault()
+    setModalClose: event => {
+        if (event.target === event.currentTarget) {
+            event.preventDefault();
             dispatch(setModal(1));
         }
     }

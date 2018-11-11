@@ -28,7 +28,11 @@
 
     &__details {
         height: 80vh;
-        max-height: 600px;
+        max-height: 604px;
+
+        @include respond(phone) {
+            max-height: 453px;
+        }
     }
 
     &__venue {

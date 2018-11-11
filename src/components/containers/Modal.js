@@ -2,25 +2,52 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import WestIndies from '../WestIndies';
-import SpecialEvent from '../SpecialEvent';
+import SpecialEventPayment from '../payments/SpecialEventPayment';
+import SpecialEventFlyer from '../payments/SpecialEventFlyer';
+import { setModal } from '../../redux/actions';
 
-const Modal = ({ modal }) => {
+const Modal = ({ modal, setModalClose }) => {
+    let mode;
     switch (modal) {
         case 1:
-            return <WestIndies />;
+            mode = <WestIndies />;
+            break;
         case 2:
-            return <SpecialEvent />;
+            mode = <SpecialEventPayment />;
+            break;
+        case 3:
+            mode = <SpecialEventFlyer />;
+            break;
         default:
-            return null;
+            mode = null;
     }
+
+    return mode ? (
+        <div className="modal" onClick={setModalClose}>
+            {mode}
+        </div>
+    ) : null;
 };
 
 Modal.propTypes = {
-    modal: PropTypes.number
+    modal: PropTypes.number,
+    setModalClose: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
     modal: state.modal
 });
 
-export default connect(mapStateToProps)(Modal);
+const mapDispatchToProps = dispatch => ({
+    setModalClose: event => {
+        if (event.target === event.currentTarget) {
+            event.preventDefault();
+            dispatch(setModal(0));
+        }
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Modal);

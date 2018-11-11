@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getShortDate } from '../redux/selectors';
+import { getShortDate } from '../utilities/dates';
 
 export const Calendar = ({ data: { title, events } }) => (
     <section id="calendar" className="calendar">
