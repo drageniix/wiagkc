@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,500');
 
 @import './abstract/variables';
+@import './abstract/animations';
 @import './abstract/mixins';
 
 @import './base/base';
 @import './base/typography';
 
 @import './components/about';
+@import './components/events';
 @import './components/photos';
 @import './components/activities';
 @import './components/calendar';
@@ -15,9 +17,10 @@
 @import './components/membership';
 @import './components/boardMembers';
 @import './components/modal';
-@import './components/specialEvent';
+@import './components/user';
 
 @import './layout/grid';
 @import './layout/footer';
 @import './layout/header';
 @import './layout/navigation';
+@import './layout/body';

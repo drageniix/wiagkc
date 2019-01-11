@@ -1,10 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import WestIndies from '../WestIndies';
-import SpecialEventPayment from '../payments/SpecialEventPayment';
-import SpecialEventFlyer from '../payments/SpecialEventFlyer';
-import { setModal } from '../../redux/actions';
+import { setModal } from '../../redux/common/actions';
+import Loadable from 'react-loadable';
+import Loading from './Loading';
+
+const WestIndies = Loadable({
+    loader: () => import('../Modals/WestIndies'),
+    loading: Loading
+});
+
+const EventForm = Loadable({
+    loader: () => import('../Modals/EventForm'),
+    loading: Loading
+});
+
+const Account = Loadable({
+    loader: () => import('../Modals/Account'),
+    loading: Loading
+});
 
 const Modal = ({ modal, setModalClose }) => {
     let mode;
@@ -13,10 +27,10 @@ const Modal = ({ modal, setModalClose }) => {
             mode = <WestIndies />;
             break;
         case 2:
-            mode = <SpecialEventPayment />;
+            mode = <EventForm />;
             break;
         case 3:
-            mode = <SpecialEventFlyer />;
+            mode = <Account />;
             break;
         default:
             mode = null;
@@ -24,7 +38,7 @@ const Modal = ({ modal, setModalClose }) => {
 
     return mode ? (
         <div className="modal" onClick={setModalClose}>
-            {mode}
+            <div className="modal__content">{mode}</div>
         </div>
     ) : null;
 };
@@ -35,7 +49,7 @@ Modal.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    modal: state.modal
+    modal: state.common.modal
 });
 
 const mapDispatchToProps = dispatch => ({

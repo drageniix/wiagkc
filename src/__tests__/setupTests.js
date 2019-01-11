@@ -1,8 +1,11 @@
-import { configure } from "enzyme"
-import Adapter from "enzyme-adapter-react-16"
+const configure = require('enzyme').configure;
+const shallow = require('enzyme').shallow;
+const Adapter = require('enzyme-adapter-react-16');
 
 configure({
     adapter: new Adapter()
-})
+});
 
-test("sample", () => {})
+global.shallow = shallow;
+
+test('INIT', () => console.log('testing initiated'));

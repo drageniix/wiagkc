@@ -2,51 +2,51 @@
     padding: 3rem;
     width: 65%;
 
-    @include respond(tabLand){
+    @include respond(tabLand) {
         width: 49%;
     }
 
-    @include respond(phone){
+    @include respond(phone) {
         padding: 1rem 3rem;
         width: 100%;
     }
 
     @include flexSupport {
         flex-basis: 65%;
-        
-        @include respond(tabLand){
+
+        @include respond(tabLand) {
             flex-basis: 49%;
         }
 
-        @include respond(phone){
+        @include respond(phone) {
             flex-basis: 100%;
         }
     }
-    
+
     &__map {
         float: left;
         padding-right: 3rem;
         margin-bottom: 1rem;
-        width: 50%;    
-    
-        @include respond(tabLand){
+        width: 50%;
+
+        @include respond(tabLand) {
             padding-right: 0;
-            width:100%;
+            width: 100%;
         }
 
         &--image {
             width: 100%;
-            height: auto; 
+            height: auto;
 
-            @include respond(phone){
+            @include respond(phone) {
                 padding: 0 3rem;
             }
 
-            @include respond(tinyPhone){
+            @include respond(tinyPhone) {
                 padding: 0;
             }
         }
-        
+
         &--caption {
             text-align: center;
             display: block;
@@ -55,5 +55,38 @@
 
     &__text {
         text-align: justify;
+        font-size: 1.425rem;
+        text-indent: 2rem;
+
+        column-count: 2;
+        column-gap: 4rem; //1em = 14px;
+        column-rule: 1px solid $color-grey-light-2;
+
+        hyphens: auto;
+
+        @include respond(tabPort) {
+            font-size: 1.6rem;
+            column-count: 1;
+            column-gap: 0;
+            column-rule: none;
+        }
+
+        @include respond(phone) {
+            text-align: start;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+        }
+    }
+
+    &__image {
+        width: 95%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    &__caption {
+        display: block;
     }
 }

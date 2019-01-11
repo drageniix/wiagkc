@@ -7,10 +7,24 @@ body {
 }
 
 .section {
+    @include clearfix;
+
+    &--up {
+        animation: slideUp 1s;
+    }
+
+    &--down {
+        animation: slideDown 1s;
+    }
+
     &__title {
         padding-bottom: 1.25rem;
         font-weight: 400;
     }
+}
+
+.pointer {
+    cursor: pointer;
 }
 
 strong {

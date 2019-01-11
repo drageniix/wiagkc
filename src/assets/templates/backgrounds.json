@@ -2,10 +2,6 @@
     {
         "files": [
             {
-                "src": "buynow.png",
-                "size": 130
-            },
-            {
                 "src": "logo-text.png",
                 "size": 150
             }

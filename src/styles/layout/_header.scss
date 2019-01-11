@@ -1,5 +1,4 @@
 .header {
-    margin-top: 3.25rem;
     background-image: linear-gradient(
             to right,
             rgba($color-black, 1),
@@ -21,7 +20,6 @@
 
     @include respond(phone) {
         height: 27.5vh;
-        margin-top: 7rem;
         background-image: linear-gradient(
                 to right,
                 rgba($color-black, 1),
@@ -32,7 +30,6 @@
 
     @include respond(tinyPhone) {
         height: 27.5vh;
-        margin-top: 7rem;
         background-image: linear-gradient(
                 to right,
                 rgba($color-black, 1),

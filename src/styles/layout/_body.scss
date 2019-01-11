@@ -1,0 +1,23 @@
+.main-layout {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__body {
+        min-height: calc(100vh - 54rem);
+        margin-top: 3.25rem;
+
+        @include respond(tabPort) {
+            min-height: calc(100vh - 51.5rem);
+            margin-top: 5rem;
+        }
+
+        @include respond(phone) {
+            min-height: calc(100vh - 53.75rem);
+            margin-top: 7.3rem;
+        }
+        @include respond(tinyPhone) {
+            margin-top: 7.3rem;
+        }
+    }
+}

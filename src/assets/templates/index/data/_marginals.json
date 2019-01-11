@@ -5,20 +5,8 @@
     "shortName": "WIA-KC",
     "links": [
         {
-            "href": "#top",
+            "href": "/",
             "display": "Home"
-        },
-        {
-            "href": "#about",
-            "display": "About Us"
-        },
-        {
-            "href": "#calendar",
-            "display": "Activities"
-        },
-        {
-            "href": "#membership",
-            "display": "Membership"
         }
     ],
     "twitter": "wiagkc",

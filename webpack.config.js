@@ -5,9 +5,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const ResponsiveJSONWebpackPlugin = require('responsive-json-webpack-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-//     .BundleAnalyzerPlugin;
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 const outputPath = path.resolve(__dirname, 'public/');
@@ -32,7 +31,20 @@ const manifest = {
 
 function getPlugins(isProduction) {
     const plugins = [
-        getHTMLWebPackPlugin('index', '.'),
+        new HtmlWebPackPlugin({
+            chunks: ['index'],
+            template: './src/index.ejs',
+            filename: `/index.html`,
+            title: appTitle,
+            description: appDescription,
+            themeColor: themeColor,
+            favicon: './src/assets/favicon.png',
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                preserveLineBreaks: false
+            }
+        }),
         new SWPrecacheWebpackPlugin({
             cacheId: 'holiday-update-2018',
             dontCacheBustUrlsMatching: /\.\w{8}\./,
@@ -51,33 +63,14 @@ function getPlugins(isProduction) {
 
     if (isProduction) {
         plugins.unshift(
-            // new BundleAnalyzerPlugin(),
             new CleanWebpackPlugin(['public'], {
                 verbose: false
-            })
+            }),
+            new CopyWebpackPlugin([{ from: 'src/assets/static/_redirects' }])
         );
     }
 
     return plugins;
-}
-
-function getHTMLWebPackPlugin(pageEntry, destPath) {
-    return new HtmlWebPackPlugin({
-        chunks: [pageEntry],
-        template: './src/index.ejs',
-        filename: destPath + '/index.html',
-        title: appTitle,
-        description: appDescription,
-        themeColor: themeColor,
-        favicon: `./src/assets/${
-            pageEntry === 'index' ? '' : 'images/' + pageEntry + '/'
-        }favicon.png`,
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            preserveLineBreaks: false
-        }
-    });
 }
 
 module.exports = env => {
@@ -93,6 +86,7 @@ module.exports = env => {
         },
         output: {
             path: outputPath,
+            publicPath: '/',
             filename: './scripts/[name].js'
         },
         module: {
@@ -104,9 +98,10 @@ module.exports = env => {
                 },
                 {
                     test: /\.s?css$/,
-                    exclude: /node_modules/,
                     use: [
-                        MiniCssExtractPlugin.loader,
+                        isProduction
+                            ? MiniCssExtractPlugin.loader
+                            : 'style-loader',
                         {
                             loader: 'css-loader',
                             options: {
@@ -167,6 +162,7 @@ module.exports = env => {
             warnings: false
         },
         devServer: {
+            historyApiFallback: true,
             contentBase: outputPath
         }
     };
