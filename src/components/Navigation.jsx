@@ -3,7 +3,8 @@ import ResponsiveImage from 'responsive-json-webpack-plugin/react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { setModal } from '../redux/common/actions';
+import { setModal } from '../redux/actions/common';
+import { isAuth } from '../redux/selectors/users';
 
 export const Navigation = ({ isAuth, data, setModal }) => (
     <nav className="navigation section--down">
@@ -19,24 +20,44 @@ export const Navigation = ({ isAuth, data, setModal }) => (
                     {item.display}
                 </NavLink>
             ))}
-            <a className="navigation__links--link pointer" onClick={setModal}>
-                {isAuth ? 'Account' : 'Login'}
-            </a>
+            {(isAuth && (
+                <a
+                    className="navigation__links--link pointer"
+                    onClick={setModal(5)}
+                >
+                    Account
+                </a>
+            )) || (
+                <span>
+                    <a
+                        className="navigation__links--link pointer"
+                        onClick={setModal(3)}
+                    >
+                        Login
+                    </a>
+                    <a
+                        className="navigation__links--link pointer"
+                        onClick={setModal(4)}
+                    >
+                        Signup
+                    </a>
+                </span>
+            )}
         </span>
     </nav>
 );
 
 const mapStateToProps = state => ({
-    isAuth: state.user.privilege,
+    isAuth: isAuth(state.user, 1),
     data: state.common.marginals
 });
 
 const mapDispatchToProps = dispatch => ({
-    setModal: () => dispatch(setModal(3))
+    setModal: mode => () => dispatch(setModal(mode))
 });
 
 Navigation.propTypes = {
-    isAuth: PropTypes.number,
+    isAuth: PropTypes.bool,
     data: PropTypes.object.isRequired,
     setModal: PropTypes.func.isRequired
 };

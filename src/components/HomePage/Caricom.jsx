@@ -2,7 +2,7 @@ import React from 'react';
 import ResponsiveImage from 'responsive-json-webpack-plugin/react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setModal } from '../../redux/common/actions';
+import { setModal } from '../../redux/actions/common';
 
 export const Caricom = ({ data, setModalClose }) => (
     <section id="caricom" className="section section--up caricom">

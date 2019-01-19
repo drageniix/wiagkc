@@ -1,22 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Login from '../UserPage/Login';
 import Logout from '../UserPage/Logout';
 
-export const AccountPage = ({ isAuth }) => (
+export const AccountPage = ({ user }) => (
     <div className="account">
-        <p>Discussion Board Under Maintenance</p>
-        {(isAuth && <Logout />) || <Login />}
+        <p>{user.name}</p>
+        <p>{user.country}</p>
+        <p>{user.email}</p>
+        <Logout />
     </div>
 );
 
 const mapStateToProps = state => ({
-    isAuth: state.user.privilege
+    user: state.user.user
 });
 
 AccountPage.propTypes = {
-    isAuth: PropTypes.number
+    user: PropTypes.object
 };
 
 export default connect(mapStateToProps)(AccountPage);

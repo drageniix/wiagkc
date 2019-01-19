@@ -1,42 +1,42 @@
-//TODO: autologout
-
 export default async function getReducer() {
     const token = localStorage.getItem('token');
     const expiryDate = new Date(localStorage.getItem('expiryDate'));
     const userId = localStorage.getItem('userId');
-    const privilege = parseInt(localStorage.getItem('privilege'));
+    const user = localStorage.getItem('user');
     const previousSession = expiryDate > new Date();
 
     const data = {
         token: previousSession && token,
+        user: previousSession && user && JSON.parse(user),
         userId: (previousSession && userId) || '',
-        privilege: (previousSession && privilege) || 0,
         remainingMilliseconds:
-            previousSession &&
-            expiryDate &&
-            expiryDate.getTime() - new Date().getTime()
+            previousSession && expiryDate && expiryDate.getTime() - Date.now()
     };
 
     return (state = data, action) => {
         const newState = { ...state };
         switch (action.type) {
+            case 'UPDATE_USER':
+                localStorage.setItem('user', JSON.stringify(action.user));
+                newState.user = action.user;
+                break;
             case 'LOGIN':
                 localStorage.setItem('token', action.token);
                 localStorage.setItem('expiryDate', action.expiryDate);
                 localStorage.setItem('userId', action.userId);
-                localStorage.setItem('privilege', action.privilege);
+                localStorage.setItem('user', JSON.stringify(action.user));
                 newState.token = action.token;
                 newState.userId = action.userId;
-                newState.privilege = action.privilege;
+                newState.user = action.user;
                 break;
             case 'LOGOUT':
                 localStorage.removeItem('token');
                 localStorage.removeItem('expiryDate');
                 localStorage.removeItem('userId');
-                localStorage.removeItem('privilege');
+                localStorage.removeItem('user');
                 newState.token = null;
                 newState.userId = null;
-                newState.privilege = null;
+                newState.user = null;
                 break;
             default:
                 break;

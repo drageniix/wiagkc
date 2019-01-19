@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setModal } from '../../redux/common/actions';
+import { setModal } from '../../redux/actions/common';
 import Loadable from 'react-loadable';
 import Loading from './Loading';
 
@@ -20,6 +20,16 @@ const Account = Loadable({
     loading: Loading
 });
 
+const Signup = Loadable({
+    loader: () => import('../UserPage/Signup'),
+    loading: Loading
+});
+
+const Login = Loadable({
+    loader: () => import('../UserPage/Login'),
+    loading: Loading
+});
+
 const Modal = ({ modal, setModalClose }) => {
     let mode;
     switch (modal) {
@@ -30,6 +40,12 @@ const Modal = ({ modal, setModalClose }) => {
             mode = <EventForm />;
             break;
         case 3:
+            mode = <Login />;
+            break;
+        case 4:
+            mode = <Signup />;
+            break;
+        case 5:
             mode = <Account />;
             break;
         default:

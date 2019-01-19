@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getLongDate } from '../../utilities/dates';
-import { getNextMeeting } from '../../redux/common/selectors';
+import { getNextMeeting } from '../../redux/selectors/events';
 
 export const NextMeeting = ({ nextMeeting }) => (
     <section id="nextMeeting" className="nextMeeting">
@@ -14,7 +14,7 @@ export const NextMeeting = ({ nextMeeting }) => (
 );
 
 const mapStateToProps = state => ({
-    nextMeeting: getNextMeeting(state.common.events)
+    nextMeeting: getNextMeeting(state.events.events)
 });
 
 NextMeeting.propTypes = {

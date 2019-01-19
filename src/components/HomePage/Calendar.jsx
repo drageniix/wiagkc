@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getShortDate } from '../../utilities/dates';
-import { getEvents, setModal, setEvent } from '../../redux/common/actions';
+import { setModal } from '../../redux/actions/common';
+import { getEvents, setEvent } from '../../redux/actions/events';
+import { isAuth } from '../../redux/selectors/users';
 
 export class Calendar extends React.Component {
     componentDidMount() {
@@ -70,9 +72,9 @@ export class Calendar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isAuth: state.user.privilege >= 2,
+    isAuth: isAuth(state.user, 2),
     data: state.home.calendar,
-    events: state.common.events
+    events: state.events.events
 });
 
 const mapDispatchToProps = dispatch => ({

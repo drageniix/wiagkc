@@ -9,6 +9,7 @@
     background-position: center right;
     position: relative;
     height: 60vh;
+    animation: fadeIn 1s;
 
     @include respond(deskBig) {
         height: 37vh;

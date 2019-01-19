@@ -80,7 +80,7 @@ module.exports = env => {
         entry: {
             index: [
                 '@babel/polyfill',
-                './src/app.js',
+                './src/app.jsx',
                 './src/styles/index.scss'
             ]
         },
@@ -150,6 +150,9 @@ module.exports = env => {
                     }
                 })
             ]
+        },
+        resolve: {
+            extensions: ['.js', '.jsx']
         },
         devtool: isProduction ? 'source-map' : 'inline-source-map',
         mode: isProduction ? 'production' : 'development',

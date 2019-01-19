@@ -45,8 +45,8 @@
     &__major {
         font-size: 1.6rem;
         display: flex;
-        align-items: center;
         align-self: flex-end;
+        margin-bottom: 2rem;
 
         &--input {
             transform: scale(2);

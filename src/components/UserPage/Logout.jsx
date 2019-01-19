@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { logout } from '../../redux/user/actions';
+import { logout } from '../../redux/actions/user';
 
 export class Logout extends React.Component {
     state = { loading: false };

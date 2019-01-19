@@ -6,13 +6,8 @@ import PropTypes from 'prop-types';
 import Flatpickr from 'react-flatpickr';
 
 import 'flatpickr/dist/themes/material_green.css';
-
-import {
-    addEvent,
-    setModal,
-    updateEvent,
-    deleteEvent
-} from '../../redux/common/actions';
+import { setModal } from '../../redux/actions/common';
+import { addEvent, updateEvent, deleteEvent } from '../../redux/actions/events';
 
 export class AddEvent extends React.Component {
     constructor(props) {
@@ -54,6 +49,20 @@ export class AddEvent extends React.Component {
     render() {
         return (
             <div className="event">
+                <label className="event__major">
+                    <strong>Major Event</strong>
+                    <input
+                        type="checkbox"
+                        className="event__major--input"
+                        checked={this.state.emphasis}
+                        onChange={e =>
+                            this.setState({
+                                emphasis: e.target.checked
+                            })
+                        }
+                        name="emphasis"
+                    />
+                </label>
                 <div className="event__date">
                     <Flatpickr
                         data-enable-time
@@ -85,19 +94,6 @@ export class AddEvent extends React.Component {
                     name="details"
                     value={this.state.details}
                 />
-                <label className="event__major">
-                    <strong>Major Event</strong>
-                    <input
-                        type="checkbox"
-                        className="event__major--input"
-                        checked={this.state.emphasis}
-                        onChange={e =>
-                            this.setState({ emphasis: e.target.checked })
-                        }
-                        name="emphasis"
-                    />
-                </label>
-
                 {(this.props.event && (
                     <div className="event__buttons">
                         <button
@@ -129,7 +125,7 @@ export class AddEvent extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    event: state.common.event
+    event: state.events.event
 });
 
 const mapDispatchToProps = dispatch => ({
