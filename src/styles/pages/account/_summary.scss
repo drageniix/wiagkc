@@ -1,0 +1,62 @@
+.summary {
+    &__content {
+        text-align: start;
+        border: 2px solid rgba(gray, 0.2);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin: 0 10rem;
+        display: inline-block;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include respond(tabPort) {
+            border: 6px solid rgba(gray, 0.2);
+            padding: 1rem;
+            margin: 0;
+        }
+
+        &--item {
+            padding: 0.5rem;
+            font-size: 2.1rem;
+            letter-spacing: 1px;
+            width: 70%;
+            flex-basis: 70%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(gray, 0.2);
+
+            @include respond(tabPort) {
+                width: 95%;
+                flex-basis: 95%;
+                font-size: 1.6rem;
+            }
+
+            @include respond(tinyPhone) {
+                width: 97%;
+                flex-basis: 97%;
+                font-size: 1.3rem;
+            }
+        }
+
+        strong {
+            color: $color-primary;
+            font-weight: 400;
+            font-size: 2.5rem;
+            padding-right: 2rem;
+
+            @include respond(tabPort) {
+                font-size: 1.8rem;
+            }
+        }
+    }
+
+    &__flag {
+        margin-right: 1rem;
+        display: inline-block;
+        width: 5rem;
+        height: 2.5rem;
+    }
+}

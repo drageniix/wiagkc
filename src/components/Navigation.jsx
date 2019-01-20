@@ -21,12 +21,14 @@ export const Navigation = ({ isAuth, data, setModal }) => (
                 </NavLink>
             ))}
             {(isAuth && (
-                <NavLink
-                    className="navigation__links--link pointer"
-                    to="/account"
-                >
-                    Account
-                </NavLink>
+                <Fragment>
+                    <NavLink
+                        className="navigation__links--link pointer"
+                        to="/account"
+                    >
+                        Account
+                    </NavLink>
+                </Fragment>
             )) || (
                 <Fragment>
                     <a

@@ -20,16 +20,23 @@ const AccountPage = Loadable({
     loading: Loading
 });
 
+const FeedPage = Loadable({
+    loader: () => import('../pages/FeedPage'),
+    loading: Loading
+});
+
 const authRoutes = (
     <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route path="/feed" component={FeedPage} />
         <Route path="/account" component={AccountPage} />
+        <Route component={HomePage} />
     </Switch>
 );
 
 const standardRoutes = (
     <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route path="/feed" component={FeedPage} />
+        <Route component={HomePage} />
     </Switch>
 );
 
