@@ -1,5 +1,15 @@
 import { setErrors, setModal } from './common';
 
+export const getFlag = countryCode => dispatch =>
+    fetch('https://restcountries.eu/rest/v2/name/' + countryCode)
+        .then(res => res.json())
+        .then(json =>
+            dispatch({
+                type: 'GET_USER_FLAG',
+                flag: json[0].flag
+            })
+        );
+
 export const logout = () => dispatch => {
     dispatch(setModal(0));
     dispatch({

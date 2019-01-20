@@ -4,41 +4,37 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../redux/actions/user';
+import { withRouter } from 'react-router-dom';
 
 export class Logout extends React.Component {
-    state = { loading: false };
     logout = e => {
-        if (!this.state.loading) {
-            e.preventDefault();
-            e.stopPropagation();
-            this.props.logout();
-            this.setState({ loading: true });
-        }
+        e.preventDefault();
+        this.props.logout();
+        this.props.history.push('/');
     };
 
     render() {
         return (
-            <div className="user">
-                <button
-                    className="user__btn user__btn--logout"
-                    onClick={this.logout}
-                >
-                    Logout
-                </button>
-            </div>
+            <button
+                className="user__btn user__btn--logout"
+                onClick={this.logout}
+            >
+                Logout
+            </button>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    logout: data => dispatch(logout(data))
-});
+const mapDispatchToProps = {
+    logout: data => logout(data)
+};
 
 Logout.propTypes = {
-    logout: PropTypes.func.isRequired
+    logout: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired
 };
 
 export default connect(
     undefined,
     mapDispatchToProps
-)(Logout);
+)(withRouter(Logout));

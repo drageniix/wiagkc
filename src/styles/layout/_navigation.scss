@@ -1,9 +1,10 @@
-.navigation  {
-    box-shadow: 0 0.5rem 0.5rem rgba($color-black, .08);
+.navigation {
+    box-shadow: 0 0.5rem 0.5rem rgba($color-black, 0.08);
     position: fixed;
     top: 0;
     left: 0;
-    background-color: $color-grey-light-1;z-index: 100;
+    background-color: $color-grey-light-1;
+    z-index: 100;
     display: block;
     padding: 0.5rem;
     width: 100%;
@@ -16,7 +17,7 @@
         min-width: 50px;
         padding: 0.1rem;
 
-        @include respond(phone){
+        @include respond(phone) {
             width: 9rem;
         }
     }
@@ -28,24 +29,16 @@
         margin-left: 7rem;
         padding: 0.1rem 0;
 
-        @include respond(phone){
+        @include respond(phone) {
             margin-left: 8rem;
         }
     }
 
     &__links {
         float: right;
-        padding: 0.5rem 0 0.5rem 2rem; 
-
-        @include respond(phone){
-            width: 100%;
-            margin-top: -1rem;
-            margin-left: 5.5rem;
-            float: left;
-        }
-        @include respond(phone){
-            margin-left: 5.7rem;
-        }
+        display: flex;
+        justify-content: flex-end;
+        padding: 0.5rem 0 0.5rem 2rem;
 
         &--link {
             font-size: 1.5rem;
@@ -53,16 +46,16 @@
             text-decoration: none;
             color: $color-grey-dark-2;
 
-            @include respond(tabLand){
-                padding: 1.8rem; 
-            }
-            
-            @include respond(phone){
-                padding: 1.25rem; 
+            @include respond(tabLand) {
+                padding: 1.8rem;
             }
 
-            @include respond(tinyPhone){
-                padding: 0.4rem; 
+            @include respond(phone) {
+                padding: 1.25rem;
+            }
+
+            @include respond(tinyPhone) {
+                padding: 0.4rem;
             }
         }
     }

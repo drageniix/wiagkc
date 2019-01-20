@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Flatpickr from 'react-flatpickr';
 
 import 'flatpickr/dist/themes/material_green.css';
-import { setModal } from '../../redux/actions/common';
 import { addEvent, updateEvent, deleteEvent } from '../../redux/actions/events';
 
 export class AddEvent extends React.Component {
@@ -128,20 +127,11 @@ const mapStateToProps = state => ({
     event: state.events.event
 });
 
-const mapDispatchToProps = dispatch => ({
-    addEvent: data => {
-        dispatch(setModal(0));
-        dispatch(addEvent(data));
-    },
-    updateEvent: data => {
-        dispatch(setModal(0));
-        dispatch(updateEvent(data));
-    },
-    deleteEvent: () => {
-        dispatch(setModal(0));
-        dispatch(deleteEvent());
-    }
-});
+const mapDispatchToProps = {
+    addEvent: data => addEvent(data),
+    updateEvent: data => updateEvent(data),
+    deleteEvent
+};
 
 AddEvent.propTypes = {
     event: PropTypes.object,

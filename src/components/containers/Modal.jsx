@@ -15,11 +15,6 @@ const EventForm = Loadable({
     loading: Loading
 });
 
-const Account = Loadable({
-    loader: () => import('../Modals/Account'),
-    loading: Loading
-});
-
 const Signup = Loadable({
     loader: () => import('../UserPage/Signup'),
     loading: Loading
@@ -44,9 +39,6 @@ const Modal = ({ modal, setModalClose }) => {
             break;
         case 4:
             mode = <Signup />;
-            break;
-        case 5:
-            mode = <Account />;
             break;
         default:
             mode = null;

@@ -119,9 +119,9 @@ const mapStateToProps = state => ({
     errors: getErrors(state.common.errors)
 });
 
-const mapDispatchToProps = dispatch => ({
-    signup: data => dispatch(signup(data))
-});
+const mapDispatchToProps = {
+    signup: data => signup(data)
+};
 
 SignUp.propTypes = {
     signup: PropTypes.func.isRequired,

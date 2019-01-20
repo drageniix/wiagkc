@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import ResponsiveImage from 'responsive-json-webpack-plugin/react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,21 +14,21 @@ export const Navigation = ({ isAuth, data, setModal }) => (
             {data.links.map((item, index) => (
                 <NavLink
                     key={index}
-                    className="navigation__links--link"
+                    className="navigation__links--link pointer"
                     to={item.href}
                 >
                     {item.display}
                 </NavLink>
             ))}
             {(isAuth && (
-                <a
+                <NavLink
                     className="navigation__links--link pointer"
-                    onClick={setModal(5)}
+                    to="/account"
                 >
                     Account
-                </a>
+                </NavLink>
             )) || (
-                <span>
+                <Fragment>
                     <a
                         className="navigation__links--link pointer"
                         onClick={setModal(3)}
@@ -41,7 +41,7 @@ export const Navigation = ({ isAuth, data, setModal }) => (
                     >
                         Signup
                     </a>
-                </span>
+                </Fragment>
             )}
         </span>
     </nav>

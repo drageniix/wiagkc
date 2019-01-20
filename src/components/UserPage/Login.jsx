@@ -23,6 +23,7 @@ export class Login extends React.Component {
 
         return (
             <div className="user">
+                <p>Welcome Back!</p>
                 <div className="user__input">
                     <input
                         className="user__input--data"
@@ -68,9 +69,9 @@ const mapStateToProps = state => ({
     errors: getErrors(state.common.errors)
 });
 
-const mapDispatchToProps = dispatch => ({
-    login: data => dispatch(login(data))
-});
+const mapDispatchToProps = {
+    login: data => login(data)
+};
 
 Login.propTypes = {
     login: PropTypes.func.isRequired,

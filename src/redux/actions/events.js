@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-import { setErrors } from './common';
+import { setErrors, setModal } from './common';
 const io = openSocket('https://wiakc.herokuapp.com');
 
 export const setEvent = event => ({
@@ -50,6 +50,7 @@ export const addEvent = data => (dispatch, getState) => {
             if (res.status !== 201) {
                 dispatch(setErrors(json));
             } else {
+                dispatch(setModal(0));
                 dispatch(setEvent(null));
             }
         })
@@ -74,6 +75,7 @@ export const updateEvent = data => (dispatch, getState) => {
             if (res.status !== 200) {
                 dispatch(setErrors(json));
             } else {
+                dispatch(setModal(0));
                 dispatch(setEvent(null));
             }
         })
@@ -95,6 +97,7 @@ export const deleteEvent = () => (dispatch, getState) =>
             if (res.status !== 200) {
                 dispatch(setErrors(json));
             } else {
+                dispatch(setModal(0));
                 dispatch(setEvent(null));
             }
         })
