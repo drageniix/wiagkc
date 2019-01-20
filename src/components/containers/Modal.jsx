@@ -16,12 +16,17 @@ const EventForm = Loadable({
 });
 
 const Signup = Loadable({
-    loader: () => import('../UserPage/Signup'),
+    loader: () => import('../Modals/Signup'),
     loading: Loading
 });
 
 const Login = Loadable({
-    loader: () => import('../UserPage/Login'),
+    loader: () => import('../Modals/Login'),
+    loading: Loading
+});
+
+const UpdateUser = Loadable({
+    loader: () => import('../Modals/UpdateUser'),
     loading: Loading
 });
 
@@ -39,6 +44,9 @@ const Modal = ({ modal, setModalClose }) => {
             break;
         case 4:
             mode = <Signup />;
+            break;
+        case 5:
+            mode = <UpdateUser />;
             break;
         default:
             mode = null;

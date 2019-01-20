@@ -23,7 +23,7 @@ const AccountPage = Loadable({
 const authRoutes = (
     <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/account" component={AccountPage} />
+        <Route path="/account" component={AccountPage} />
     </Switch>
 );
 

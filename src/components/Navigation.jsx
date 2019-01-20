@@ -48,7 +48,7 @@ export const Navigation = ({ isAuth, data, setModal }) => (
 );
 
 const mapStateToProps = state => ({
-    isAuth: isAuth(state.user, 1),
+    isAuth: isAuth(state.user, 0),
     data: state.common.marginals
 });
 

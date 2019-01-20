@@ -1,18 +1,39 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Logout from '../components/UserPage/Logout';
-import { getFlag } from '../redux/actions/user';
+import { getFlag, logout } from '../redux/actions/user';
+import { withRouter } from 'react-router-dom';
+import { setModal } from '../redux/actions/common';
+import Confirm from '../components/UserPage/Confirm';
+import { getMemberStatus } from '../redux/selectors/users';
 
 export class AccountPage extends Component {
-    componentDidMount() {
-        this.props.getFlag(this.props.user.country);
+    state = {
+        country: this.props.user.country
+    };
+
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (
+            nextProps.user.country !== prevState.country ||
+            !nextProps.user.flag
+        ) {
+            nextProps.getFlag(nextProps.user.country);
+            return { country: nextProps.user.country };
+        }
+        return null;
     }
 
+    logout = e => {
+        e.preventDefault();
+        this.props.logout();
+        this.props.history.push('/');
+    };
+
     render() {
-        const { user } = this.props;
+        const { user, status, updateUser } = this.props;
         return (
             <div className="account">
+                <Confirm />
                 <div className="account__content">
                     <p className="account__content--item">
                         <strong>Name: </strong>
@@ -31,9 +52,22 @@ export class AccountPage extends Component {
                     </p>
                     <p className="account__content--item">
                         <strong>Status: </strong>
-                        {user.privilege === 3 ? 'Admin' : 'Active Member'}
+                        {status}
                     </p>
-                    <Logout />
+                    <div className="account__buttons">
+                        <button
+                            className="user__btn user__btn--login"
+                            onClick={updateUser}
+                        >
+                            Update
+                        </button>
+                        <button
+                            className="user__btn user__btn--logout"
+                            onClick={this.logout}
+                        >
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </div>
         );
@@ -41,19 +75,26 @@ export class AccountPage extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.user.user
+    user: state.user.user,
+    status: getMemberStatus(state.user.user.privilege)
 });
 
 const mapDispatchToProps = {
-    getFlag: countryCode => getFlag(countryCode)
+    getFlag: countryCode => getFlag(countryCode),
+    updateUser: () => setModal(5),
+    logout
 };
 
 AccountPage.propTypes = {
     user: PropTypes.object,
-    getFlag: PropTypes.func
+    status: PropTypes.string,
+    getFlag: PropTypes.func,
+    logout: PropTypes.func,
+    updateUser: PropTypes.func,
+    history: PropTypes.object.isRequired
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AccountPage);
+)(withRouter(AccountPage));
