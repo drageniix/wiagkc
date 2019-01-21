@@ -11,7 +11,7 @@ export default async function getReducer() {
                 newState.posts = action.posts;
                 break;
             case 'CREATE_POST':
-                newState.posts = newState.posts.concat(action.post);
+                newState.posts = [action.post, ...newState.posts.slice(0, 7)];
                 break;
             case 'UPDATE_POST':
                 newState.posts = newState.posts.map(post =>

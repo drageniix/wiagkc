@@ -1,0 +1,34 @@
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+
+    &__post {
+        text-align: start;
+        border: 2px solid rgba(gray, 0.2);
+        padding: 3rem;
+        margin: 1.5rem;
+        width: 40rem;
+        max-width: 90%;
+
+        &--title {
+        }
+        &--author {
+            text-align: right;
+            font-size: 1.5rem;
+            margin-bottom: -0.3rem;
+            font-weight: 400;
+            color: $color-primary;
+        }
+        &--content {
+            margin-top: 2rem;
+            font-size: 1.7rem;
+        }
+        &--date {
+            text-align: right;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba($color-tertiary, 0.3);
+        }
+    }
+}

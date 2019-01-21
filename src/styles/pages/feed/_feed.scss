@@ -1,0 +1,12 @@
+.feed {
+    padding: 3rem;
+    text-align: center;
+
+    @include respond(desk) {
+        padding-top: 6rem;
+    }
+
+    @include respond(phone) {
+        padding-top: 3rem;
+    }
+}

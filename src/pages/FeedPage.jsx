@@ -1,17 +1,12 @@
 import React from 'react';
 import Feed from '../components/FeedPage/Feed';
-// import PropTypes from 'prop-types'
 
 const FeedPage = () => {
     return (
-        <div>
+        <div className="feed">
             <Feed />
         </div>
     );
 };
-
-// FeedPage.propTypes = {
-
-// }
 
 export default FeedPage;

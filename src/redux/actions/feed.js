@@ -12,15 +12,16 @@ export const getPosts = () => dispatch => {
         .then(res => res.json())
         .then(json => {
             io.on('posts', data => {
+                console.log(data);
                 switch (data.action) {
                     case 'create':
-                        dispatch({ type: 'CREATE_POST', POST: data.post });
+                        dispatch({ type: 'CREATE_POST', post: data.post });
                         break;
                     case 'update':
-                        dispatch({ type: 'UPDATE_POST', POST: data.post });
+                        dispatch({ type: 'UPDATE_POST', post: data.post });
                         break;
                     case 'delete':
-                        dispatch({ type: 'DELETE_POST', POST: data.post });
+                        dispatch({ type: 'DELETE_POST', post: data.post });
                         break;
                     default:
                         break;

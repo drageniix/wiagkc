@@ -7,6 +7,7 @@ import Flatpickr from 'react-flatpickr';
 
 import 'flatpickr/dist/themes/material_green.css';
 import { addEvent, updateEvent, deleteEvent } from '../../redux/actions/events';
+import { getErrors } from '../../redux/selectors/common';
 
 export class AddEvent extends React.Component {
     constructor(props) {
@@ -23,7 +24,6 @@ export class AddEvent extends React.Component {
 
     onSumbit = type => e => {
         e.preventDefault();
-        e.stopPropagation();
 
         const parsedDate = {
             date: this.state.date / 1000,
@@ -124,6 +124,7 @@ export class AddEvent extends React.Component {
 }
 
 const mapStateToProps = state => ({
+    errors: getErrors(state.common.errors), //TODO: add validation
     event: state.events.event
 });
 
@@ -137,7 +138,8 @@ AddEvent.propTypes = {
     event: PropTypes.object,
     addEvent: PropTypes.func.isRequired,
     updateEvent: PropTypes.func.isRequired,
-    deleteEvent: PropTypes.func.isRequired
+    deleteEvent: PropTypes.func.isRequired,
+    errors: PropTypes.object
 };
 
 export default connect(
