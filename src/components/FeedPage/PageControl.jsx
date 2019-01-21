@@ -51,18 +51,20 @@ export class PageControl extends Component {
                         className="feed__controls"
                         onClick={this.changePage(-1)}
                     >
-                        🢀
+                        ←
                     </button>
                 )}
-                <span className="feed__controls--current">
-                    Page {currentPage}
-                </span>
+                {lastPage > 1 && (
+                    <span className="feed__controls--current">
+                        Page {currentPage}
+                    </span>
+                )}
                 {currentPage < lastPage && (
                     <button
                         className="feed__controls"
                         onClick={this.changePage(1)}
                     >
-                        🢂
+                        →
                     </button>
                 )}
             </div>
