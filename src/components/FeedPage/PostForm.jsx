@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { addPost, updatePost, deletePost } from '../../redux/actions/feed';
 import { getErrors } from '../../redux/selectors/common';
-
+import { withRouter } from 'react-router-dom';
 export class PostForm extends React.Component {
     state = {
         title: (this.props.post && this.props.post.title) || '',
@@ -20,14 +20,17 @@ export class PostForm extends React.Component {
                 this.props.addPost(this.state);
                 break;
             case 1:
-                this.props.updatePost(this.state);
+                this.props.updatePost(this.props.post._id, this.state);
                 break;
             case 2:
-                this.props.deletePost();
+                this.props.deletePost(this.props.post._id);
+                this.props.history.push('/feed');
                 break;
         }
 
-        this.setState({ title: '', content: '' });
+        if (!this.props.post) {
+            this.setState({ title: '', content: '' });
+        }
     };
 
     render() {
@@ -92,14 +95,13 @@ export class PostForm extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    errors: getErrors(state.common.errors),
-    post: state.feed.post
+    errors: getErrors(state.common.errors)
 });
 
 const mapDispatchToProps = {
     addPost: data => addPost(data),
-    updatePost: data => updatePost(data),
-    deletePost
+    updatePost: (postId, data) => updatePost(postId, data),
+    deletePost: postId => deletePost(postId)
 };
 
 PostForm.propTypes = {
@@ -107,10 +109,11 @@ PostForm.propTypes = {
     addPost: PropTypes.func.isRequired,
     updatePost: PropTypes.func.isRequired,
     deletePost: PropTypes.func.isRequired,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    history: PropTypes.object
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(PostForm);
+)(withRouter(PostForm));
