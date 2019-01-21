@@ -9,4 +9,16 @@
     @include respond(phone) {
         padding-top: 3rem;
     }
+
+    &__controls {
+        background: transparent;
+        border: none;
+        font-size: 3rem;
+
+        &--current {
+            font-weight: 600;
+            font-size: 3rem;
+            margin: 0 1rem;
+        }
+    }
 }

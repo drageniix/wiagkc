@@ -1,7 +1,7 @@
 export default async function getReducer() {
     // const data = await fetch('/assets/data/index.json').then(res => res.json());
     const data = {
-        page: 1,
+        page: 0,
         posts: []
     };
 

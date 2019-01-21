@@ -22,7 +22,7 @@ export class PageControl extends Component {
             parseInt(
                 queryString.parse(nextProps.history.location.search).page
             ) || 1;
-        if (page && page > 0 && nextProps.page !== page) {
+        if (page > 0 && nextProps.page !== page) {
             nextProps.setPage(page);
             return { currentPage: page };
         }
@@ -48,18 +48,21 @@ export class PageControl extends Component {
             <div className="feed__controls">
                 {currentPage > 1 && (
                     <button
-                        className="feed__controls--prev"
+                        className="feed__controls"
                         onClick={this.changePage(-1)}
                     >
-                        Previous
+                        🢀
                     </button>
                 )}
+                <span className="feed__controls--current">
+                    Page {currentPage}
+                </span>
                 {currentPage < lastPage && (
                     <button
-                        className="feed__controls--next"
+                        className="feed__controls"
                         onClick={this.changePage(1)}
                     >
-                        Next
+                        🢂
                     </button>
                 )}
             </div>
