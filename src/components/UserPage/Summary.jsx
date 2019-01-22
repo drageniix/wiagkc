@@ -38,16 +38,10 @@ export class AccountPage extends Component {
                     {status}
                 </p>
                 <div className="account__buttons">
-                    <button
-                        className="user__btn user__btn--login"
-                        onClick={updateUser}
-                    >
+                    <button className="btn btn--login" onClick={updateUser}>
                         Update
                     </button>
-                    <button
-                        className="user__btn user__btn--logout"
-                        onClick={this.logout}
-                    >
+                    <button className="btn btn--logout" onClick={this.logout}>
                         Logout
                     </button>
                 </div>

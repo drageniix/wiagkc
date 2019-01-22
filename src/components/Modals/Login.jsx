@@ -25,6 +25,9 @@ export class Login extends React.Component {
             <div className="user">
                 <p>Welcome Back!</p>
                 <div className="user__input">
+                    <label htmlFor="email" className="user__input--title">
+                        Email:
+                    </label>
                     <input
                         className="user__input--data"
                         value={email}
@@ -33,11 +36,14 @@ export class Login extends React.Component {
                         placeholder="email"
                         name="email"
                     />
-                    {errors && errors.email && (
-                        <p className="user__input--invalid">{errors.email}</p>
-                    )}
                 </div>
+                {errors && errors.email && (
+                    <p className="user__input--invalid">{errors.email}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="password" className="user__input--title">
+                        Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={password}
@@ -48,16 +54,11 @@ export class Login extends React.Component {
                         placeholder="password"
                         name="password"
                     />
-                    {errors && errors.password && (
-                        <p className="user__input--invalid">
-                            {errors.password}
-                        </p>
-                    )}
                 </div>
-                <button
-                    onClick={this.onSumbit}
-                    className="user__btn user__btn--login"
-                >
+                {errors && errors.password && (
+                    <p className="user__input--invalid">{errors.password}</p>
+                )}
+                <button onClick={this.onSumbit} className="btn btn--login">
                     Login
                 </button>
             </div>

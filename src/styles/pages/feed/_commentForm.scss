@@ -1,0 +1,39 @@
+.comment-form {
+    padding: 2rem;
+    border: 1px solid rgba(gray, 0.2);
+    background: rgb(214, 214, 214);
+    width: 40rem;
+    max-width: 90%;
+    display: inline-block;
+
+    &__buttons {
+        text-align: center;
+        .btn {
+            width: 40%;
+            font-size: 1.3rem;
+            padding: 1rem;
+        }
+    }
+
+    &__input {
+        display: flex;
+        align-items: flex-start;
+        font-size: 2rem;
+
+        &--content {
+            margin-left: 2rem;
+            font-family: inherit;
+            resize: none;
+            flex-grow: 1;
+            height: 10rem;
+            padding: 0.5rem 1rem 1rem 1rem;
+            border: 1px solid rgba(gray, 0.2);
+        }
+    }
+    &__invalid {
+        margin-left: 2rem;
+        font-size: 1.4rem;
+        color: red;
+        font-weight: 400;
+    }
+}

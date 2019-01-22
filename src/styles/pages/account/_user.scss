@@ -1,0 +1,41 @@
+.user {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 400;
+    width: 35rem;
+
+    &__input {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+        width: 100%;
+        margin-top: 2rem;
+
+        &--title {
+            padding-right: 1rem;
+            font-size: 1.7rem;
+            white-space: nowrap;
+            color: $color-secondary;
+            font-weight: 400;
+        }
+
+        &--data {
+            padding: 0 0.5rem;
+            width: 100%;
+            border: none;
+            border-bottom: 1px solid rgba(rgb(9, 144, 197), 0.4);
+            font-family: inherit;
+            font-weight: 300;
+            font-size: 1.9rem;
+        }
+
+        &--invalid {
+            text-align: start;
+            margin-top: -1rem;
+            color: red;
+            font-size: 1.3rem;
+        }
+    }
+}

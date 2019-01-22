@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 import { getPost, setEditing } from '../redux/actions/feed';
 import Post from '../components/FeedPage/Post';
 import Comments from '../components/FeedPage/Comments';
+import LoadingIcon from '../components/LoadingIcon';
 
 export class PostPage extends Component {
     static propTypes = {
-        editing: PropTypes.string,
         post: PropTypes.object,
         postId: PropTypes.string,
+        showForm: PropTypes.bool,
+        editable: PropTypes.bool,
         getPost: PropTypes.func,
         setEditing: PropTypes.func
     };
@@ -21,25 +23,26 @@ export class PostPage extends Component {
     }
 
     render() {
-        const { post, editing } = this.props;
+        const { post, showForm, editable } = this.props;
         return (
             <div className="individual-post" onClick={() => setEditing('')}>
                 {(post && (
-                    <div>
-                        {(editing === post._id && <PostForm post={post} />) || (
-                            <Post post={post} editable />
+                    <div className="individual-post__container">
+                        {(showForm && editable && <PostForm post={post} />) || (
+                            <Post post={post} editable={editable} />
                         )}
                         <Comments />
                     </div>
-                )) ||
-                    'No post found.'}
+                )) || <LoadingIcon />}
             </div>
         );
     }
 }
 
 const mapStateToProps = (state, { match }) => ({
-    editing: state.feed.editing,
+    showForm: !!state.feed.post && state.feed.editing === state.feed.post._id,
+    editable:
+        !!state.feed.post && state.feed.post.creator._id === state.user.userId,
     postId: match.params.postId,
     post: state.feed.post
 });

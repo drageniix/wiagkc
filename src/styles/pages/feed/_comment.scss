@@ -1,0 +1,27 @@
+.comment {
+    width: 40rem;
+    max-width: 90%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 2rem;
+    background: rgba($color-tertiary, 0.15);
+
+    &__user {
+        display: flex;
+        align-items: center;
+        &--author {
+            font-weight: 400;
+            color: $color-primary;
+            font-size: 2rem;
+        }
+
+        &--flag {
+            margin-right: 1rem;
+            width: 4rem;
+            height: 2rem;
+        }
+    }
+
+    &__content {
+    }
+}

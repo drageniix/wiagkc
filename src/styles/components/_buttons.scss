@@ -1,0 +1,30 @@
+.btn {
+    font-weight: 400;
+    letter-spacing: 2px;
+    box-shadow: 1px 1px 1px rgba(black, 0.3);
+    text-transform: uppercase;
+    font-size: 1.8rem;
+    color: white;
+    padding: 1rem;
+    align-self: center;
+    margin: 0 1rem;
+    border: none;
+    margin-top: 2rem;
+    @include respond(phone) {
+        font-size: 1.5rem;
+    }
+    &--signup {
+        background: rgb(4, 190, 44);
+    }
+
+    &--add,
+    &--update,
+    &--login {
+        background: rgb(9, 144, 197);
+    }
+
+    &--delete,
+    &--logout {
+        background: rgb(184, 20, 20);
+    }
+}

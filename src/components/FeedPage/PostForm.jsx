@@ -39,10 +39,10 @@ export class PostForm extends React.Component {
         const { content, title } = this.state;
 
         return (
-            <div className="post">
-                <div className="post__form">
+            <div className="post-form__container">
+                <div className="post-form">
                     <input
-                        className="post__form--title"
+                        className="post-form__title"
                         value={title}
                         onChange={this.onChange}
                         type="text"
@@ -50,40 +50,40 @@ export class PostForm extends React.Component {
                         name="title"
                     />
                     {errors && errors.title && (
-                        <p className="post__form--invalid">{errors.title}</p>
+                        <p className="post-form__invalid">{errors.title}</p>
                     )}
                 </div>
-                <div className="post__form">
+                <div className="post-form">
                     <textarea
-                        className="post__form--content"
+                        className="post-form__content"
                         value={content}
                         onChange={this.onChange}
                         placeholder="Share a recipe, experience, or anything else!"
                         name="content"
                     />
                     {errors && errors.content && (
-                        <p className="post__form--invalid">{errors.content}</p>
+                        <p className="post-form__invalid">{errors.content}</p>
                     )}
                 </div>
                 {(this.props.post && (
-                    <div className="buttons">
+                    <div className="post-form__buttons">
                         <button
-                            className="post__form--btn post__form--btn--update"
+                            className="btn btn--update"
                             onClick={this.onSumbit(1)}
                         >
                             Update Post
                         </button>
                         <button
-                            className="post__form--btn post__form--btn--delete"
+                            className="btn btn--delete"
                             onClick={this.onSumbit(2)}
                         >
                             Delete Post
                         </button>
                     </div>
                 )) || (
-                    <div className="buttons">
+                    <div className="post-form__buttons">
                         <button
-                            className="post__form--btn post__form--btn--add"
+                            className="btn btn--add"
                             onClick={this.onSumbit(0)}
                         >
                             Add Post

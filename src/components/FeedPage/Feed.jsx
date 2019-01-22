@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { isAuth } from '../../redux/selectors/users';
 import Post from './Post';
 import PostForm from './PostForm';
+import LoadingIcon from '../LoadingIcon';
 
 export class Feed extends Component {
     static propTypes = {
@@ -15,11 +16,13 @@ export class Feed extends Component {
         const { posts, canPost } = this.props;
 
         return (
-            <div className="posts">
+            <div className="feed__posts">
                 {canPost && <PostForm />}
-                {posts.map((post, index) => (
-                    <Post key={index} post={post} />
-                ))}
+                {posts.length === 0 ? (
+                    <LoadingIcon />
+                ) : (
+                    posts.map((post, index) => <Post key={index} post={post} />)
+                )}
             </div>
         );
     }

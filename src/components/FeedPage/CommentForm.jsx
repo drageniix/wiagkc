@@ -40,40 +40,38 @@ export class CommentForm extends React.Component {
         const { content } = this.state;
 
         return (
-            <div className="comment">
-                <div className="comment__form">
+            <div className="comment-form">
+                <div className="comment-form__input">
                     <textarea
-                        className="comment__form--content"
+                        className="comment-form__input--content"
                         value={content}
                         onChange={this.onChange}
                         placeholder="What do you think?"
                         name="content"
                     />
-                    {errors && errors.content && (
-                        <p className="comment__form--invalid">
-                            {errors.content}
-                        </p>
-                    )}
                 </div>
+                {errors && errors.content && (
+                    <p className="comment-form__invalid">{errors.content}</p>
+                )}
                 {(this.props.comment && (
-                    <div className="buttons">
+                    <div className="comment-form__buttons">
                         <button
-                            className="comment__form--btn comment__form--btn--update"
+                            className="btn btn--update"
                             onClick={this.onSumbit(1)}
                         >
                             Update Comment
                         </button>
                         <button
-                            className="comment__form--btn comment__form--btn--delete"
+                            className="btn btn--delete"
                             onClick={this.onSumbit(2)}
                         >
                             Delete Comment
                         </button>
                     </div>
                 )) || (
-                    <div className="buttons">
+                    <div className="comment-form__buttons">
                         <button
-                            className="comment__form--btn comment__form--btn--add"
+                            className="btn btn--add"
                             onClick={this.onSumbit(0)}
                         >
                             Add Comment

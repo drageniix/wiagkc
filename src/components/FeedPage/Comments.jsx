@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
@@ -10,12 +10,12 @@ class Comments extends React.Component {
         return (
             <div className="comments">
                 {comments.map((comment, index) => (
-                    <div key={index} className="comments__comment">
+                    <Fragment key={index}>
                         {(userId === comment.creator._id &&
                             editing === comment._id && (
                                 <CommentForm comment={comment} />
                             )) || <Comment comment={comment} />}
-                    </div>
+                    </Fragment>
                 ))}
                 <div className="comments__new">
                     <CommentForm />

@@ -1,28 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const ReactMarkdown = require('react-markdown');
+import ReactMarkdown from 'react-markdown';
 import { setEditing } from '../../redux/actions/feed';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import { isAuth } from '../../redux/selectors/users';
 
-const Post = ({ post, setEditing, editable, userId, history }) => {
+const Post = ({ post, setEditing, editable, history, isAuth }) => {
     return (
         <div
-            className="posts__post"
+            className="post"
             onClick={() =>
-                (userId === post.creator._id &&
-                    editable &&
-                    setEditing(post._id)) ||
-                history.push('/feed/' + post._id)
+                (editable && setEditing(post._id)) ||
+                (isAuth && history.push('/feed/' + post._id))
             }
         >
-            <h1 className="posts__post--title">{post.title}</h1>
-            <h2 className="posts__post--author">{post.creator.name}</h2>
-            <h6 className="posts__post--date">{post.updatedAt}</h6>
-            <ReactMarkdown
-                className="posts__post--content"
-                source={post.content}
-            />
+            <h1 className="post__title">{post.title}</h1>
+            <h2 className="post__author">{post.creator.name}</h2>
+            <h6 className="post__date">{post.updatedAt}</h6>
+            <ReactMarkdown className="post__content" source={post.content} />
         </div>
     );
 };
@@ -30,15 +26,14 @@ const Post = ({ post, setEditing, editable, userId, history }) => {
 Post.propTypes = {
     post: PropTypes.object,
     setEditing: PropTypes.func,
+    isAuth: PropTypes.bool,
     editable: PropTypes.bool,
-    history: PropTypes.object,
-    userId: PropTypes.string
+    history: PropTypes.object
 };
 
 const mapStateToProps = state => ({
-    userId: state.user.userId
+    isAuth: isAuth(state.user, 0)
 });
-
 const mapDispatchToProps = {
     setEditing
 };

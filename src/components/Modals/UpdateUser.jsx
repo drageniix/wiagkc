@@ -37,7 +37,11 @@ export class UpdateUser extends React.Component {
 
         return (
             <div className="user">
+                Update Info
                 <div className="user__input">
+                    <label htmlFor="email" className="user__input--title">
+                        Email:
+                    </label>
                     <input
                         className="user__input--data"
                         value={email}
@@ -47,89 +51,101 @@ export class UpdateUser extends React.Component {
                         name="email"
                         disabled={true}
                     />
-                    {errors && errors.email && (
-                        <p className="user__input--invalid">{errors.email}</p>
-                    )}
                 </div>
+                {errors && errors.email && (
+                    <p className="user__input--invalid">{errors.email}</p>
+                )}
                 <div className="user__input">
+                    <label
+                        htmlFor="old_password"
+                        className="user__input--title"
+                    >
+                        Current Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={old_password}
                         onChange={this.onChange}
                         type="password"
-                        placeholder=" * current password"
+                        placeholder=" * required "
                         name="old_password"
                     />
-                    {errors && errors.old_password && (
-                        <p className="user__input--invalid">
-                            {errors.old_password}
-                        </p>
-                    )}
                 </div>
+                {errors && errors.old_password && (
+                    <p className="user__input--invalid">
+                        {errors.old_password}
+                    </p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="name" className="user__input--title">
+                        Name:
+                    </label>
                     <input
                         className="user__input--data"
                         value={name}
                         onChange={this.onChange}
                         type="text"
-                        placeholder="name"
+                        placeholder="your name"
                         name="name"
                     />
-                    {errors && errors.name && (
-                        <p className="user__input--invalid">{errors.name}</p>
-                    )}
                 </div>
-
+                {errors && errors.name && (
+                    <p className="user__input--invalid">{errors.name}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="country" className="user__input--title">
+                        Country:
+                    </label>
                     <input
                         className="user__input--data"
                         value={country}
                         onChange={this.onChange}
                         type="text"
-                        placeholder="country"
+                        placeholder="country of origin"
                         name="country"
                     />
-                    {errors && errors.country && (
-                        <p className="user__input--invalid">{errors.country}</p>
-                    )}
                 </div>
-
+                {errors && errors.country && (
+                    <p className="user__input--invalid">{errors.country}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="passowrd" className="user__input--title">
+                        New Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={password}
                         onChange={this.onChange}
                         type="password"
-                        placeholder="new password"
+                        placeholder="optional"
                         name="password"
                     />
-                    {errors && errors.password && (
-                        <p className="user__input--invalid">
-                            {errors.password}
-                        </p>
-                    )}
                 </div>
-
+                {errors && errors.password && (
+                    <p className="user__input--invalid">{errors.password}</p>
+                )}
                 <div className="user__input">
+                    <label
+                        htmlFor="confirm_password"
+                        className="user__input--title"
+                    >
+                        Confirm Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={confirm_password}
                         onChange={this.onChange}
                         type="password"
-                        placeholder="confirm new password"
+                        placeholder=""
                         name="confirm_password"
                     />
-                    {errors && errors.confirm_password && (
-                        <p className="user__input--invalid">
-                            {errors.confirm_password}
-                        </p>
-                    )}
                 </div>
-
-                <button
-                    className="user__btn user__btn--login"
-                    onClick={this.onSumbit}
-                >
+                {errors && errors.confirm_password && (
+                    <p className="user__input--invalid">
+                        {errors.confirm_password}
+                    </p>
+                )}
+                <button className="btn btn--login" onClick={this.onSumbit}>
                     Update
                 </button>
             </div>

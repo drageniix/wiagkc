@@ -29,6 +29,9 @@ export class SignUp extends React.Component {
             <div className="user">
                 <p>Welcome!</p>
                 <div className="user__input">
+                    <label htmlFor="name" className="user__input--title">
+                        Name:
+                    </label>
                     <input
                         className="user__input--data"
                         value={name}
@@ -37,12 +40,14 @@ export class SignUp extends React.Component {
                         placeholder="name"
                         name="name"
                     />
-                    {errors && errors.name && (
-                        <p className="user__input--invalid">{errors.name}</p>
-                    )}
                 </div>
-
+                {errors && errors.name && (
+                    <p className="user__input--invalid">{errors.name}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="country" className="user__input--title">
+                        Country:
+                    </label>
                     <input
                         className="user__input--data"
                         value={country}
@@ -51,12 +56,14 @@ export class SignUp extends React.Component {
                         placeholder="country"
                         name="country"
                     />
-                    {errors && errors.country && (
-                        <p className="user__input--invalid">{errors.country}</p>
-                    )}
                 </div>
-
+                {errors && errors.country && (
+                    <p className="user__input--invalid">{errors.country}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="email" className="user__input--title">
+                        Email:
+                    </label>
                     <input
                         className="user__input--data"
                         value={email}
@@ -65,12 +72,14 @@ export class SignUp extends React.Component {
                         placeholder="email"
                         name="email"
                     />
-                    {errors && errors.email && (
-                        <p className="user__input--invalid">{errors.email}</p>
-                    )}
                 </div>
-
+                {errors && errors.email && (
+                    <p className="user__input--invalid">{errors.email}</p>
+                )}
                 <div className="user__input">
+                    <label htmlFor="password" className="user__input--title">
+                        Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={password}
@@ -79,14 +88,17 @@ export class SignUp extends React.Component {
                         placeholder="password"
                         name="password"
                     />
-                    {errors && errors.password && (
-                        <p className="user__input--invalid">
-                            {errors.password}
-                        </p>
-                    )}
                 </div>
-
+                {errors && errors.password && (
+                    <p className="user__input--invalid">{errors.password}</p>
+                )}
                 <div className="user__input">
+                    <label
+                        htmlFor="confirm_password"
+                        className="user__input--title"
+                    >
+                        Confirm Password:
+                    </label>
                     <input
                         className="user__input--data"
                         value={confirm_password}
@@ -95,17 +107,13 @@ export class SignUp extends React.Component {
                         placeholder="confirm password"
                         name="confirm_password"
                     />
-                    {errors && errors.confirm_password && (
-                        <p className="user__input--invalid">
-                            {errors.confirm_password}
-                        </p>
-                    )}
                 </div>
-
-                <button
-                    className="user__btn user__btn--signup"
-                    onClick={this.onSumbit}
-                >
+                {errors && errors.confirm_password && (
+                    <p className="user__input--invalid">
+                        {errors.confirm_password}
+                    </p>
+                )}
+                <button className="btn btn--signup" onClick={this.onSumbit}>
                     Signup
                 </button>
             </div>

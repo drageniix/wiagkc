@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setEditing } from '../../redux/actions/feed';
+import ReactMarkdown from 'react-markdown';
 
 export class Comment extends Component {
     static propTypes = {
@@ -20,11 +21,12 @@ export class Comment extends Component {
             setEditing
         } = this.props;
         return (
-            <div onClick={() => setEditing(_id)}>
-                <img className="summary__flag" src={flag} />
-                <p>
-                    {content} by {name}
-                </p>
+            <div className="comment" onClick={() => setEditing(_id)}>
+                <div className="comment__user">
+                    <img className="comment__user--flag" src={flag} />
+                    <p className="comment__user--author">{name}</p>
+                </div>
+                <ReactMarkdown className="comment__content" source={content} />
             </div>
         );
     }

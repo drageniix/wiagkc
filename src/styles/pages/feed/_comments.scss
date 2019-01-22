@@ -1,0 +1,13 @@
+.comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    &__new {
+        margin-top: 2rem;
+        width: 100%;
+        padding: 2rem;
+        text-align: center;
+    }
+}

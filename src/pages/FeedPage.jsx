@@ -1,12 +1,12 @@
 import React from 'react';
 import Feed from '../components/FeedPage/Feed';
-import PageControl from '../components/FeedPage/PageControl';
+import FeedControl from '../components/FeedPage/FeedControl';
 
 const FeedPage = () => {
     return (
         <div className="feed">
             <Feed />
-            <PageControl />
+            <FeedControl />
         </div>
     );
 };

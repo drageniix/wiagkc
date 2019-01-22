@@ -20,16 +20,17 @@
 
 @import './pages/account/account';
 @import './pages/account/summary';
+@import './pages/account/user';
 
 @import './pages/feed/feed';
-@import './pages/feed/posts';
+@import './pages/feed/comment';
+@import './pages/feed/comments';
+@import './pages/feed/commentForm';
+@import './pages/feed/post';
 @import './pages/feed/postForm';
 
-@import './pages/post/post';
-@import './pages/post/comments';
-
 @import './components/modal';
-@import './components/user';
+@import './components/buttons';
 
 @import './layout/grid';
 @import './layout/footer';
