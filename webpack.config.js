@@ -80,6 +80,7 @@ module.exports = env => {
         entry: {
             index: [
                 '@babel/polyfill',
+                'url-search-params-polyfill',
                 './src/app.jsx',
                 './src/styles/index.scss'
             ]

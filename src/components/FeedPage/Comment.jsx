@@ -15,31 +15,26 @@ export class Comment extends Component {
             comment: {
                 _id,
                 content,
-                creator: { name }
+                creator: { name, flag }
             },
-            ownsComment,
             setEditing
         } = this.props;
         return (
             <div onClick={() => setEditing(_id)}>
+                <img className="summary__flag" src={flag} />
                 <p>
                     {content} by {name}
                 </p>
-                <p>Owner: {ownsComment}</p>
             </div>
         );
     }
 }
-
-const mapStateToProps = (state, { comment }) => ({
-    ownsComment: comment.creator._id === state.user.userId
-});
 
 const mapDispatchToProps = {
     setEditing
 };
 
 export default connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(Comment);

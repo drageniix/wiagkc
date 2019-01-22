@@ -4,6 +4,9 @@ export default async function getReducer() {
     return (state = data, action) => {
         const newState = { ...state, errors: action.errors };
         switch (action.type) {
+            case 'LOGOUT':
+                newState.errors = null;
+                break;
             case 'SET_MODAL':
                 newState.modal = action.modal;
                 break;

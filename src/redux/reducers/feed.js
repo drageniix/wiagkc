@@ -7,6 +7,10 @@ export default async function getReducer() {
     return (state = data, action) => {
         const newState = { ...state };
         switch (action.type) {
+            case 'LOGOUT':
+                newState.post = null;
+                newState.editing = null;
+                break;
             case 'SET_POSTS_PAGE':
                 newState.page = action.page;
                 break;
@@ -33,10 +37,10 @@ export default async function getReducer() {
                 break;
             case 'DELETE_POST':
                 newState.posts = newState.posts.filter(
-                    post => post._id !== action.post
+                    post => post._id !== action.postId
                 );
                 newState.post =
-                    newState.post && newState.post._id === action.post
+                    newState.post && newState.post._id === action.postId
                         ? null
                         : newState.post;
                 break;
@@ -68,7 +72,7 @@ export default async function getReducer() {
                     (newState.post._id === action.postId && {
                         ...newState.post,
                         comments: newState.post.comments.filter(
-                            comment => comment._id !== action.comment
+                            comment => comment._id !== action.commentId
                         )
                     }) ||
                     newState.post;

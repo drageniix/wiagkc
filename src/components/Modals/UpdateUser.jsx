@@ -11,23 +11,25 @@ export class UpdateUser extends React.Component {
         old_password: '',
         password: '',
         confirm_password: '',
-        country: this.props.user.country
+        country: this.props.user.country,
+        image: null
     };
 
     onChange = e => this.setState({ [e.target.name]: e.target.value });
 
     onSumbit = e => {
         e.preventDefault();
-        e.stopPropagation();
         this.props.updateUser(this.state);
     };
 
     render() {
-        const { errors } = this.props;
+        const {
+            errors,
+            user: { email }
+        } = this.props;
         const {
             name,
             country,
-            email,
             old_password,
             password,
             confirm_password
@@ -35,6 +37,20 @@ export class UpdateUser extends React.Component {
 
         return (
             <div className="user">
+                <div className="user__input">
+                    <input
+                        className="user__input--data"
+                        value={email}
+                        onChange={this.onChange}
+                        type="email"
+                        placeholder="email"
+                        name="email"
+                        disabled={true}
+                    />
+                    {errors && errors.email && (
+                        <p className="user__input--invalid">{errors.email}</p>
+                    )}
+                </div>
                 <div className="user__input">
                     <input
                         className="user__input--data"
@@ -50,7 +66,6 @@ export class UpdateUser extends React.Component {
                         </p>
                     )}
                 </div>
-
                 <div className="user__input">
                     <input
                         className="user__input--data"
@@ -76,20 +91,6 @@ export class UpdateUser extends React.Component {
                     />
                     {errors && errors.country && (
                         <p className="user__input--invalid">{errors.country}</p>
-                    )}
-                </div>
-
-                <div className="user__input">
-                    <input
-                        className="user__input--data"
-                        value={email}
-                        onChange={this.onChange}
-                        type="email"
-                        placeholder="email"
-                        name="email"
-                    />
-                    {errors && errors.email && (
-                        <p className="user__input--invalid">{errors.email}</p>
                     )}
                 </div>
 

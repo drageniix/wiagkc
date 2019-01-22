@@ -1,14 +1,5 @@
 import { setErrors, setModal } from './common';
-
-export const getFlag = countryCode => dispatch =>
-    fetch('https://restcountries.eu/rest/v2/name/' + countryCode)
-        .then(res => res.json())
-        .then(json =>
-            dispatch({
-                type: 'GET_USER_FLAG',
-                flag: json[0].flag
-            })
-        );
+import 'url-search-params-polyfill';
 
 export const logout = () => dispatch => {
     dispatch(setModal(0));
@@ -41,14 +32,14 @@ export const confirmAccount = (privilege, token) => (dispatch, getState) =>
         })
         .catch(err => dispatch(setErrors(err)));
 
-export const updateUser = data => (dispatch, getState) =>
+export const updateUser = body => (dispatch, getState) =>
     fetch('https://wiakc.herokuapp.com/auth/update', {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             Authorization: getState().user.token,
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(body)
     })
         .then(async res => {
             const json = await res.json();

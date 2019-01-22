@@ -20,7 +20,7 @@ export default store => {
             case 'delete':
                 store.dispatch({
                     type: 'DELETE_EVENT',
-                    event: data.event
+                    eventId: data.eventId
                 });
                 break;
             default:
@@ -37,7 +37,7 @@ export default store => {
                 store.dispatch({ type: 'UPDATE_POST', post: data.post });
                 break;
             case 'delete':
-                store.dispatch({ type: 'DELETE_POST', post: data.post });
+                store.dispatch({ type: 'DELETE_POST', postId: data.postId });
                 break;
             default:
                 break;
@@ -61,7 +61,7 @@ export default store => {
             case 'delete':
                 store.dispatch({
                     type: 'DELETE_COMMENT',
-                    comment: data.comment,
+                    commentId: data.commentId,
                     postId: data.postId
                 });
                 break;

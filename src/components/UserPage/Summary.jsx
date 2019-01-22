@@ -2,26 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { getFlag, logout } from '../../redux/actions/user';
+import { logout } from '../../redux/actions/user';
 import { setModal } from '../../redux/actions/common';
 import { getMemberStatus } from '../../redux/selectors/users';
 
 export class AccountPage extends Component {
-    state = {
-        country: this.props.user.country
-    };
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (
-            nextProps.user.country !== prevState.country ||
-            !nextProps.user.flag
-        ) {
-            nextProps.getFlag(nextProps.user.country);
-            return { country: nextProps.user.country };
-        }
-        return null;
-    }
-
     logout = e => {
         e.preventDefault();
         this.props.logout();
@@ -32,6 +17,7 @@ export class AccountPage extends Component {
         const { user, status, updateUser } = this.props;
         return (
             <div className="summary__content">
+                <img src={user.imageUrl} />
                 <p className="summary__content--item">
                     <strong>Name: </strong>
                     {user.name}
@@ -76,7 +62,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    getFlag: countryCode => getFlag(countryCode),
     updateUser: () => setModal(5),
     logout
 };
@@ -84,7 +69,6 @@ const mapDispatchToProps = {
 AccountPage.propTypes = {
     user: PropTypes.object,
     status: PropTypes.string,
-    getFlag: PropTypes.func,
     logout: PropTypes.func,
     updateUser: PropTypes.func,
     history: PropTypes.object.isRequired

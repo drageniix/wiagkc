@@ -6,14 +6,15 @@ import { connect } from 'react-redux';
 
 class Comments extends React.Component {
     render() {
-        const { comments, editing } = this.props;
+        const { comments, editing, userId } = this.props;
         return (
             <div className="comments">
                 {comments.map((comment, index) => (
                     <div key={index} className="comments__comment">
-                        {(editing === comment._id && (
-                            <CommentForm comment={comment} />
-                        )) || <Comment comment={comment} />}
+                        {(userId === comment.creator._id &&
+                            editing === comment._id && (
+                                <CommentForm comment={comment} />
+                            )) || <Comment comment={comment} />}
                     </div>
                 ))}
                 <div className="comments__new">
@@ -26,12 +27,14 @@ class Comments extends React.Component {
 
 Comments.propTypes = {
     editing: PropTypes.string,
-    comments: PropTypes.array
+    comments: PropTypes.array,
+    userId: PropTypes.string
 };
 
 const mapStateToProps = state => ({
     comments: state.feed.post.comments,
-    editing: state.feed.editing
+    editing: state.feed.editing,
+    userId: state.user.userId
 });
 
 export default connect(mapStateToProps)(Comments);

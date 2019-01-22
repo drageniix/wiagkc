@@ -16,9 +16,6 @@ export default async function getReducer() {
     return (state = data, action) => {
         const newState = { ...state };
         switch (action.type) {
-            case 'GET_USER_FLAG':
-                newState.user = { ...newState.user, flag: action.flag };
-                break;
             case 'UPDATE_USER':
                 localStorage.setItem('user', JSON.stringify(action.user));
                 newState.user = action.user;
