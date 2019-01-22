@@ -1,5 +1,4 @@
 export default async function getReducer() {
-    // const data = await fetch('/assets/data/index.json').then(res => res.json());
     const data = {
         page: 0,
         posts: []
@@ -10,6 +9,9 @@ export default async function getReducer() {
         switch (action.type) {
             case 'SET_POSTS_PAGE':
                 newState.page = action.page;
+                break;
+            case 'SET_EDITING':
+                newState.editing = action.editing;
                 break;
             case 'GET_POSTS':
                 newState.posts = action.posts;
@@ -40,6 +42,36 @@ export default async function getReducer() {
                 break;
             case 'SET_POST':
                 newState.post = action.post;
+                break;
+            case 'CREATE_COMMENT':
+                newState.post =
+                    (newState.post._id === action.comment.postId && {
+                        ...newState.post,
+                        comments: [...newState.post.comments, action.comment]
+                    }) ||
+                    newState.post;
+                break;
+            case 'UPDATE_COMMENT':
+                newState.post =
+                    (newState.post._id === action.comment.postId && {
+                        ...newState.post,
+                        comments: newState.post.comments.map(comment =>
+                            comment._id === action.comment._id
+                                ? action.comment
+                                : comment
+                        )
+                    }) ||
+                    newState.post;
+                break;
+            case 'DELETE_COMMENT':
+                newState.post =
+                    (newState.post._id === action.postId && {
+                        ...newState.post,
+                        comments: newState.post.comments.filter(
+                            comment => comment._id !== action.comment
+                        )
+                    }) ||
+                    newState.post;
                 break;
             default:
                 break;

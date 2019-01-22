@@ -5,6 +5,11 @@ export const setPost = post => ({
     post
 });
 
+export const setEditing = editing => ({
+    type: 'SET_EDITING',
+    editing
+});
+
 export const setPage = page => dispatch => {
     dispatch({
         type: 'SET_POSTS_PAGE',
@@ -68,6 +73,8 @@ export const updatePost = (postId, data) => (dispatch, getState) => {
             const json = await res.json();
             if (res.status !== 200) {
                 dispatch(setErrors(json));
+            } else {
+                dispatch(setEditing(''));
             }
         })
         .catch(err => dispatch(setErrors(err)));

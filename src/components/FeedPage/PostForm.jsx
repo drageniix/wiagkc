@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { addPost, updatePost, deletePost } from '../../redux/actions/feed';
 import { getErrors } from '../../redux/selectors/common';
 import { withRouter } from 'react-router-dom';
+
 export class PostForm extends React.Component {
     state = {
         title: (this.props.post && this.props.post.title) || '',
@@ -99,9 +100,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    addPost: data => addPost(data),
-    updatePost: (postId, data) => updatePost(postId, data),
-    deletePost: postId => deletePost(postId)
+    addPost,
+    updatePost,
+    deletePost
 };
 
 PostForm.propTypes = {

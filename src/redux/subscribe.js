@@ -44,6 +44,32 @@ export default store => {
         }
     });
 
+    io.on('comments', data => {
+        switch (data.action) {
+            case 'create':
+                store.dispatch({
+                    type: 'CREATE_COMMENT',
+                    comment: data.comment
+                });
+                break;
+            case 'update':
+                store.dispatch({
+                    type: 'UPDATE_COMMENT',
+                    comment: data.comment
+                });
+                break;
+            case 'delete':
+                store.dispatch({
+                    type: 'DELETE_COMMENT',
+                    comment: data.comment,
+                    postId: data.postId
+                });
+                break;
+            default:
+                break;
+        }
+    });
+
     const autoLog = store.getState().user.remainingMilliseconds;
     if (autoLog) {
         setTimeout(() => {

@@ -3,31 +3,33 @@ import PropTypes from 'prop-types';
 import PostForm from '../components/FeedPage/PostForm';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getPost } from '../redux/actions/feed';
+import { getPost, setEditing } from '../redux/actions/feed';
 import Post from '../components/FeedPage/Post';
+import Comments from '../components/FeedPage/Comments';
 
 export class PostPage extends Component {
     static propTypes = {
+        editing: PropTypes.string,
         post: PropTypes.object,
-        match: PropTypes.object,
-        getPost: PropTypes.func
-    };
-
-    state = {
-        postId: this.props.match.params.postId
+        postId: PropTypes.string,
+        getPost: PropTypes.func,
+        setEditing: PropTypes.func
     };
 
     componentDidMount() {
-        this.props.getPost(this.state.postId);
+        this.props.getPost(this.props.postId);
     }
 
     render() {
+        const { post, editing } = this.props;
         return (
-            <div>
-                {(this.props.post && (
+            <div className="individual-post" onClick={() => setEditing('')}>
+                {(post && (
                     <div>
-                        <PostForm post={this.props.post} />
-                        <Post post={this.props.post} />
+                        {(editing === post._id && <PostForm post={post} />) || (
+                            <Post post={post} editable />
+                        )}
+                        <Comments />
                     </div>
                 )) ||
                     'No post found.'}
@@ -36,11 +38,13 @@ export class PostPage extends Component {
     }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { match }) => ({
+    editing: state.feed.editing,
+    postId: match.params.postId,
     post: state.feed.post
 });
 
-const mapDispatchToProps = { getPost: id => getPost(id) };
+const mapDispatchToProps = { getPost, setEditing };
 
 export default connect(
     mapStateToProps,
