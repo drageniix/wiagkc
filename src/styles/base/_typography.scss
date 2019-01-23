@@ -26,9 +26,13 @@ body {
 .centered {
     text-align: center;
 }
+
 .loading-icon {
     width: 10rem;
     max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
 }
 
 .pointer {

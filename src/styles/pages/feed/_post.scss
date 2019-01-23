@@ -1,16 +1,28 @@
 .post {
     text-align: start;
-    border: 2px solid rgba(gray, 0.2);
     padding: 3rem;
     margin: 1.5rem auto;
-    width: 40rem;
-    max-width: 90%;
+    min-width: 40rem;
+    width: 60%;
     background: white;
+
+    &__feed {
+        text-align: start;
+        margin: 1.5rem auto;
+        width: 40rem;
+    }
+
+    &__comments {
+        text-align: end;
+        margin-top: -0.25rem;
+    }
 
     &__title {
         margin-bottom: -2rem;
     }
+
     &__author {
+        padding-top: 1rem;
         text-align: right;
         font-size: 1.5rem;
         margin-bottom: -0.3rem;
@@ -20,10 +32,11 @@
     &__content {
         margin-top: 2rem;
         font-size: 1.7rem;
+        border-top: 3px solid rgba($color-tertiary, 0.4);
+        padding-top: 1rem;
     }
+
     &__date {
-        text-align: right;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba($color-tertiary, 0.3);
+        text-align: end;
     }
 }

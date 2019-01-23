@@ -21,7 +21,9 @@ export class Feed extends Component {
                 {posts.length === 0 ? (
                     <LoadingIcon />
                 ) : (
-                    posts.map((post, index) => <Post key={index} post={post} />)
+                    posts.map((post, index) => (
+                        <Post key={index} post={post} fromFeed />
+                    ))
                 )}
             </div>
         );

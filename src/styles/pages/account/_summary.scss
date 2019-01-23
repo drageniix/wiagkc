@@ -1,8 +1,6 @@
 .summary {
     &__content {
         text-align: start;
-        border: 2px solid rgba(gray, 0.2);
-        border-radius: 1rem;
         padding: 2rem;
         margin: 0 10rem;
         display: inline-block;
@@ -11,7 +9,6 @@
         align-items: center;
 
         @include respond(tabPort) {
-            border: 6px solid rgba(gray, 0.2);
             padding: 1rem;
             margin: 0;
         }

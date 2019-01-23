@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { setModal } from '../redux/actions/common';
-import { isAuth } from '../redux/selectors/users';
+import { getFirstName } from '../redux/selectors/users';
 
-export const Navigation = ({ isAuth, data, setModal }) => (
+export const Navigation = ({ username, data, setModal }) => (
     <nav className="navigation section--down">
         <ResponsiveImage className="navigation__logo" image={data.logo} />
         <span className="navigation__title">{data.shortName}</span>
@@ -20,13 +20,13 @@ export const Navigation = ({ isAuth, data, setModal }) => (
                     {item.display}
                 </NavLink>
             ))}
-            {(isAuth && (
+            {(username && (
                 <Fragment>
                     <NavLink
-                        className="navigation__links--link pointer"
+                        className="navigation__links--link navigation__links--username pointer"
                         to="/account"
                     >
-                        Account
+                        {username}
                     </NavLink>
                 </Fragment>
             )) || (
@@ -38,7 +38,7 @@ export const Navigation = ({ isAuth, data, setModal }) => (
                         Login
                     </a>
                     <a
-                        className="navigation__links--link pointer"
+                        className="navigation__links--link navigation__links--signup pointer"
                         onClick={setModal(4)}
                     >
                         Signup
@@ -50,7 +50,7 @@ export const Navigation = ({ isAuth, data, setModal }) => (
 );
 
 const mapStateToProps = state => ({
-    isAuth: isAuth(state.user, 0),
+    username: getFirstName(state.user),
     data: state.common.marginals
 });
 
@@ -59,7 +59,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Navigation.propTypes = {
-    isAuth: PropTypes.bool,
+    username: PropTypes.string,
     data: PropTypes.object.isRequired,
     setModal: PropTypes.func.isRequired
 };

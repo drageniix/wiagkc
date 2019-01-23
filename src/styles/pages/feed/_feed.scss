@@ -30,16 +30,20 @@
     }
 }
 
-.individual-post__container {
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+.individual-post {
+    text-align: center;
 
-    @include respond(tabLand) {
-        margin-top: 6rem;
-    }
+    &__container {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
 
-    @include respond(phone) {
-        margin-top: 0;
+        @include respond(tabLand) {
+            margin-top: 6rem;
+        }
+
+        @include respond(phone) {
+            margin-top: 0;
+        }
     }
 }

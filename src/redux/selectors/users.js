@@ -12,6 +12,8 @@ export const getMemberStatus = status => {
     }
 };
 
+export const getFirstName = user => user.user && user.user.name.split(' ')[0];
+
 export const generateBase64FromImage = imageFile => {
     if (imageFile) {
         const reader = new FileReader();

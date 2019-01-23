@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const LoadingIcon = ({ className }) => {
     return (
-        <div className={className}>
+        <div className={className || 'loading-icon'}>
             <img src="https://i.gifer.com/ZNeS.gif" className="loading-icon" />
             <h4 className="centered">Loading!</h4>
         </div>
