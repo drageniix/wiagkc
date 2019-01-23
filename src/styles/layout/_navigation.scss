@@ -61,11 +61,12 @@
         }
 
         &--signup {
-            background: rgba(109, 255, 165, 0.6);
+            background: rgb(4, 190, 44);
             border-radius: 0.3rem;
             font-weight: 400;
             margin-right: 2rem;
             padding: 1rem 2rem;
+            color: white;
 
             @include respond(tabLand) {
                 margin-right: 1rem;

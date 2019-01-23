@@ -17,9 +17,11 @@ class Comments extends React.Component {
                             )) || <Comment comment={comment} />}
                     </Fragment>
                 ))}
-                <div className="comments__new">
-                    <CommentForm />
-                </div>
+                {userId && (
+                    <div className="comments__new">
+                        <CommentForm />
+                    </div>
+                )}
             </div>
         );
     }

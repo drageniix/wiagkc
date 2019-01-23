@@ -59,7 +59,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Navigation.propTypes = {
-    username: PropTypes.string,
+    username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     data: PropTypes.object.isRequired,
     setModal: PropTypes.func.isRequired
 };

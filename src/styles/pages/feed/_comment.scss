@@ -5,7 +5,8 @@
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 2rem;
-    background: rgba($color-tertiary, 0.15);
+    background: rgba($color-tertiary, 0.2);
+    animation: fadeIn 2s;
 
     &__user {
         display: flex;

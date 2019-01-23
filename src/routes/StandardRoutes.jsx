@@ -13,8 +13,14 @@ const FeedPage = Loadable({
     loading: Loading
 });
 
+const PostPage = Loadable({
+    loader: () => import('../pages/PostPage'),
+    loading: Loading
+});
+
 export default (
     <Switch>
+        <Route path="/feed/:postId" component={PostPage} />
         <Route path="/feed" component={FeedPage} />
         <Route component={HomePage} />
     </Switch>
