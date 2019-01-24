@@ -20,7 +20,8 @@ export class Comment extends Component {
                 content,
                 creator: { name, flag }
             },
-            setEditing
+            setEditing,
+            canEditComment
         } = this.props;
         return (
             <div className="comment">
