@@ -10,7 +10,7 @@ export class Comment extends Component {
         comment: PropTypes.object,
         ownsComment: PropTypes.bool,
         setEditing: PropTypes.func,
-        canEditComment: PropTypes.func
+        canEditComment: PropTypes.bool
     };
 
     render() {
@@ -45,7 +45,7 @@ export class Comment extends Component {
 }
 
 const mapStateToProps = (state, { comment }) => ({
-    canEditComment: canEditComment(state, comment)
+    canEditComment: canEditComment(state)(comment)
 });
 
 const mapDispatchToProps = {
