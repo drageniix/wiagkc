@@ -10,6 +10,9 @@ export default async function getReducer() {
             case 'SET_MODAL':
                 newState.modal = action.modal;
                 break;
+            case 'SET_LOADING':
+                newState.loading = action.loading;
+                break;
             default:
                 break;
         }

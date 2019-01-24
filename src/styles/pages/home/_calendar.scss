@@ -54,6 +54,10 @@
     }
 
     &__events {
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+
         @include respond(tabLand) {
             column-count: 2;
             column-gap: 2rem;
@@ -68,6 +72,7 @@
     }
 
     &__event {
+        text-align: start;
         margin-bottom: 1rem;
         width: 100%;
 

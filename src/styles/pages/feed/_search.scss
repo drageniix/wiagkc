@@ -1,0 +1,90 @@
+.search {
+    width: 40rem;
+    padding-bottom: 3rem;
+    margin: 0 auto;
+    display: inline-block;
+
+    @include respond(tabLand) {
+        padding-top: 3rem;
+    }
+
+    @include respond(tabPort) {
+        padding: 1rem 0;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__input {
+        //doesn't inherit font properties
+        font-size: 1.6rem;
+        font-family: inherit;
+        color: $color-grey-dark-3;
+        padding: 0.75rem;
+        border-radius: 2px;
+        background-color: $color-grey-light-1;
+        flex-basis: 88%;
+        transition: all 0.2s;
+        border: 3px solid $color-grey-light-2;
+        border-radius: 0.5rem;
+
+        margin-right: -3.5rem;
+        transition: all 0.2s;
+
+        &:focus,
+        &:hover {
+            outline: none;
+            flex-basis: 100%;
+            box-shadow: 0 1px 3px rgba($color-black, 0.1);
+        }
+
+        &::-webkit-input-placeholder {
+            font-weight: 100;
+            color: $color-grey-dark-1;
+        }
+    }
+
+    &__label {
+        display: none;
+        flex-basis: 100%;
+
+        @include respond(tabLand) {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-left: 2rem;
+            margin-top: 0.7rem;
+            display: block;
+            transition: all 0.3s;
+        }
+    }
+
+    &__input:placeholder-shown + &__label {
+        //adjacent sibling
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-4rem);
+    }
+
+    &__button {
+        cursor: pointer;
+        border: none;
+        background-color: $color-grey-light-1;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            transform: translateY(2px);
+        }
+    }
+
+    &__icon {
+        height: 2rem;
+        width: 2rem;
+        fill: $color-grey-dark-3;
+    }
+}

@@ -17,7 +17,7 @@ export const NextMeeting = ({ nextMeeting }) => (
 );
 
 const mapStateToProps = state => ({
-    nextMeeting: getNextMeeting(state.events.events)
+    nextMeeting: getNextMeeting(state.events.events, state.common.loading)
 });
 
 NextMeeting.propTypes = {

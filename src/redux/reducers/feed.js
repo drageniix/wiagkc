@@ -1,6 +1,7 @@
 export default async function getReducer() {
     const data = {
         page: 0,
+        query: '',
         posts: []
     };
 
@@ -10,6 +11,9 @@ export default async function getReducer() {
             case 'LOGOUT':
                 newState.post = null;
                 newState.editing = null;
+                break;
+            case 'SET_POSTS_QUERY':
+                newState.query = action.query;
                 break;
             case 'SET_POSTS_PAGE':
                 newState.page = action.page;

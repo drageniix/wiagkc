@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import Comment from './Comment';
 import CommentForm from './CommentForm';
 import { connect } from 'react-redux';
+import { isEditingComment } from '../../redux/selectors/feed';
 
 class Comments extends React.Component {
     render() {
-        const { comments, editing, userId } = this.props;
+        const { comments, isEditingComment, userId } = this.props;
         return (
             <div className="comments">
                 {comments.map((comment, index) => (
                     <Fragment key={index}>
-                        {(userId === comment.creator._id &&
-                            editing === comment._id && (
-                                <CommentForm comment={comment} />
-                            )) || <Comment comment={comment} />}
+                        {(isEditingComment(comment) && (
+                            <CommentForm comment={comment} />
+                        )) || <Comment comment={comment} />}
                     </Fragment>
                 ))}
                 {userId && (
@@ -28,15 +28,15 @@ class Comments extends React.Component {
 }
 
 Comments.propTypes = {
-    editing: PropTypes.string,
+    isEditingComment: PropTypes.func,
     comments: PropTypes.array,
     userId: PropTypes.string
 };
 
 const mapStateToProps = state => ({
     comments: state.feed.post.comments,
-    editing: state.feed.editing,
-    userId: state.user.userId
+    userId: state.user.userId,
+    isEditingComment: isEditingComment(state)
 });
 
 export default connect(mapStateToProps)(Comments);

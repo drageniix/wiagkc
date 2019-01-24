@@ -1,0 +1,15 @@
+.icon {
+    fill: currentColor;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    &--edit {
+        fill: rgb(7, 39, 75);
+        margin-left: auto;
+    }
+    &--cancel {
+        margin-left: auto;
+        text-align: end;
+        fill: red;
+    }
+}

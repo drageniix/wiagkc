@@ -4,7 +4,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Flatpickr from 'react-flatpickr';
-
 import 'flatpickr/dist/themes/material_green.css';
 import { addEvent, updateEvent, deleteEvent } from '../../redux/actions/events';
 import { getErrors } from '../../redux/selectors/common';
@@ -16,7 +15,7 @@ export class AddEvent extends React.Component {
         this.state = {
             date:
                 (this.props.event && this.props.event.date * 1000) ||
-                Date.now(),
+                new Date().setHours(19, 0, 0, 0),
             title: (this.props.event && this.props.event.title) || '',
             details: (this.props.event && this.props.event.details) || ''
         };

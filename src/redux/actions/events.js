@@ -1,4 +1,4 @@
-import { setErrors, setModal } from './common';
+import { setErrors, setModal, setLoading } from './common';
 
 export const setEvent = event => ({
     type: 'SET_EVENT',
@@ -6,6 +6,7 @@ export const setEvent = event => ({
 });
 
 export const getEvents = () => dispatch => {
+    dispatch(setLoading(true));
     fetch('https://wiakc.herokuapp.com/calendar')
         .then(res => res.json())
         .then(json => {
@@ -13,8 +14,12 @@ export const getEvents = () => dispatch => {
                 type: 'GET_EVENTS',
                 events: json.events
             });
+            dispatch(setLoading(false));
         })
-        .catch(err => dispatch(setErrors(err)));
+        .catch(err => {
+            dispatch(setErrors(err));
+            dispatch(setLoading(false));
+        });
 };
 
 export const addEvent = data => (dispatch, getState) => {

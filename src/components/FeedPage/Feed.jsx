@@ -9,22 +9,21 @@ import LoadingIcon from '../LoadingIcon';
 export class Feed extends Component {
     static propTypes = {
         posts: PropTypes.array,
-        canPost: PropTypes.bool
+        canPost: PropTypes.bool,
+        loading: PropTypes.bool
     };
 
     render() {
-        const { posts, canPost } = this.props;
+        const { posts, canPost, loading } = this.props;
 
         return (
             <div className="feed__posts">
                 {canPost && <PostForm />}
-                {posts.length === 0 ? (
-                    <LoadingIcon />
-                ) : (
+                {(loading && <LoadingIcon />) ||
+                    (posts.length === 0 && 'No Posts found.') ||
                     posts.map((post, index) => (
                         <Post key={index} post={post} fromFeed />
-                    ))
-                )}
+                    ))}
             </div>
         );
     }
@@ -32,6 +31,7 @@ export class Feed extends Component {
 
 const mapStateToProps = state => ({
     posts: state.feed.posts,
+    loading: state.common.loading,
     canPost: isAuth(state.user, 1) && state.feed.page === 1
 });
 

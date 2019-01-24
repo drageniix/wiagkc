@@ -1,4 +1,4 @@
-import { setErrors } from './common';
+import { setErrors, setLoading } from './common';
 
 export const setPost = post => ({
     type: 'SET_POST',
@@ -10,6 +10,14 @@ export const setEditing = editing => ({
     editing
 });
 
+export const setQuery = query => dispatch => {
+    dispatch({
+        type: 'SET_POSTS_QUERY',
+        query
+    });
+    dispatch(setPage(1));
+};
+
 export const setPage = page => dispatch => {
     dispatch({
         type: 'SET_POSTS_PAGE',
@@ -20,16 +28,29 @@ export const setPage = page => dispatch => {
 
 export const getPost = postId => dispatch => {
     dispatch(setPost(undefined));
+    dispatch(setLoading(true));
     fetch('https://wiakc.herokuapp.com/feed/post/' + postId)
         .then(res => res.json())
-        .then(json => dispatch(setPost(json.post)))
-        .catch(err => dispatch(setErrors(err)));
+        .then(json => {
+            dispatch(setLoading(false));
+            dispatch(setPost(json.post));
+        })
+        .catch(err => {
+            dispatch(setLoading(false));
+            dispatch(setErrors(err));
+        });
 };
 
 export const getPosts = () => (dispatch, getState) => {
-    fetch('https://wiakc.herokuapp.com/feed/posts?page=' + getState().feed.page)
+    dispatch(setLoading(true));
+    fetch(
+        `https://wiakc.herokuapp.com/feed/posts?page=${
+            getState().feed.page
+        }&q=${getState().feed.query}`
+    )
         .then(res => res.json())
         .then(json => {
+            dispatch(setLoading(false));
             dispatch({
                 type: 'GET_POSTS',
                 posts: json.posts,
@@ -37,7 +58,10 @@ export const getPosts = () => (dispatch, getState) => {
                 itemsPerPage: json.itemsPerPage
             });
         })
-        .catch(err => dispatch(setErrors(err)));
+        .catch(err => {
+            dispatch(setLoading(false));
+            dispatch(setErrors(err));
+        });
 };
 
 export const addPost = data => (dispatch, getState) => {

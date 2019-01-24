@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import TextAreaAutosize from 'react-autosize-textarea';
-
+import { setEditing } from '../../redux/actions/feed';
 import {
     addComment,
     updateComment,
@@ -38,11 +38,22 @@ export class CommentForm extends React.Component {
     };
 
     render() {
-        const { errors, comment } = this.props;
+        const { errors, comment, setEditing } = this.props;
         const { content } = this.state;
 
         return (
             <div className="comment-form">
+                {!!comment && (
+                    <svg
+                        className="icon icon--cancel pointer"
+                        onClick={() => setEditing('')}
+                        viewBox="0 0 32 32"
+                    >
+                        <title>Cancel Editing</title>
+                        <path d="M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z" />
+                        <path d="M21 8l-5 5-5-5-3 3 5 5-5 5 3 3 5-5 5 5 3-3-5-5 5-5z" />
+                    </svg>
+                )}
                 <div className="comment-form__input">
                     <TextAreaAutosize
                         rows={4}
@@ -93,7 +104,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
     addComment,
     updateComment,
-    deleteComment
+    deleteComment,
+    setEditing
 };
 
 CommentForm.propTypes = {
@@ -101,7 +113,8 @@ CommentForm.propTypes = {
     addComment: PropTypes.func.isRequired,
     updateComment: PropTypes.func.isRequired,
     deleteComment: PropTypes.func.isRequired,
-    errors: PropTypes.object
+    errors: PropTypes.object,
+    setEditing: PropTypes.func
 };
 
 export default connect(
