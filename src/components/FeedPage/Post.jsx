@@ -14,7 +14,7 @@ const Post = ({ post, setEditing, editable, history, fromFeed }) => {
                 history.push('/feed/' + post._id)
             }
         >
-            <h1 className="post__title">{post.title}</h1>
+            <ReactMarkdown className="post__title">{post.title}</ReactMarkdown>
             <ReactMarkdown
                 className="post__content"
                 source={

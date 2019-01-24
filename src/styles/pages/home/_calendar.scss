@@ -3,13 +3,13 @@
         color: red;
     }
     .green {
-        color: green
+        color: green;
     }
 
     // @supports (-webkit-text-fill-color: transparent) {
     //     background: linear-gradient(to right,
-    //     #c94040, 
-    //     #c94040 40%, 
+    //     #c94040,
+    //     #c94040 40%,
     //     #12851f 60%,
     //     #12851f);
     //     background-clip: text;
@@ -20,25 +20,25 @@
 .calendar {
     width: 42%;
 
-    @include respond(tabLand){
+    @include respond(tabLand) {
         width: 50%;
     }
 
-    @include respond(phone){
+    @include respond(phone) {
         width: 100%;
     }
 
     @include flexSupport {
         flex-basis: 42%;
-        
-        @include respond(tabLand){
+
+        @include respond(tabLand) {
             flex-basis: 50%;
         }
 
-        @include respond(phone){
+        @include respond(phone) {
             flex-basis: 100%;
         }
-    }   
+    }
 
     &__container {
         margin: 0 auto;
@@ -46,42 +46,41 @@
         overflow: hidden;
         padding: 1.5rem;
 
-        @include respond(phone){
+        @include respond(phone) {
             margin: 0;
             display: block;
             padding: 3rem;
         }
     }
-    
+
     &__events {
-        @include respond(tabLand){
+        @include respond(tabLand) {
             column-count: 2;
-            column-gap: 2rem; //1em = 14px;
+            column-gap: 2rem;
             column-rule: 1px solid $color-grey-light-2;
         }
-        
-        @include respond(tinyPhone){
+
+        @include respond(tinyPhone) {
             column-count: 1;
-            column-gap: 0; //1em = 14px;
+            column-gap: 0;
             column-rule: none;
         }
-
     }
 
     &__event {
         margin-bottom: 1rem;
         width: 100%;
-        
+
         &--date {
             white-space: nowrap;
             display: inline-block;
             vertical-align: top;
             padding-right: 1.5rem;
-            width: 40%
+            width: 40%;
         }
 
         &--details {
-            white-space : wrap;
+            white-space: wrap;
             display: inline-block;
             vertical-align: top;
             width: 60%;

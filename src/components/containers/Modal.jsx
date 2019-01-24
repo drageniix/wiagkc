@@ -11,7 +11,7 @@ const WestIndies = Loadable({
 });
 
 const EventForm = Loadable({
-    loader: () => import('../Modals/EventForm'),
+    loader: () => import('../HomePage/EventForm'),
     loading: Loading
 });
 

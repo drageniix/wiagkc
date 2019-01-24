@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import TextAreaAutosize from 'react-autosize-textarea';
+
 import {
     addComment,
     updateComment,
@@ -36,13 +38,14 @@ export class CommentForm extends React.Component {
     };
 
     render() {
-        const { errors } = this.props;
+        const { errors, comment } = this.props;
         const { content } = this.state;
 
         return (
             <div className="comment-form">
                 <div className="comment-form__input">
-                    <textarea
+                    <TextAreaAutosize
+                        rows={4}
                         className="comment-form__input--content"
                         value={content}
                         onChange={this.onChange}
@@ -53,19 +56,19 @@ export class CommentForm extends React.Component {
                 {errors && errors.content && (
                     <p className="comment-form__invalid">{errors.content}</p>
                 )}
-                {(this.props.comment && (
+                {(comment && (
                     <div className="comment-form__buttons">
                         <button
                             className="btn btn--update"
                             onClick={this.onSumbit(1)}
                         >
-                            Update Comment
+                            Update
                         </button>
                         <button
                             className="btn btn--delete"
                             onClick={this.onSumbit(2)}
                         >
-                            Delete Comment
+                            Delete
                         </button>
                     </div>
                 )) || (

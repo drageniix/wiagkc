@@ -20,6 +20,7 @@ export const Navigation = ({ username, data, setModal }) => (
                     {item.display}
                 </NavLink>
             ))}
+            <span className="navigation__links--link">|</span>
             {(username && (
                 <Fragment>
                     <NavLink

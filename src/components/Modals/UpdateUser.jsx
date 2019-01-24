@@ -60,14 +60,14 @@ export class UpdateUser extends React.Component {
                         htmlFor="old_password"
                         className="user__input--title"
                     >
-                        Current Password:
+                        * Current Password:
                     </label>
                     <input
                         className="user__input--data"
                         value={old_password}
                         onChange={this.onChange}
                         type="password"
-                        placeholder=" * required "
+                        placeholder="required"
                         name="old_password"
                     />
                 </div>

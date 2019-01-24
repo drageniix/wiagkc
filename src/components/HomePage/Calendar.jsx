@@ -6,6 +6,7 @@ import { setModal } from '../../redux/actions/common';
 import { getEvents, setEvent } from '../../redux/actions/events';
 import { isAuth } from '../../redux/selectors/users';
 import LoadingIcon from '../LoadingIcon';
+import ReactMarkdown from 'react-markdown';
 
 export class Calendar extends React.Component {
     componentDidMount() {
@@ -57,14 +58,12 @@ export class Calendar extends React.Component {
                                         {getShortDate(event.date)}
                                     </div>
                                     <div className="calendar__event--details">
-                                        <p>
-                                            {event.emphasis ? (
-                                                <strong>{event.title}</strong>
-                                            ) : (
-                                                event.title
-                                            )}
-                                        </p>
-                                        <p>{event.details}</p>
+                                        <ReactMarkdown>
+                                            {event.title}
+                                        </ReactMarkdown>
+                                        <ReactMarkdown>
+                                            {event.details}
+                                        </ReactMarkdown>
                                     </div>
                                 </div>
                             ))) || <LoadingIcon />}

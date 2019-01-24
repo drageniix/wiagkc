@@ -8,6 +8,7 @@ import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/themes/material_green.css';
 import { addEvent, updateEvent, deleteEvent } from '../../redux/actions/events';
 import { getErrors } from '../../redux/selectors/common';
+import TextareaAutosize from 'react-autosize-textarea/lib';
 
 export class AddEvent extends React.Component {
     constructor(props) {
@@ -17,8 +18,7 @@ export class AddEvent extends React.Component {
                 (this.props.event && this.props.event.date * 1000) ||
                 Date.now(),
             title: (this.props.event && this.props.event.title) || '',
-            details: (this.props.event && this.props.event.details) || '',
-            emphasis: (this.props.event && this.props.event.emphasis) || false
+            details: (this.props.event && this.props.event.details) || ''
         };
     }
 
@@ -28,8 +28,7 @@ export class AddEvent extends React.Component {
         const parsedDate = {
             date: this.state.date / 1000,
             title: this.state.title,
-            details: this.state.details,
-            emphasis: this.state.emphasis
+            details: this.state.details
         };
 
         switch (type) {
@@ -46,26 +45,14 @@ export class AddEvent extends React.Component {
     };
 
     render() {
+        const { date, title, details } = this.state;
+        const { errors, event } = this.props;
         return (
-            <div className="event">
-                <label className="event__major">
-                    <strong>Major Event</strong>
-                    <input
-                        type="checkbox"
-                        className="event__major--input"
-                        checked={this.state.emphasis}
-                        onChange={e =>
-                            this.setState({
-                                emphasis: e.target.checked
-                            })
-                        }
-                        name="emphasis"
-                    />
-                </label>
-                <div className="event__date">
+            <div className="event-form">
+                <div className="event-form__date">
                     <Flatpickr
                         data-enable-time
-                        value={this.state.date}
+                        value={date}
                         options={{
                             altInput: true,
                             altFormat: 'M J, h:iK'
@@ -75,43 +62,51 @@ export class AddEvent extends React.Component {
                         }
                     />
                 </div>
-                <div className="event__title">
+                <div className="event-form__title">
                     <input
-                        className="event__title--input"
-                        value={this.state.title}
+                        className="event-form__title--input"
+                        value={title}
                         onChange={e => this.setState({ title: e.target.value })}
                         type="text"
                         placeholder="Event Title"
                         name="title"
                     />
+                    {errors && errors.title && (
+                        <p className="event-form__invalid">{errors.title}</p>
+                    )}
                 </div>
-                <textarea
-                    className="event__details"
+                <TextareaAutosize
+                    rows={4}
+                    className="event-form__details"
                     onChange={e => this.setState({ details: e.target.value })}
                     type="text"
                     placeholder="Description"
                     name="details"
-                    value={this.state.details}
+                    value={details}
                 />
-                {(this.props.event && (
-                    <div className="event__buttons">
+                {errors && errors.details && (
+                    <p className="event-form__invalid">{errors.details}</p>
+                )}
+
+                {(event && (
+                    <div className="buttons">
                         <button
-                            className="event__submit event__submit--update"
+                            className="btn btn--update"
                             onClick={this.onSumbit(1)}
                         >
-                            Update Event
+                            Update
                         </button>
                         <button
-                            className="event__submit event__submit--delete"
+                            className="btn btn--delete"
                             onClick={this.onSumbit(2)}
                         >
-                            Delete Event
+                            Delete
                         </button>
                     </div>
                 )) || (
-                    <div className="event__buttons">
+                    <div className="buttons">
                         <button
-                            className="event__submit event__submit--add"
+                            className="btn btn--add"
                             onClick={this.onSumbit(0)}
                         >
                             Add Event
