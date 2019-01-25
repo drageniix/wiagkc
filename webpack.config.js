@@ -66,7 +66,11 @@ function getPlugins(isProduction) {
             new CleanWebpackPlugin(['public'], {
                 verbose: false
             }),
-            new CopyWebpackPlugin([{ from: 'src/assets/static/_redirects' }])
+            new CopyWebpackPlugin([{ from: 'src/assets/static/_redirects' }]),
+            new CopyWebpackPlugin([
+                { from: 'src/assets/static/google3e1f00fabf7287e7.html' }
+            ]),
+            new CopyWebpackPlugin([{ from: 'src/assets/static/sitemap.xml' }])
         );
     }
 

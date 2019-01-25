@@ -9,7 +9,8 @@
     "scripts": {
         "test": "jest --config=jest.config.json --watchAll",
         "start": "webpack-dev-server",
-        "build": "webpack -p --env production"
+        "build": "webpack -p --env production",
+        "sitemap": "node src/utilities/sitemap.js"
     },
     "keywords": [],
     "author": "Ashley Barrow",
