@@ -16,6 +16,8 @@
     }
 
     tbody {
+        white-space: nowrap;
+
         @include respond(tabPort) {
             font-size: 1.4rem;
         }

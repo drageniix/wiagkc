@@ -19,10 +19,10 @@ export const Footer = ({ data }) => (
                 </a>
             </p>
             <p>
-                <a href={'mailto:' + data.email}>{data.email}</a>
+                <a href={'tel:' + data.phone.replace('-', '')}>{data.phone}</a>
             </p>
             <p>
-                <a href={'tel:' + data.phone.replace('-', '')}>{data.phone}</a>
+                <a href={'mailto:' + data.email}>{data.email}</a>
             </p>
             <p>
                 <a href={data.geo} target="_blank" rel="noopener noreferrer">

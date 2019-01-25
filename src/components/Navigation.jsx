@@ -5,10 +5,15 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { setModal } from '../redux/actions/common';
 import { getFirstName, isAuth } from '../redux/selectors/users';
+import { withRouter } from 'react-router-dom';
 
-export const Navigation = ({ username, admin, data, setModal }) => (
+export const Navigation = ({ history, username, admin, data, setModal }) => (
     <nav className="navigation section--down">
-        <ResponsiveImage className="navigation__logo" image={data.logo} />
+        <ResponsiveImage
+            className="navigation__logo pointer"
+            image={data.logo}
+            onClick={() => history.push('/')}
+        />
         <span className="navigation__title">{data.shortName}</span>
         <span className="navigation__links">
             {data.links.map((item, index) => (
@@ -72,10 +77,11 @@ Navigation.propTypes = {
     admin: PropTypes.bool,
     username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     data: PropTypes.object.isRequired,
-    setModal: PropTypes.func.isRequired
+    setModal: PropTypes.func.isRequired,
+    history: PropTypes.object
 };
 
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Navigation);
+)(withRouter(Navigation));
