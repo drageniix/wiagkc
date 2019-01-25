@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { setModal } from '../redux/actions/common';
-import { getFirstName } from '../redux/selectors/users';
+import { getFirstName, isAuth } from '../redux/selectors/users';
 
-export const Navigation = ({ username, data, setModal }) => (
+export const Navigation = ({ username, admin, data, setModal }) => (
     <nav className="navigation section--down">
         <ResponsiveImage className="navigation__logo" image={data.logo} />
         <span className="navigation__title">{data.shortName}</span>
@@ -23,6 +23,14 @@ export const Navigation = ({ username, data, setModal }) => (
             <span className="navigation__links--link">|</span>
             {(username && (
                 <Fragment>
+                    {admin && (
+                        <NavLink
+                            className="navigation__links--link navigation__links pointer"
+                            to="/admin"
+                        >
+                            Admin
+                        </NavLink>
+                    )}
                     <NavLink
                         className="navigation__links--link navigation__links--username pointer"
                         to="/account"
@@ -52,6 +60,7 @@ export const Navigation = ({ username, data, setModal }) => (
 
 const mapStateToProps = state => ({
     username: getFirstName(state.user),
+    admin: isAuth(state.user, 3),
     data: state.common.marginals
 });
 
@@ -60,6 +69,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Navigation.propTypes = {
+    admin: PropTypes.bool,
     username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     data: PropTypes.object.isRequired,
     setModal: PropTypes.func.isRequired

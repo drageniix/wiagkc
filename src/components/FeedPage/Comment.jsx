@@ -23,6 +23,7 @@ export class Comment extends Component {
             setEditing,
             canEditComment
         } = this.props;
+
         return (
             <div className="comment">
                 <div className="comment__user">

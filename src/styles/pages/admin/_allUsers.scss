@@ -1,0 +1,23 @@
+.admin__users--table {
+    margin: 3rem auto;
+    width: 100%;
+    max-width: 70rem;
+    border-collapse: collapse;
+    text-align: start;
+
+    thead {
+        font-weight: 700;
+        font-size: 2rem;
+        border-bottom: 2px solid $color-tertiary;
+        margin-bottom: 2rem;
+        @include respond(tabPort) {
+            font-size: 1.6rem;
+        }
+    }
+
+    tbody {
+        @include respond(tabPort) {
+            font-size: 1.4rem;
+        }
+    }
+}
