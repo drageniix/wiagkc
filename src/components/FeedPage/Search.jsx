@@ -26,7 +26,6 @@ export class Search extends React.Component {
                         id="search"
                         className="search__input"
                         spellCheck={false}
-                        autoFocus
                     />
                     <button className="search__button" onClick={this.setQuery}>
                         <svg className="search__icon" viewBox="0 0 20 20">
