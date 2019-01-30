@@ -21,7 +21,7 @@ class Router extends Component {
         closeModal: PropTypes.func
     };
 
-    componentDidMount() {
+    componentDidMount = () => {
         window.addEventListener(
             'keydown',
             e =>
@@ -29,6 +29,10 @@ class Router extends Component {
                 e.key === 'Escape' &&
                 this.props.closeModal()
         );
+    };
+
+    componentWillMount() {
+        window.removeEventListener('keydown');
     }
 
     render() {
