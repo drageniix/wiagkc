@@ -1,3 +1,5 @@
+import { UPDATE_USER, LOGIN, LOGOUT } from '../constants';
+
 export default async function getReducer() {
     const token = localStorage.getItem('token');
     const expiryDate = new Date(localStorage.getItem('expiryDate'));
@@ -14,33 +16,29 @@ export default async function getReducer() {
     };
 
     return (state = data, action) => {
-        const newState = { ...state };
         switch (action.type) {
-            case 'UPDATE_USER':
+            case UPDATE_USER:
                 localStorage.setItem('user', JSON.stringify(action.user));
-                newState.user = action.user;
-                break;
-            case 'LOGIN':
+                return { ...state, user: action.user };
+            case LOGIN:
                 localStorage.setItem('token', action.token);
                 localStorage.setItem('expiryDate', action.expiryDate);
                 localStorage.setItem('userId', action.userId);
                 localStorage.setItem('user', JSON.stringify(action.user));
-                newState.token = action.token;
-                newState.userId = action.userId;
-                newState.user = action.user;
-                break;
-            case 'LOGOUT':
+                return {
+                    ...state,
+                    token: action.token,
+                    userId: action.userId,
+                    user: action.user
+                };
+            case LOGOUT:
                 localStorage.removeItem('token');
                 localStorage.removeItem('expiryDate');
                 localStorage.removeItem('userId');
                 localStorage.removeItem('user');
-                newState.token = null;
-                newState.userId = null;
-                newState.user = null;
-                break;
+                return { ...state, token: null, userId: null, user: null };
             default:
-                break;
+                return state;
         }
-        return newState;
     };
 }

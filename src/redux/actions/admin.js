@@ -1,4 +1,5 @@
 import { setLoading, setErrors } from './common';
+import { GET_ALL_USERS } from '../constants';
 
 export const getAllUsers = () => (dispatch, getState) => {
     dispatch(setLoading(true));
@@ -12,7 +13,7 @@ export const getAllUsers = () => (dispatch, getState) => {
         .then(json => {
             if (json.users) {
                 dispatch({
-                    type: 'GET_ALL_USERS',
+                    type: GET_ALL_USERS,
                     users: json.users
                 });
             }

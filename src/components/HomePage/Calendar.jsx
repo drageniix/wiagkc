@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setModal } from '../../redux/actions/common';
 import { getEvents, setEvent } from '../../redux/actions/events';
 import { isAuth } from '../../redux/selectors/users';
 import LoadingIcon from '../LoadingIcon';
 import Event from './Event';
+import { openEventFormModal } from '../../redux/actions/modals';
 
 export class Calendar extends React.Component {
     componentDidMount() {
@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getEvents: () => dispatch(getEvents()),
     addEvent: () => {
-        dispatch(setModal(2));
+        dispatch(openEventFormModal());
         dispatch(setEvent(null));
     }
 });

@@ -56,7 +56,7 @@ function getPlugins(isProduction) {
         new WebpackPwaManifest(manifest),
         new MiniCssExtractPlugin({
             filename: './styles/[hash].css',
-            chunkFilename: '[hash].css'
+            chunkFilename: './styles/[name]-[hash].css'
         }),
         new ResponsiveJSONWebpackPlugin()
     ];
@@ -84,7 +84,6 @@ module.exports = env => {
         entry: {
             index: [
                 '@babel/polyfill',
-                'url-search-params-polyfill',
                 './src/app.jsx',
                 './src/styles/index.scss'
             ]

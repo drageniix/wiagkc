@@ -1,36 +1,43 @@
+import {
+    LOGOUT,
+    GET_EVENTS,
+    CREATE_EVENT,
+    UPDATE_EVENT,
+    DELETE_EVENT,
+    SET_EVENT
+} from '../constants';
+
 export default async function getReducer() {
     const data = {
         events: []
     };
 
     return (state = data, action) => {
-        const newState = { ...state };
         switch (action.type) {
-            case 'LOGOUT':
-                newState.event = null;
-                break;
-            case 'GET_EVENTS':
-                newState.events = action.events;
-                break;
-            case 'CREATE_EVENT':
-                newState.events = newState.events.concat(action.event);
-                break;
-            case 'UPDATE_EVENT':
-                newState.events = newState.events.map(event =>
-                    event._id === action.event._id ? action.event : event
-                );
-                break;
-            case 'DELETE_EVENT':
-                newState.events = newState.events.filter(
-                    event => event._id !== action.eventId
-                );
-                break;
-            case 'SET_EVENT':
-                newState.event = action.event;
-                break;
+            case LOGOUT:
+                return { ...state, event: null };
+            case GET_EVENTS:
+                return { ...state, events: action.events };
+            case CREATE_EVENT:
+                return { ...state, events: state.events.concat(action.event) };
+            case UPDATE_EVENT:
+                return {
+                    ...state,
+                    events: state.events.map(event =>
+                        event._id === action.event._id ? action.event : event
+                    )
+                };
+            case DELETE_EVENT:
+                return {
+                    ...state,
+                    events: state.events.filter(
+                        event => event._id !== action.eventId
+                    )
+                };
+            case SET_EVENT:
+                return { ...state, event: action.event };
             default:
-                break;
+                return state;
         }
-        return newState;
     };
 }

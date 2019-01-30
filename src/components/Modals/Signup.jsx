@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    signup: data => signup(data)
+    signup
 };
 
 SignUp.propTypes = {

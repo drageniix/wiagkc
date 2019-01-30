@@ -159,7 +159,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    updateUser: data => updateUser(data)
+    updateUser
 };
 
 UpdateUser.propTypes = {

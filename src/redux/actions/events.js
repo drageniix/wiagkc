@@ -1,7 +1,9 @@
-import { setErrors, setModal, setLoading } from './common';
+import { setErrors, setLoading } from './common';
+import { SET_EVENT, GET_EVENTS } from '../constants';
+import { closeModal } from './modals';
 
 export const setEvent = event => ({
-    type: 'SET_EVENT',
+    type: SET_EVENT,
     event
 });
 
@@ -11,7 +13,7 @@ export const getEvents = () => dispatch => {
         .then(res => res.json())
         .then(json => {
             dispatch({
-                type: 'GET_EVENTS',
+                type: GET_EVENTS,
                 events: json.events
             });
             dispatch(setLoading(false));
@@ -37,7 +39,7 @@ export const addEvent = data => (dispatch, getState) => {
             if (res.status !== 201) {
                 dispatch(setErrors(json));
             } else {
-                dispatch(setModal(0));
+                dispatch(closeModal());
                 dispatch(setEvent(null));
             }
         })
@@ -62,7 +64,7 @@ export const updateEvent = data => (dispatch, getState) => {
             if (res.status !== 200) {
                 dispatch(setErrors(json));
             } else {
-                dispatch(setModal(0));
+                dispatch(closeModal());
                 dispatch(setEvent(null));
             }
         })
@@ -84,7 +86,7 @@ export const deleteEvent = () => (dispatch, getState) =>
             if (res.status !== 200) {
                 dispatch(setErrors(json));
             } else {
-                dispatch(setModal(0));
+                dispatch(closeModal());
                 dispatch(setEvent(null));
             }
         })

@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setModal } from '../../redux/actions/common';
 import Loadable from 'react-loadable';
 import Loading from './Loading';
+import { closeModal } from '../../redux/actions/modals';
 
 const WestIndies = Loadable({
     loader: () => import('../Modals/WestIndies'),
@@ -72,7 +72,7 @@ const mapDispatchToProps = dispatch => ({
     setModalClose: event => {
         if (event.target === event.currentTarget) {
             event.preventDefault();
-            dispatch(setModal(0));
+            dispatch(closeModal());
         }
     }
 });

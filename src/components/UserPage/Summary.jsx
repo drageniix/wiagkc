@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { logout } from '../../redux/actions/user';
-import { setModal } from '../../redux/actions/common';
 import { getMemberStatus } from '../../redux/selectors/users';
+import { openUpdateUserModal } from '../../redux/actions/modals';
 
 export class AccountPage extends Component {
     logout = e => {
@@ -14,7 +14,7 @@ export class AccountPage extends Component {
     };
 
     render() {
-        const { user, status, updateUser } = this.props;
+        const { user, status, openUpdateUserModal } = this.props;
         return (
             <div className="summary__content">
                 <img src={user.imageUrl} />
@@ -38,7 +38,10 @@ export class AccountPage extends Component {
                     {status}
                 </p>
                 <div className="account__buttons">
-                    <button className="btn btn--login" onClick={updateUser}>
+                    <button
+                        className="btn btn--login"
+                        onClick={openUpdateUserModal}
+                    >
                         Update
                     </button>
                     <button className="btn btn--logout" onClick={this.logout}>
@@ -56,7 +59,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-    updateUser: () => setModal(5),
+    openUpdateUserModal,
     logout
 };
 
@@ -64,7 +67,7 @@ AccountPage.propTypes = {
     user: PropTypes.object,
     status: PropTypes.string,
     logout: PropTypes.func,
-    updateUser: PropTypes.func,
+    openUpdateUserModal: PropTypes.func,
     history: PropTypes.object.isRequired
 };
 

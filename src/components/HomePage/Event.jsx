@@ -4,8 +4,8 @@ import { isAuth } from '../../redux/selectors/users';
 import { getShortDate } from '../../utilities/dates';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setModal } from '../../redux/actions/common';
 import { setEvent } from '../../redux/actions/events';
+import { openEventFormModal } from '../../redux/actions/modals';
 
 const Event = ({ isAuth, event, updateEvent }) => {
     return (
@@ -37,7 +37,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     updateEvent: event => {
-        dispatch(setModal(2));
+        dispatch(openEventFormModal());
         dispatch(setEvent(event));
     }
 });

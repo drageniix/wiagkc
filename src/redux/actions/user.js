@@ -1,10 +1,11 @@
-import { setErrors, setModal } from './common';
-import 'url-search-params-polyfill';
+import { setErrors } from './common';
+import { LOGIN, UPDATE_USER, LOGOUT } from '../constants';
+import { closeModal, openLoginModal } from './modals';
 
 export const logout = () => dispatch => {
-    dispatch(setModal(0));
+    dispatch(closeModal());
     dispatch({
-        type: 'LOGOUT'
+        type: LOGOUT
     });
 };
 
@@ -25,7 +26,7 @@ export const confirmAccount = (privilege, token) => (dispatch, getState) =>
                 dispatch(setErrors(json));
             } else if (getState().user.user) {
                 dispatch({
-                    type: 'UPDATE_USER',
+                    type: UPDATE_USER,
                     ...json
                 });
             }
@@ -47,11 +48,11 @@ export const updateUser = body => (dispatch, getState) =>
                 dispatch(setErrors(json));
             } else {
                 dispatch({
-                    type: 'UPDATE_USER',
+                    type: UPDATE_USER,
                     ...json
                 });
 
-                dispatch(setModal(0));
+                dispatch(closeModal());
             }
         })
         .catch(err => dispatch(setErrors(err)));
@@ -72,16 +73,16 @@ const standardLogin = async (url, input, dispatch) =>
                 const expiryDate = new Date(Date.now() + 3600000);
 
                 dispatch({
-                    type: 'LOGIN',
+                    type: LOGIN,
                     expiryDate: expiryDate.toISOString(),
                     ...json
                 });
 
-                dispatch(setModal(0));
+                dispatch(closeModal());
 
                 setTimeout(() => {
                     dispatch(logout);
-                    dispatch(setModal(3));
+                    dispatch(openLoginModal());
                 }, 3600000);
             }
         })

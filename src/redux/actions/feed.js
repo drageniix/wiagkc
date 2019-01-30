@@ -1,18 +1,25 @@
 import { setErrors, setLoading } from './common';
+import {
+    GET_POSTS,
+    SET_POST,
+    SET_EDITING,
+    SET_POSTS_QUERY,
+    SET_POSTS_PAGE
+} from '../constants';
 
 export const setPost = post => ({
-    type: 'SET_POST',
+    type: SET_POST,
     post
 });
 
 export const setEditing = editing => ({
-    type: 'SET_EDITING',
+    type: SET_EDITING,
     editing
 });
 
 export const setQuery = query => dispatch => {
     dispatch({
-        type: 'SET_POSTS_QUERY',
+        type: SET_POSTS_QUERY,
         query
     });
     dispatch(setPage(1));
@@ -20,7 +27,7 @@ export const setQuery = query => dispatch => {
 
 export const setPage = page => dispatch => {
     dispatch({
-        type: 'SET_POSTS_PAGE',
+        type: SET_POSTS_PAGE,
         page
     });
     dispatch(getPosts());
@@ -52,7 +59,7 @@ export const getPosts = () => (dispatch, getState) => {
         .then(json => {
             dispatch(setLoading(false));
             dispatch({
-                type: 'GET_POSTS',
+                type: GET_POSTS,
                 posts: json.posts,
                 totalItems: json.totalItems,
                 itemsPerPage: json.itemsPerPage

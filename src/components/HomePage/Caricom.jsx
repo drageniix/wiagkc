@@ -2,7 +2,7 @@ import React from 'react';
 import ResponsiveImage from 'responsive-json-webpack-plugin/react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { setModal } from '../../redux/actions/common';
+import { openWestIndiesModal } from '../../redux/actions/modals';
 
 export const Caricom = ({ data, setModalClose }) => (
     <section id="caricom" className="section section--up caricom">
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => ({
     setModalClose: event => {
         if (event.target === event.currentTarget) {
             event.preventDefault();
-            dispatch(setModal(1));
+            dispatch(openWestIndiesModal());
         }
     }
 });

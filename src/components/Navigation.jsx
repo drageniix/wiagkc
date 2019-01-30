@@ -3,11 +3,18 @@ import ResponsiveImage from 'responsive-json-webpack-plugin/react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { setModal } from '../redux/actions/common';
 import { getFirstName, isAuth } from '../redux/selectors/users';
 import { withRouter } from 'react-router-dom';
+import { openLoginModal, openSignupModal } from '../redux/actions/modals';
 
-export const Navigation = ({ history, username, admin, data, setModal }) => (
+export const Navigation = ({
+    history,
+    username,
+    admin,
+    data,
+    openLoginModal,
+    openSignupModal
+}) => (
     <nav className="navigation section--down">
         <ResponsiveImage
             className="navigation__logo pointer"
@@ -47,13 +54,13 @@ export const Navigation = ({ history, username, admin, data, setModal }) => (
                 <Fragment>
                     <a
                         className="navigation__links--link pointer"
-                        onClick={setModal(3)}
+                        onClick={openLoginModal}
                     >
                         Login
                     </a>
                     <a
                         className="navigation__links--link navigation__links--signup pointer"
-                        onClick={setModal(4)}
+                        onClick={openSignupModal}
                     >
                         Signup
                     </a>
@@ -69,15 +76,17 @@ const mapStateToProps = state => ({
     data: state.common.marginals
 });
 
-const mapDispatchToProps = dispatch => ({
-    setModal: mode => () => dispatch(setModal(mode))
-});
+const mapDispatchToProps = {
+    openLoginModal,
+    openSignupModal
+};
 
 Navigation.propTypes = {
     admin: PropTypes.bool,
     username: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     data: PropTypes.object.isRequired,
-    setModal: PropTypes.func.isRequired,
+    openLoginModal: PropTypes.func.isRequired,
+    openSignupModal: PropTypes.func.isRequired,
     history: PropTypes.object
 };
 
