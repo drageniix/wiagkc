@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Loadable from 'react-loadable';
 import Loading from './Loading';
-import { setModalClose } from '../../redux/actions/modals';
+import { closeModal } from '../../redux/actions/modals';
 
 const WestIndies = Loadable({
     loader: () => import('../Modals/WestIndies'),
@@ -33,12 +33,18 @@ const UpdateUser = Loadable({
 class Modal extends Component {
     static propTypes = {
         modal: PropTypes.number,
-        setModalClose: PropTypes.func.isRequired
+        closeModal: PropTypes.func.isRequired
     };
 
-    keyDown = e => {
-        this.props.modal && e.key === 'Escape' && this.props.setModalClose();
+    closeModal = e => {
+        if (e.target === e.currentTarget) {
+            e.preventDefault();
+            this.props.closeModal();
+        }
     };
+
+    keyDown = e =>
+        this.props.modal && e.key === 'Escape' && this.props.closeModal();
 
     componentDidMount = () => {
         window.addEventListener('keydown', this.keyDown);
@@ -49,7 +55,8 @@ class Modal extends Component {
     };
 
     render() {
-        const { modal, setModalClose } = this.props;
+        const modal = this.props.modal;
+
         let mode;
         switch (modal) {
             case 1:
@@ -72,7 +79,7 @@ class Modal extends Component {
         }
 
         return mode ? (
-            <div className="modal" onClick={setModalClose}>
+            <div className="modal" onClick={this.closeModal}>
                 <div className="modal__content">{mode}</div>
             </div>
         ) : null;
@@ -83,14 +90,9 @@ const mapStateToProps = state => ({
     modal: state.common.modal
 });
 
-const mapDispatchToProps = dispatch => ({
-    setModalClose: event => {
-        if (event.target === event.currentTarget) {
-            event.preventDefault();
-            dispatch(setModalClose());
-        }
-    }
-});
+const mapDispatchToProps = {
+    closeModal
+};
 
 export default connect(
     mapStateToProps,
